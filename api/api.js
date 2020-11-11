@@ -18,8 +18,8 @@ function getCustomText(req, res)
     customTextData = updateData("customText.json");
 
     reply = {
-        status = "success",
-        data = customTextData
+        status: "success",
+        data: customTextData
     }
 
     res.send(reply);
