@@ -11,7 +11,7 @@ import re
 CONFIG_FILE = "./botSettings.json"
 
 def readConfig():
-    with open(CONFIG_FILE) as conf:
+    with open(CONFIG_FILE, "r") as conf:
         data = json.load(conf)
         conf.close()
 
