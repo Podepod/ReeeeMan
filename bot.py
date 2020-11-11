@@ -58,10 +58,7 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name="Reeeeeeee"))
 
 # random troll command
-@bot.command(
-    aliases = ["connie", "conrad", "reeee"],
-    hidden = True
-)
+@bot.command(hidden = True)
 async def drink(ctx):
     await ctx.send("Lol das hier wel grappig gelle zyt goe weg.")
     await bot.cange_presence(activity=discord.Game(name="Conrad ge zyt dronken"))
