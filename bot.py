@@ -72,7 +72,7 @@ async def drink(ctx):
 # custom text command
 @bot.command(hidden = True)
 async def customText(ctx):
-    await ctx.send(getCustomText()["data]["text"])
+    await ctx.send(getCustomText()["data"]["text"])
 
 # shutdown command
 @bot.command(hidden = True)
