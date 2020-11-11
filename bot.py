@@ -17,6 +17,11 @@ def readConfig():
 
     return data
 
+def getCustomText():
+    api_page = requests.get("10.30.20.187:4005/api")
+    
+    return json.loads(api_page.text)
+
 config = readConfig()
 
 bot = commands.Bot(command_prefix=config["prefix"], description=config["description"])
@@ -63,6 +68,11 @@ async def drink(ctx):
     await ctx.send("Lol das hier wel grappig gelle zyt goe weg.")
     await ctx.send("Conrad ge zyt dronken man")
     await bot.change_presence(activity=discord.Game(name="Conrad ge zyt dronken"))
+
+# custom text command
+@bot.command(hidden = True)
+async def customText(ctx):
+    await ctx.send(getCustomText()["data]["text"])
 
 # shutdown command
 @bot.command(hidden = True)
