@@ -1,0 +1,19 @@
+{
+  "name": "reeeeman",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Podepod/ReeeeMan.git"
+  },
+  "author": "Podepod",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Podepod/ReeeeMan/issues"
+  },
+  "homepage": "https://github.com/Podepod/ReeeeMan#readme"
+}
