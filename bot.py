@@ -61,6 +61,7 @@ async def on_ready():
 @bot.command(hidden = True)
 async def drink(ctx):
     await ctx.send("Lol das hier wel grappig gelle zyt goe weg.")
+    await ctx.send("Conrad ge zyt dronken man")
     await bot.change_presence(activity=discord.Game(name="Conrad ge zyt dronken"))
 
 # shutdown command
