@@ -64,12 +64,9 @@ async def drink(ctx):
     await bot.cange_presence(activity=discord.Game(name="Conrad ge zyt dronken"))
 
 # shutdown command
-@bot.command(
-    aliases = ["stop", "die", "sd", "die", "exit"],
-    hidden = True
-)
+@bot.command(hidden = True)
 @commands.is_owner()
-async def shutdown(ctx):
+async def die(ctx):
     await ctx.send("Bye")
     await ctx.bot.logout()
 
