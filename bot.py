@@ -11,7 +11,7 @@ import re
 def readConfig():
     api_page = requests.get("http://10.30.20.187:4005/api/bot/settings")
     
-    return json.loads(api_page.text)
+    return json.loads(api_page.text)["data"]
 
 def getCustomText():
     api_page = requests.get("http://10.30.20.187:4005/api/bot/customText")
