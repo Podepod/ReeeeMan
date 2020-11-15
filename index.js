@@ -5,7 +5,7 @@ const morgan = require('morgan');
 
 const app = express();
 const api = require(__dirname + '/api/api');
-const router = require(__dirname + '/views/routes');
+const router = require(__dirname + '/views/router');
 const port = 4005;
 
 app.set('view engine', 'ejs');
