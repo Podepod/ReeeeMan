@@ -30,16 +30,10 @@ async def on_message(message):
         return
 
     if re.search(rf'(?i)(\bre+\b)', message.content):
-        if config["tts"]:
-            await message.channel.send("Reeeeeeee", tts=True)
-        else:
-            await message.channel.send("Reeeeeeee")
+        await message.channel.send("Reeeeeeee")
 
     if re.search(r'(?i)(^\bpls\b)', message.content):
-        if config["tts"]:
-            await message.channel.send("Weeral?", tts=True)
-        else:
-            await message.channel.send("Weeral?")
+        await message.channel.send("Weeral?")
 
 
 @bot.listen()
@@ -48,10 +42,7 @@ async def on_message_edit(before, after):
         return
         
     if re.search(rf'(?i)(\bre+\b)', after.content):
-        if config["tts"]:
-            await message.channel.send("Reeeeeeee", tts=True)
-        else:
-            await message.channel.send("Reeeeeeee")
+        await message.channel.send("Reeeeeeee")
 
 
 
