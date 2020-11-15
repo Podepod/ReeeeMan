@@ -1,1 +1,3 @@
-/config
+/datafiles
+/logs
+*.log

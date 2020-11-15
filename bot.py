@@ -16,7 +16,7 @@ def readConfig():
 def getCustomText():
     api_page = requests.get("http://10.30.20.187:4005/api/bot/customText")
     
-    return json.loads(api_page.text)
+    return json.loads(api_page.text)["data"]
 
 config = readConfig()
 
@@ -82,17 +82,10 @@ async def on_ready():
 
     await bot.change_presence(activity=discord.Game(name="Reeeeeeee"))
 
-# random troll command
-@bot.command(hidden = True)
-async def drink(ctx):
-    await ctx.send("Lol das hier wel grappig gelle zyt goe weg.")
-    await ctx.send("Conrad ge zyt dronken man")
-    await bot.change_presence(activity=discord.Game(name="Conrad ge zyt dronken"))
-
 # custom text command
 @bot.command(hidden = True)
 async def customText(ctx):
-    await ctx.send(getCustomText()["data"]["text"])
+    await ctx.send(getCustomText()["text"])
 
 # shutdown command
 @bot.command(hidden = True)
