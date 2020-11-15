@@ -8,14 +8,10 @@ import requests
 import json
 import re
 
-CONFIG_FILE = "./botSettings.json"
-
 def readConfig():
-    with open(CONFIG_FILE, "r") as read_file:
-        data = json.load(read_file)
-        read_file.close()
-
-    return data
+    api_page = requests.get("http://10.30.20.187:4005/api/bot/settings")
+    
+    return json.loads(api_page.text)
 
 def getCustomText():
     api_page = requests.get("http://10.30.20.187:4005/api/bot/customText")
@@ -25,6 +21,39 @@ def getCustomText():
 config = readConfig()
 
 bot = commands.Bot(command_prefix=config["prefix"], description=config["description"])
+
+
+# listener
+@bot.listen()
+async def on_message(message):
+    if message.author == bot.user:
+        return
+
+    if re.search(rf'(?i)(\bre+\b)', message.content):
+        if config["tts"]:
+            await message.channel.send("Reeeeeeee", tts=True)
+        else:
+            await message.channel.send("Reeeeeeee")
+
+    if re.search(r'(?i)(^\bpls\b)', message.content):
+        if config["tts"]:
+            await message.channel.send("Weeral?", tts=True)
+        else:
+            await message.channel.send("Weeral?")
+
+
+@bot.listen()
+async def on_message_edit(before, after):
+    if after.author == bot.user:
+        return
+        
+    if re.search(rf'(?i)(\bre+\b)', after.content):
+        if config["tts"]:
+            await message.channel.send("Reeeeeeee", tts=True)
+        else:
+            await message.channel.send("Reeeeeeee")
+
+
 
 # on bot joins guild
 @bot.event
