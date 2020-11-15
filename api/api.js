@@ -6,7 +6,7 @@ api.use(express.json());
 
 function updateData(file)
 {
-    var rawData = fs.readFileSync('/home/pi/Discord/ReeeeMan/datafiles/' + file);
+    var rawData = fs.readFileSync(__dirname + '/datafiles/' + file);
     var data = JSON.parse(rawData);
 
     return data;
@@ -15,7 +15,7 @@ function updateData(file)
 function changeData(file, data)
 {
     var schrijfData = JSON.stringify(data, null, 2);
-    fs.writeFile('/home/pi/Discord/ReeeeMan/datafiles/' + file, schrijfData, writeFileFinished);
+    fs.writeFile(__dirname + '/datafiles/' + file, schrijfData, writeFileFinished);
 }
 
 api.get("/bot/settings", getSettings);
