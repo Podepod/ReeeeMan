@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Podepod/ReeeeMan#readme",
   "dependencies": {
+    "bootstrap": "^4.5.3",
     "express": "^4.17.1",
     "morgan": "^1.10.0"
   }
