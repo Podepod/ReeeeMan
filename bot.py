@@ -80,7 +80,7 @@ async def on_ready():
             print(f"- membername: {member.name}\n * id: {member.id}\n * discriminator: {member.discriminator}\n * nickname: {member.nick}\n * bot: {member.bot}")
     print("#############################################")
 
-    await bot.change_presence(activity=discord.Game(name="Reeeeeeee"))
+    await bot.change_presence(activity=discord.Game(name=config["activity"]))
 
 # custom text command
 @bot.command(hidden = True)
@@ -89,12 +89,17 @@ async def customText(ctx):
 
 # file settings file command check
 @tasks.loop(seconds=5.0)
-async def checkFiles():
+async def checkFilesLoop():
+    print("yup")
     global config
     old_config = config
     config = readConfig()
     if (old_config["activity"] != config["activity"]):
         await bot.change_presence(activity=discord.Game(name=config["activity"]))
+
+@checkFilesLoop.before_loop
+async def beforeCheckFilesLoop():
+    await bot.wait_until_ready()
 
 # shutdown command
 @bot.command(hidden = True)
@@ -103,6 +108,6 @@ async def die(ctx):
     await ctx.send("Bye")
     await ctx.bot.logout()
 
-checkFiles.start()
+checkFilesLoop.start()
 
 bot.run(config["token"], bot=True, reconnect=True)
