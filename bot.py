@@ -68,7 +68,7 @@ async def on_guild_join(guild):
 @bot.event
 async def on_ready():
     global config
-    print(f"{config["basic"]['name']} is up and running...")
+    print(f"{config['basic']['name']} is up and running...")
 
     await bot.change_presence(activity=discord.Game(name=config["activity"]))
 
@@ -103,7 +103,7 @@ async def checkFilesLoop():
 
     if (old_config["basic"]["prefix"] != config["basic"]["prefix"]):
         bot.command_prefix = config["basic"]["prefix"]
-        await log_channel.send(f"Changed the prefix from '{old_config["basic"]['prefix']}' to '{config["basic"]['prefix']}'")
+        await log_channel.send(f"Changed the prefix from '{old_config['basic']['prefix']}' to '{config['basic']['prefix']}'")
 
     if (old_config["activity"] != config["activity"]):
         await bot.change_presence(activity=discord.Game(name=config["activity"]))
