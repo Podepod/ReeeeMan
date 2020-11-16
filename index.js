@@ -21,6 +21,8 @@ app.use("/api", api);
 
 app.use("/public", express.static(__dirname + '/public'));
 
+app.use("/javascript", express.static(__dirname + '/views/javascript'));
+
 app.listen(port, err => {
   if(err){
     return console.log("ERROR:", err);
