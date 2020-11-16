@@ -1,7 +1,7 @@
 #!/usr/bin/python3.7
 
 import discord
-from discord.ext import commands
+from discord.ext import tasks, commands
 import datetime
 import asyncio
 import requests
@@ -29,7 +29,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    if re.search(rf'(?i)(\bre+\b)', message.content):
+    if re.search(rf'(?i)(\bree+\b)', message.content):
         await message.channel.send("Reeeeeeee")
 
     if re.search(r'(?i)(^\bpls\b)', message.content):
@@ -86,6 +86,15 @@ async def on_ready():
 @bot.command(hidden = True)
 async def customText(ctx):
     await ctx.send(getCustomText()["text"])
+
+# file settings file command check
+@tasks.loop(seconds=5.0)
+async def checkFiles():
+    old_config = config
+    global config = readConfig()
+    if (old_config["activity"] != config["activity"]):
+        await bot.change_presence(activity=discord.Game(name=config["activity"]))
+
 
 # shutdown command
 @bot.command(hidden = True)
