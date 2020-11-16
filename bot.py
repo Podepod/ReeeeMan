@@ -107,11 +107,11 @@ async def checkFilesLoop():
 
     if (old_config["basic"]["name"] != config["basic"]["name"]):
         await bot.user.edit(username=config["basic"]["name"])
-        await log_channel.send(f"Changed the bot's username from '{old_config["basic"]["name"]}' to '{config["basic"]["name"]}'")
+        await log_channel.send(f"Changed the bot's username from '{old_config['basic']['name']}' to '{config['basic']['name']}'")
 
     if (old_config["basic"]["description"] != config["basic"]["description"]):
         await bot.description = config["basic"]["description"]
-        await log_channel.send(f"Changed the bot's description from '{old_config["basic"]["description"]}' to '{config["basic"]["description"]}'")
+        await log_channel.send(f"Changed the bot's description from '{old_config['basic']['description']}' to '{config['basic']['description']}'")
 
     if (old_config["activity"]["text"] != config["activity"]["text"]):
         await bot.change_presence(activity=discord.Game(name=config["activity"]["text"]))
