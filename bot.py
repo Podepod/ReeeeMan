@@ -92,6 +92,20 @@ async def customText(ctx):
     global config
     await ctx.send(getCustomText()["text"])
 
+# test loop
+# restart loop
+@bot.command(hidden = True)
+@commands.is_owner()
+async def testLoop(ctx):
+    await ctx.send(f"Is running: {checkFilesLoop.is_running()} | Failed {checkFilesLoop.failed()}")
+
+# restart loop
+@bot.command(hidden = True)
+@commands.is_owner()
+async def restartLoop(ctx):
+    checkFilesLoop.restart()
+    await ctx.send("Done.")
+
 # file settings file command check
 @tasks.loop(seconds=5.0)
 async def checkFilesLoop():
@@ -123,9 +137,6 @@ async def checkFilesLoop():
     if (old_config["activity"]["text"] != config["activity"]["text"]):
         await bot.change_presence(activity=discord.Game(name=config["activity"]["text"]))
         await log_channel.send(f"Changed the activity text from '{old_config['activity']['text']}' to '{config['activity']['text']}'")
-
-    #await bot.user.edit(username=name)
-
 
 @checkFilesLoop.before_loop
 async def beforeCheckFilesLoop():
