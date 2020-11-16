@@ -91,7 +91,7 @@
                             <!-- online, offline, idle, do_no_disturb, invisible -->
                             <% statusList = ["online", "offline", "idle", "do_not_disturb", "invisible"]; %>
                             <option value="<%= instellingen.activity.status %>"><%= instellingen.activity.status %></option>
-                            <% status.forEach(function(status, index){ %>
+                            <% statusList.forEach(function(status, index){ %>
                                 <% if (status != instellingen.activity.status){ %>
                                     <option value="<%= status %>"><%= status %></option>
                                 <% } %>
