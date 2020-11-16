@@ -96,12 +96,13 @@ async def checkFiles():
     if (old_config["activity"] != config["activity"]):
         await bot.change_presence(activity=discord.Game(name=config["activity"]))
 
-
 # shutdown command
 @bot.command(hidden = True)
 @commands.is_owner()
 async def die(ctx):
     await ctx.send("Bye")
     await ctx.bot.logout()
+
+checkFiles.start()
 
 bot.run(config["token"], bot=True, reconnect=True)
