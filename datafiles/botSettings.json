@@ -6,5 +6,10 @@
         "description": "Reeee Conrad is dronken, lol",
         "version": "Alpha"
     },
-    "activity": "Reeeeeeee"
+    "activity": {
+        "status": "online",
+        "text": "Reeeeeeee",
+        "link": "",
+        "activity": "gaming"
+    }
 }
