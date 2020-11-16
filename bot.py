@@ -70,7 +70,7 @@ async def on_ready():
     global config
     print(f"{config['basic']['name']} is up and running...")
 
-    await bot.change_presence(activity=discord.Game(name=config["activity"]))
+    await bot.change_presence(activity=discord.Game(name=config["activity"]["text"]))
 
     print("#############################################")
     print(f"Active in {len(bot.guilds)} guilds:")
@@ -106,7 +106,7 @@ async def checkFilesLoop():
         await log_channel.send(f"Changed the prefix from '{old_config['basic']['prefix']}' to '{config['basic']['prefix']}'")
 
     if (old_config["activity"]["text"] != config["activity"]["text"]):
-        await bot.change_presence(activity=discord.Game(name=config["activity"]["texts"]))
+        await bot.change_presence(activity=discord.Game(name=config["activity"]["text"]))
         await log_channel.send(f"Changed the activity from '{old_config['activity']['text']}' to '{config['activity']['text']}'")
 
 @checkFilesLoop.before_loop
