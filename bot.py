@@ -90,8 +90,9 @@ async def customText(ctx):
 # file settings file command check
 @tasks.loop(seconds=5.0)
 async def checkFiles():
+    global config
     old_config = config
-    global config = readConfig()
+    config = readConfig()
     if (old_config["activity"] != config["activity"]):
         await bot.change_presence(activity=discord.Game(name=config["activity"]))
 
