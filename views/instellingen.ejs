@@ -86,7 +86,17 @@
                         <h3>Status</h3>
                     </div>
                     <div class="col-6">
-                        <input type="text" class="form-control" name="activity[status]" value="<%= instellingen.activity.status %>">
+                        <select class="form-control" name="activity[status]">
+                            <% var statusList; %>
+                            <!-- online, offline, idle, do_no_disturb, invisible -->
+                            <% statusList = ["online", "offline", "idle", "do_not_disturb", "invisible"]; %>
+                            <option value="<%= instellingen.activity.status %>"><%= instellingen.activity.status %></option>
+                            <% status.forEach(function(status, index){ %>
+                                <% if (status != instellingen.activity.status){ %>
+                                    <option value="<%= status %>"><%= status %></option>
+                                <% } %>
+                            }) %>
+                        </select>
                     </div>
                 </div>
             </div>
