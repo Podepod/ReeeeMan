@@ -26,6 +26,7 @@ bot = commands.Bot(command_prefix=config["prefix"], description=config["descript
 # listener
 @bot.listen()
 async def on_message(message):
+    global config
     if message.author == bot.user:
         return
 
@@ -49,6 +50,8 @@ async def on_message_edit(before, after):
 # on bot joins guild
 @bot.event
 async def on_guild_join(guild):
+    global config
+
     print("#############################################")
     print(f"joined a new guild:\nname: {guild.name}\ncreated at: {guild.created_at}\nregion: {guild.region}\nowner: {guild.owner}\nicon url: {guild.icon_url}\nchannels:")
     for channel in guild.text_channels:
@@ -64,7 +67,10 @@ async def on_guild_join(guild):
 # on ready
 @bot.event
 async def on_ready():
+    global config
     print(f"{config['name']} is up and running...")
+
+    await bot.change_presence(activity=discord.Game(name=config["activity"]))
 
     print("#############################################")
     print(f"Active in {len(bot.guilds)} guilds:")
@@ -80,22 +86,28 @@ async def on_ready():
             print(f"- membername: {member.name}\n * id: {member.id}\n * discriminator: {member.discriminator}\n * nickname: {member.nick}\n * bot: {member.bot}")
     print("#############################################")
 
-    await bot.change_presence(activity=discord.Game(name=config["activity"]))
-
 # custom text command
 @bot.command(hidden = True)
 async def customText(ctx):
+    global config
     await ctx.send(getCustomText()["text"])
 
 # file settings file command check
 @tasks.loop(seconds=5.0)
 async def checkFilesLoop():
-    print("yup")
     global config
+    log_channel = bot.get_channel(777697840464920586)
+
     old_config = config
     config = readConfig()
+
+    if (old_config["prefix"] != config["prefix"]):
+        bot.command_prefix = config["prefix"]
+        await log_channel.send(f"Changed the prefix to: {config["prefix"]}")
+
     if (old_config["activity"] != config["activity"]):
         await bot.change_presence(activity=discord.Game(name=config["activity"]))
+        await log_channel.send(f"Changed the activity to: {config["activity"]}")
 
 @checkFilesLoop.before_loop
 async def beforeCheckFilesLoop():

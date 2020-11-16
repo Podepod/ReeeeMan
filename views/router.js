@@ -19,11 +19,21 @@ function updateData(file)
 // Index pagina
 router.get("/", laadIndex);
 
+// Instellingen pagina
+router.get("/instellingen", laadInstellingen);
 
 // Index pagina
 function laadIndex(req, res)
 {
     res.render("index", {page: "Home", "navId": "indexNav"});
+}
+
+// Instellingen pagina
+function laadInstellingen(req, res)
+{
+    instellingen = updateData();
+
+    res.render("instellingen", {page: "Instellingen", "navId": "instellingenNav", "instellingen": instellingen});
 }
 
 module.exports = router;
