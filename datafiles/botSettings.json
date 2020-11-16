@@ -1,8 +1,10 @@
 {
-    "token": "NzE2NzUwODU4NDAyMTM2MjE0.XtQh0A.yECcbidhXfsSxkwAKhHyVnNSbw0",
-    "prefix": "!",
-    "name": "ReeeeMan",
-    "description": "Reeee Conrad is dronken, lol",
-    "activity": "Reeeeeeee",
-    "version": "Alpha"
+    "basic": {
+        "token": "NzE2NzUwODU4NDAyMTM2MjE0.XtQh0A.yECcbidhXfsSxkwAKhHyVnNSbw0",
+        "prefix": "!",
+        "name": "ReeeeMan",
+        "description": "Reeee Conrad is dronken, lol",
+        "version": "Alpha"
+    },
+    "activity": "Reeeeeeee"
 }

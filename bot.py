@@ -20,7 +20,7 @@ def getCustomText():
 
 config = readConfig()
 
-bot = commands.Bot(command_prefix=config["prefix"], description=config["description"])
+bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config["basic"]["description"])
 
 
 # listener
@@ -68,7 +68,7 @@ async def on_guild_join(guild):
 @bot.event
 async def on_ready():
     global config
-    print(f"{config['name']} is up and running...")
+    print(f"{config["basic"]['name']} is up and running...")
 
     await bot.change_presence(activity=discord.Game(name=config["activity"]))
 
@@ -101,9 +101,9 @@ async def checkFilesLoop():
     old_config = config
     config = readConfig()
 
-    if (old_config["prefix"] != config["prefix"]):
-        bot.command_prefix = config["prefix"]
-        await log_channel.send(f"Changed the prefix from '{old_config['prefix']}' to '{config['prefix']}'")
+    if (old_config["basic"]["prefix"] != config["basic"]["prefix"]):
+        bot.command_prefix = config["basic"]["prefix"]
+        await log_channel.send(f"Changed the prefix from '{old_config["basic"]['prefix']}' to '{config["basic"]['prefix']}'")
 
     if (old_config["activity"] != config["activity"]):
         await bot.change_presence(activity=discord.Game(name=config["activity"]))
@@ -122,4 +122,4 @@ async def die(ctx):
 
 checkFilesLoop.start()
 
-bot.run(config["token"], bot=True, reconnect=True)
+bot.run(config["basic"]["token"], bot=True, reconnect=True)
