@@ -97,7 +97,7 @@ async def customText(ctx):
 @bot.command(hidden = True)
 @commands.is_owner()
 async def testLoop(ctx):
-    await ctx.send(f"Is running: {checkFilesLoop.is_running()} | Failed {checkFilesLoop.failed()}")
+    await ctx.send(f"Failed? {checkFilesLoop.failed()}")
 
 # restart loop
 @bot.command(hidden = True)
