@@ -103,11 +103,11 @@ async def checkFilesLoop():
 
     if (old_config["prefix"] != config["prefix"]):
         bot.command_prefix = config["prefix"]
-        await log_channel.send(f"Changed the prefix to: {config["prefix"]}")
+        await log_channel.send(f"Changed the prefix to: {config['prefix']}")
 
     if (old_config["activity"] != config["activity"]):
         await bot.change_presence(activity=discord.Game(name=config["activity"]))
-        await log_channel.send(f"Changed the activity to: {config["activity"]}")
+        await log_channel.send(f"Changed the activity to: {config['activity']}")
 
 @checkFilesLoop.before_loop
 async def beforeCheckFilesLoop():
