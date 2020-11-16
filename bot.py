@@ -102,7 +102,7 @@ async def checkFilesLoop():
     config = readConfig()
 
     if (old_config["basic"]["prefix"] != config["basic"]["prefix"]):
-        await bot.command_prefix = config["basic"]["prefix"]
+        bot.command_prefix = config["basic"]["prefix"]
         await log_channel.send(f"Changed the prefix from '{old_config['basic']['prefix']}' to '{config['basic']['prefix']}'")
 
     if (old_config["basic"]["name"] != config["basic"]["name"]):
@@ -110,7 +110,7 @@ async def checkFilesLoop():
         await log_channel.send(f"Changed the bot's username from '{old_config['basic']['name']}' to '{config['basic']['name']}'")
 
     if (old_config["basic"]["description"] != config["basic"]["description"]):
-        await bot.description = config["basic"]["description"]
+        bot.description = config["basic"]["description"]
         await log_channel.send(f"Changed the bot's description from '{old_config['basic']['description']}' to '{config['basic']['description']}'")
 
     if (old_config["activity"]["text"] != config["activity"]["text"]):
