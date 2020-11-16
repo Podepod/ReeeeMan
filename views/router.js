@@ -31,7 +31,7 @@ function laadIndex(req, res)
 // Instellingen pagina
 function laadInstellingen(req, res)
 {
-    instellingen = updateData(botSettings.json);
+    instellingen = updateData("botSettings.json");
 
     res.render("instellingen", {page: "Instellingen", "navId": "instellingenNav", "instellingen": instellingen});
 }
