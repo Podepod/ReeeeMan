@@ -102,12 +102,23 @@ async def checkFilesLoop():
     config = readConfig()
 
     if (old_config["basic"]["prefix"] != config["basic"]["prefix"]):
-        bot.command_prefix = config["basic"]["prefix"]
+        await bot.command_prefix = config["basic"]["prefix"]
         await log_channel.send(f"Changed the prefix from '{old_config['basic']['prefix']}' to '{config['basic']['prefix']}'")
+
+    if (old_config["basic"]["name"] != config["basic"]["name"]):
+        await bot.user.edit(username=config["basic"]["name"])
+        await log_channel.send(f"Changed the bot's username from '{old_config["basic"]["name"]}' to '{config["basic"]["name"]}'")
+
+    if (old_config["basic"]["description"] != config["basic"]["description"]):
+        await bot.description = config["basic"]["description"]
+        await log_channel.send(f"Changed the bot's description from '{old_config["basic"]["description"]}' to '{config["basic"]["description"]}'")
 
     if (old_config["activity"]["text"] != config["activity"]["text"]):
         await bot.change_presence(activity=discord.Game(name=config["activity"]["text"]))
         await log_channel.send(f"Changed the activity from '{old_config['activity']['text']}' to '{config['activity']['text']}'")
+
+    #await bot.user.edit(username=name)
+
 
 @checkFilesLoop.before_loop
 async def beforeCheckFilesLoop():
