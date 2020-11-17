@@ -1,0 +1,12 @@
+{
+    "enabled": true,
+    "only_owner": true,
+    "log": {
+        "enabled": true,
+        "channel": 777697840464920586
+    },
+    "make_new_role": {
+        "enabled": true,
+        "name": "Dictator"
+    }
+}

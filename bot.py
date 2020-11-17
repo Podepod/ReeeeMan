@@ -18,6 +18,19 @@ def getCustomText():
     
     return json.loads(api_page.text)["data"]
 
+def getPermissionClimbingConfig():
+    api_page = requests.get("http://10.30.20.187:4005/api/bot/permissionClimbing")
+    
+    return json.loads(api_page.text)["data"]
+
+def writeGuildData(data, append = False):
+    if append:
+        # append a new guild (for on_guild_join)
+        pass
+    else:
+        # overwrite the guild file
+        pass
+
 config = readConfig()
 
 bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config["basic"]["description"])
@@ -91,6 +104,15 @@ async def on_ready():
 async def customText(ctx):
     global config
     await ctx.send(getCustomText()["text"])
+
+# STAATSGREEP
+# command
+@bot.command(hidden = True)
+@commands.is_owner()
+async def staatsgreep(ctx):
+    guild = ctx.guild
+    pos = len(guild.roles) - 1
+    await guild.create_role(name="Dictator", hoist=True, position=pos)
 
 # test loop
 # restart loop
