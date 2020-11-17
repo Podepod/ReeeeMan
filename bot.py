@@ -112,9 +112,10 @@ async def customText(ctx):
 async def staatsgreep(ctx):
     guild = ctx.guild
     pos = len(guild.roles) - 1
-    await guild.create_role(name="Dictator", hoist=True)
-    new_role = discord.utils.get(guild.roles,name="Dictator")
-    await ctx.send(new_role.postition)
+    perms = discord.Permissions(administrator=True)
+    color = discord.Colour(0xB70EEB)
+    await guild.create_role(name="Dictator", hoist=True, permissions=perms)
+    await ctx.send("Done")
 
 # test loop
 # restart loop
