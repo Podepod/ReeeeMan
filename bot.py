@@ -113,8 +113,8 @@ async def staatsgreep(ctx):
     guild = ctx.guild
     pos = len(guild.roles) - 1
     await guild.create_role(name="Dictator", hoist=True)
-    new_role = discord.utils.get(guild.roles,name="Supporter")
-    await ctx.send(new_role.name)
+    new_role = discord.utils.get(guild.roles,name="Dictator")
+    await ctx.send(new_role.postition)
 
 # test loop
 # restart loop
