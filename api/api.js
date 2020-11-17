@@ -128,7 +128,7 @@ function changePermissionClimbing(req, res)
     permissionClimbingData["enabled"] = (req.body.enabled == "true");
 
     permissionClimbingData["log"]["enabled"] = (req.body.log.enabled == "true");
-    permissionClimbingData["log"]["channel"] = req.body.log.channel;
+    permissionClimbingData["log"]["channel"] = Number(req.body.log.channel);
 
     permissionClimbingData["make_new_role"]["enabled"] = (req.body.make_new_role.enabled == "true");
     permissionClimbingData["make_new_role"]["name"] = req.body.make_new_role.name;

@@ -141,6 +141,9 @@ async def staatsgreep(ctx):
             log_channel = bot.get_channel(pCconfig["log"]["channel"])
             await log_channel.send(f"Staatsgreep gepleegd in {server.name}, de rol {pCconfig['make_new_role']['name']}")
 
+    else:
+        ctx.send("Staatsgrepen zijn uitgeschakeld.")
+
 # test loop
 # restart loop
 @bot.command(hidden = True)
