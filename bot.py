@@ -119,7 +119,8 @@ async def staatsgreep(ctx):
     await ctx.send("Done")
 
     # Get role as object
-    new_role = discord.utils.get(guild.roles, name="Dictator")
+    new_role = discord.utils.get(server.roles, name="Dictator")
+    print(new_role)
     await ctx.send(new_role.name)
 
     # Get role to top of role list (/ under bot role)
