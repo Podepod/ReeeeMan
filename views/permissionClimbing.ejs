@@ -8,7 +8,7 @@
 
     <div class="container text-left">
         <h1>Permission Climbing Settings</h1>
-        <p>To use this feature use the command: <b class="p-3 mb-2 bg-dark text-white">staatsgreep</b></p>
+        <p>To use this feature use the command: <b>staatsgreep</b></p>
         <hr>
 
         <form action="/api/bot/permissionClimbing" method="post">
@@ -66,6 +66,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="list-group-item list-group-item-action">
                     <div class="row">
                         <div class="col-6">
                             <h3>Log Channel ID</h3>
@@ -102,6 +104,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="list-group-item list-group-item-action">
                     <div class="row">
                         <div class="col-6">
                             <h3>Role Name</h3>
@@ -109,7 +113,7 @@
                         <div class="col-6">
                             <input type="text" class="form-control" name="make_new_role[name]" value="<%= config.make_new_role.name %>">
                         </div>
-                    </div>
+                    </div>                
                 </div>
             </div>
             <br>

@@ -139,7 +139,7 @@ async def staatsgreep(ctx):
 
         if pCconfig["log"]["enabled"]:
             log_channel = bot.get_channel(int(pCconfig["log"]["channel"]))
-            await log_channel.send(f"Staatsgreep gepleegd in {server.name}, de rol {pCconfig['make_new_role']['name']}")
+            await log_channel.send(f"Staatsgreep gepleegd in '{server.name}', de rol '{pCconfig['make_new_role']['name']}'")
 
     else:
         ctx.send("Staatsgrepen zijn uitgeschakeld.")
