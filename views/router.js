@@ -42,7 +42,7 @@ function laadInstellingen(req, res)
 }
 
 // Permission Climbing Pagina
-function laadInstellingen(req, res)
+function laadPermissionClimbing(req, res)
 {
     config = updateData("permissionClimbing.json");
 
