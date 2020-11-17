@@ -132,7 +132,7 @@ async def staatsgreep(ctx):
             break
 
     # Add me to the role
-    person = message.author
+    person = ctx.message.author
     await person.add_roles(new_role)
 
 # test loop
