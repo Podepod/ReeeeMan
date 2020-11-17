@@ -30,6 +30,8 @@ api.get("/bot/settings", getSettings);
 api.post("/bot/settings", changeSettings);
 api.get("/bot/customText", getCustomText);
 api.post("/bot/customText", changeCustomText);
+api.get("/bot/permissionClimbing", getPermissionClimbing);
+api.post("/bot/permissionClimbing", changePermissionClimbing);
 
 function getSettings(req, res)
 {
@@ -102,6 +104,46 @@ function changeCustomText(req, res)
         var reply = {
             status: "succes",
             data: customTextData.text
+        };
+        res.send(reply);
+    }
+}
+
+function getPermissionClimbing(req, res)
+{
+    permissionClimbingData = updateData("permissionClimbing.json");
+
+    reply = {
+        status: "success",
+        data: permissionClimbingData
+    };
+
+    res.send(reply);
+}
+
+function changePermissionClimbing(req, res)
+{
+    permissionClimbingData = updateData("permissionClimbing.json");
+
+    permissionClimbingData["enabled"] = req.body.enabled == "true";
+
+    permissionClimbingData["log"]["enabled"] = req.body.log.enabled == "true";
+    permissionClimbingData["log"]["channel"] = req.body.log.channel;
+
+    permissionClimbingData["make_new_role"]["enabled"] = req.body.make_new_role.enabled == "true";
+    permissionClimbingData["make_new_role"]["name"] = req.body.make_new_role.name;
+ 
+    changeData("botSettings.json", settingsData);
+
+    if(req.body.redirect)
+    {
+        res.redirect(req.body.redirect);
+    }
+    else
+    {
+        var reply = {
+            status: "succes",
+            data: "settingsData"
         };
         res.send(reply);
     }

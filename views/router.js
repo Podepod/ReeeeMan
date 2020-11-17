@@ -22,6 +22,11 @@ router.get("/", laadIndex);
 // Instellingen pagina
 router.get("/instellingen", laadInstellingen);
 
+// Permission Climbing Pagina
+router.get("/permissionClimbing", laadPermissionClimbing);
+
+// =============================================================================================================
+
 // Index pagina
 function laadIndex(req, res)
 {
@@ -34,6 +39,14 @@ function laadInstellingen(req, res)
     instellingen = updateData("botSettings.json");
 
     res.render("instellingen", {page: "Instellingen", "navId": "instellingenNav", "instellingen": instellingen});
+}
+
+// Permission Climbing Pagina
+function laadInstellingen(req, res)
+{
+    config = updateData("permissionClimbing.json");
+
+    res.render("permissionClimbing", {page: "Permission Climbing", "navId": "permissionClimbingNav", "config": config});
 }
 
 module.exports = router;

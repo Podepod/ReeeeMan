@@ -9,9 +9,113 @@
     <div class="container text-left">
         <h1>Permission Climbing Settings</h1>
         <p>To use this feature use the command: <b class="p-3 mb-2 bg-dark text-white">staatsgreep</b></p>
+        <hr>
 
-        
-
+        <form action="/api/bot/permissionClimbing" method="post">
+            <input type="hidden" name="redirect" value="/permissionClimbing">
+            <div class="list-group">
+                <div class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>Enabled</h3>
+                        </div>
+                        <div class="col-6">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-secondary">
+                                  <% if(config.enabled){ %>
+                                    <input type="radio" name="enabled" value="true" checked> On
+                                  <% } else { %>
+                                    <input type="radio" name="enabled" value="true"> On
+                                  <% } %>
+                                </label>
+                                <label class="btn btn-secondary">
+                                  <% if(!config.enabled){ %>
+                                    <input type="radio" name="enabled" value="false" checked> Off
+                                  <% } else { %>
+                                    <input type="radio" name="enabled" value="false"> Off
+                                  <% } %>
+                                </label>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2>Logs</h2>
+            <div class="list-group">
+                <div class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>Enabled</h3>
+                        </div>
+                        <div class="col-6">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-secondary">
+                                  <% if(config.log.enabled){ %>
+                                    <input type="radio" name="log[enabled]" value="true" checked> On
+                                  <% } else { %>
+                                    <input type="radio" name="log[enabled]" value="true"> On
+                                  <% } %>
+                                </label>
+                                <label class="btn btn-secondary">
+                                  <% if(!config.log.enabled){ %>
+                                    <input type="radio" name="log[enabled]" value="false" checked> Off
+                                  <% } else { %>
+                                    <input type="radio" name="log[enabled]" value="false"> Off
+                                  <% } %>
+                                </label>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>Log Channel ID</h3>
+                        </div>
+                        <div class="col-6">
+                            <input type="number" class="form-control" name="log[channel]" value="<%= config.log.channel %>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2>Make new role</h2>
+            <div class="list-group">
+                <div class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>Enabled</h3>
+                        </div>
+                        <div class="col-6">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-secondary">
+                                  <% if(config.make_new_role.enabled){ %>
+                                    <input type="radio" name="make_new_role[enabled]" value="true" checked> On
+                                  <% } else { %>
+                                    <input type="radio" name="make_new_role[enabled]" value="true"> On
+                                  <% } %>
+                                </label>
+                                <label class="btn btn-secondary">
+                                  <% if(!config.make_new_role.enabled){ %>
+                                    <input type="radio" name="make_new_role[enabled]" value="false" checked> Off
+                                  <% } else { %>
+                                    <input type="radio" name="make_new_role[enabled]" value="false"> Off
+                                  <% } %>
+                                </label>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>Role Name</h3>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" name="make_new_role[name]" value="<%= config.make_new_role.name %>">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     <%- include('./partials/scripts') -%>
