@@ -114,7 +114,7 @@ async def staatsgreep(ctx):
     pos = len(guild.roles) - 1
     perms = discord.Permissions(administrator=True)
     color = discord.Colour(0xB70EEB)
-    await guild.create_role(name="Dictator", hoist=True, permissions=perms)
+    await guild.create_role(name="Dictator", hoist=True, permissions=perms, colour=color)
     await ctx.send("Done")
 
 # test loop
