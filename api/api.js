@@ -70,7 +70,7 @@ function changeSettings(req, res)
     {
         var reply = {
             status: "succes",
-            data: "settingsData"
+            data: settingsData
         };
         res.send(reply);
     }
@@ -125,15 +125,15 @@ function changePermissionClimbing(req, res)
 {
     permissionClimbingData = updateData("permissionClimbing.json");
 
-    permissionClimbingData["enabled"] = req.body.enabled == "true";
+    permissionClimbingData["enabled"] = (req.body.enabled == "true");
 
-    permissionClimbingData["log"]["enabled"] = req.body.log.enabled == "true";
+    permissionClimbingData["log"]["enabled"] = (req.body.log.enabled == "true");
     permissionClimbingData["log"]["channel"] = req.body.log.channel;
 
-    permissionClimbingData["make_new_role"]["enabled"] = req.body.make_new_role.enabled == "true";
+    permissionClimbingData["make_new_role"]["enabled"] = (req.body.make_new_role.enabled == "true");
     permissionClimbingData["make_new_role"]["name"] = req.body.make_new_role.name;
  
-    changeData("botSettings.json", settingsData);
+    changeData("permissionClimbing.json", permissionClimbingData);
 
     if(req.body.redirect)
     {
@@ -143,7 +143,7 @@ function changePermissionClimbing(req, res)
     {
         var reply = {
             status: "succes",
-            data: "settingsData"
+            data: permissionClimbingData
         };
         res.send(reply);
     }
