@@ -35,7 +35,6 @@
                                     <input type="radio" name="enabled" value="false"> Off
                                   <% } %>
                                 </label>
-                              </div>
                             </div>
                         </div>
                     </div>
@@ -101,7 +100,6 @@
                                     <input type="radio" name="make_new_role[enabled]" value="false"> Off
                                   <% } %>
                                 </label>
-                              </div>
                             </div>
                         </div>
                     </div>
@@ -110,11 +108,13 @@
                             <h3>Role Name</h3>
                         </div>
                         <div class="col-6">
-                            <input type="text" name="make_new_role[name]" value="<%= config.make_new_role.name %>">
+                            <input type="text" class="form-control" name="make_new_role[name]" value="<%= config.make_new_role.name %>">
                         </div>
                     </div>
                 </div>
             </div>
+            <br>
+            <button type="submit" class="btn btn-secondary">Instellingen aanpassen</button>
         </form>
     </div>
 
