@@ -22,18 +22,18 @@
                         <div class="col-6">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label class="btn btn-secondary">
-                                  <% if(config.enabled){ %>
-                                    <input type="radio" name="enabled" value="true" checked> On
-                                  <% } else { %>
-                                    <input type="radio" name="enabled" value="true"> On
-                                  <% } %>
+                                    <% if(config.enabled){ %>
+                                        <input type="radio" name="enabled" value="true" checked> On
+                                    <% } else { %>
+                                        <input type="radio" name="enabled" value="true"> On
+                                    <% } %>
                                 </label>
                                 <label class="btn btn-secondary">
-                                  <% if(!config.enabled){ %>
-                                    <input type="radio" name="enabled" value="false" checked> Off
-                                  <% } else { %>
-                                    <input type="radio" name="enabled" value="false"> Off
-                                  <% } %>
+                                    <% if(!config.enabled){ %>
+                                        <input type="radio" name="enabled" value="false" checked> Off
+                                    <% } else { %>
+                                        <input type="radio" name="enabled" value="false"> Off
+                                    <% } %>
                                 </label>
                             </div>
                         </div>
@@ -50,18 +50,18 @@
                         <div class="col-6">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label class="btn btn-secondary">
-                                  <% if(config.log.enabled){ %>
-                                    <input type="radio" name="log[enabled]" value="true" checked> On
-                                  <% } else { %>
-                                    <input type="radio" name="log[enabled]" value="true"> On
-                                  <% } %>
+                                    <% if(config.log.enabled){ %>
+                                        <input type="radio" name="log[enabled]" value="true" checked> On
+                                    <% } else { %>
+                                        <input type="radio" name="log[enabled]" value="true"> On
+                                    <% } %>
                                 </label>
                                 <label class="btn btn-secondary">
-                                  <% if(!config.log.enabled){ %>
-                                    <input type="radio" name="log[enabled]" value="false" checked> Off
-                                  <% } else { %>
-                                    <input type="radio" name="log[enabled]" value="false"> Off
-                                  <% } %>
+                                    <% if(!config.log.enabled){ %>
+                                        <input type="radio" name="log[enabled]" value="false" checked> Off
+                                    <% } else { %>
+                                        <input type="radio" name="log[enabled]" value="false"> Off
+                                    <% } %>
                                 </label>
                             </div>
                         </div>
@@ -88,18 +88,18 @@
                         <div class="col-6">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                 <label class="btn btn-secondary">
-                                  <% if(config.make_new_role.enabled){ %>
-                                    <input type="radio" name="make_new_role[enabled]" value="true" checked> On
-                                  <% } else { %>
-                                    <input type="radio" name="make_new_role[enabled]" value="true"> On
-                                  <% } %>
+                                    <% if(config.make_new_role.enabled){ %>
+                                        <input type="radio" name="make_new_role[enabled]" value="true" checked> On
+                                    <% } else { %>
+                                        <input type="radio" name="make_new_role[enabled]" value="true"> On
+                                    <% } %>
                                 </label>
                                 <label class="btn btn-secondary">
-                                  <% if(!config.make_new_role.enabled){ %>
-                                    <input type="radio" name="make_new_role[enabled]" value="false" checked> Off
-                                  <% } else { %>
-                                    <input type="radio" name="make_new_role[enabled]" value="false"> Off
-                                  <% } %>
+                                    <% if(!config.make_new_role.enabled){ %>
+                                        <input type="radio" name="make_new_role[enabled]" value="false" checked> Off
+                                    <% } else { %>
+                                        <input type="radio" name="make_new_role[enabled]" value="false"> Off
+                                    <% } %>
                                 </label>
                             </div>
                         </div>
@@ -114,6 +114,41 @@
                             <input type="text" class="form-control" name="make_new_role[name]" value="<%= config.make_new_role.name %>">
                         </div>
                     </div>                
+                </div>
+                <div class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>HEX Color</h3>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" name="make_new_role[color]" value="<%= config.make_new_role.color %>">
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>Display role users seperatly</h3>
+                        </div>
+                        <div class="col-6">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-secondary">
+                                    <% if(config.make_new_role.hoist){ %>
+                                        <input type="radio" name="make_new_role[hoist]" value="true" checked> On
+                                    <% } else { %>
+                                        <input type="radio" name="make_new_role[hoist]" value="true"> On
+                                    <% } %>
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <% if(!config.make_new_role.hoist){ %>
+                                        <input type="radio" name="make_new_role[hoist]" value="false" checked> Off
+                                    <% } else { %>
+                                        <input type="radio" name="make_new_role[hoist]" value="false"> Off
+                                    <% } %>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <br>

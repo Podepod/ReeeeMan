@@ -132,6 +132,8 @@ function changePermissionClimbing(req, res)
 
     permissionClimbingData["make_new_role"]["enabled"] = (req.body.make_new_role.enabled == "true");
     permissionClimbingData["make_new_role"]["name"] = req.body.make_new_role.name;
+    permissionClimbingData["make_new_role"]["color"] = req.body.make_new_role.color;
+    permissionClimbingData["make_new_role"]["hoist"] = (req.body.make_new_role.hoist == "true");
  
     changeData("permissionClimbing.json", permissionClimbingData);
 

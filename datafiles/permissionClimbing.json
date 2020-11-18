@@ -6,6 +6,8 @@
     },
     "make_new_role": {
         "enabled": true,
-        "name": "Dictator"
+        "name": "Dictator",
+        "color": "0xB70EEB",
+        "hoist": true
     }
 }
