@@ -43,7 +43,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    if re.search(rf'(?i)(\bree+\b)', message.content) or re.search(rf'(?i)(\b^vibecheck\b)', message.content):
+    if re.search(rf'(?i)(\bree+\b)', message.content) or re.search(rf'(?i)(v+i+b+e+c+h+e+c+k+)', message.content):
         await message.channel.send("Reeeeeeee")
 
     if re.search(r'(?i)(^\bpls\b)', message.content):
@@ -55,7 +55,7 @@ async def on_message_edit(before, after):
     if after.author == bot.user:
         return
         
-    if re.search(rf'(?i)(\bre+\b)', after.content) or re.search(rf'(?i)(\b^vibecheck\b)', after.content):
+    if re.search(rf'(?i)(\bre+\b)', after.content) or re.search(rf'(?i)(v+i+b+e+c+h+e+c+k+)', after.content):
         await message.channel.send("Reeeeeeee")
 
 
