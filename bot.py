@@ -49,7 +49,7 @@ async def on_message(message):
     if re.search(r'(?i)(^\bpls\b)', message.content):
         await message.channel.send("Weeral?")
 
-    if re.search(r'(?i)(^\bYee+t the child\b)', message.content):
+    if re.search(r'(?i)(^\bYee+t the child!*\b)', message.content):
         await message.channel.send("https://media.discordapp.net/attachments/564842933593833511/781156525896499250/6a2.png")
 
 
