@@ -49,9 +49,14 @@ async def on_message(message):
     if re.search(r'(?i)(^\bpls\b)', message.content):
         await message.channel.send("Weeral?")
 
-    if re.search(r'(?i)(^\bYee+t the child!*\b)', message.content):
+    if re.search(r'(?i)(^\byee+t the child!*\b)|(^\bytc\b)', message.content):
         await message.channel.send("https://media.discordapp.net/attachments/564842933593833511/781156525896499250/6a2.png")
 
+    if re.search(r'(?i)(\b\b)', message.content):
+        await message.channel.send("https://media.discordapp.net/attachments/564842933593833511/783411071184142336/yayeet.gif")
+
+    if re.search(r'(?i)(^\bbu+r+n+\b)', message.content):
+        await message.channel.send("https://media.discordapp.net/attachments/564842933593833511/783409469571858452/FLAMING_ELMO.gif?width=538&height=671")
 
 @bot.listen()
 async def on_message_edit(before, after):
