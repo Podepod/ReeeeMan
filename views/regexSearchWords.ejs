@@ -107,7 +107,7 @@
                                 </div>
 
                             </div>
-
+                            <br>
                             <button type="submit" class="btn btn-primary">Aanpassen</button>
 
                         </form>
@@ -126,25 +126,98 @@
 
     </div>
 
+
+    <!-- MODAL TO ADD NEW REGEX STRING -->
+
     <div class="modal fade" id="modalAddRegexString" tabindex="-1" aria-labelledby="modalAddRegexString" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add a new RegEx string</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/api/bot/searchWordData/add" method="POST">
+
+                    <input type="hidden" name="index" value="<%= dataLength %>">
+                    <input type="hidden" name="redirect" value="/regexSearchWords">
+
+                    <div class="modal-body">
+                        
+
+                        <div class="list-group">
+                                
+                            <div class="list-group-item list-group-item-action">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3>Regex String</h3>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="regex" placeholder="(?i)\\bPlaceholder\\b">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="list-group-item list-group-item-action">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3>Response String</h3>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="response" placeholder="Het is maar een placeholder!">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="list-group-item list-group-item-action">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3>Text To Speak (TTS)</h3>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary">
+                                                <input type="radio" name="tts" value="true"> On
+                                            </label>
+                                            <label class="btn btn-secondary">
+                                                <input type="radio" name="tts" value="false" checked> Off
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="list-group-item list-group-item-action">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3>Enabled</h3>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary">
+                                                <input type="radio" name="enabled" value="true" checked> On
+                                            </label>
+                                            <label class="btn btn-secondary">
+                                                <input type="radio" name="enabled" value="false"> Off
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
     <%- include('./partials/scripts') -%>
 </body>

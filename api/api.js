@@ -181,7 +181,11 @@ function changeSearchWordData(req, res)
     } 
     else if (req.params.action == "add")
     {
-        console.log("werkt nog ni");
+        console.log(req.body.index);
+        console.log(req.body.regex);
+        console.log(req.body.response);
+        console.log(req.body.tts);
+        console.log(req.body.enabled);
     }
     else if (req.params.action == "remove")
     {
