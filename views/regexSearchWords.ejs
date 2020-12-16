@@ -114,13 +114,13 @@
                             <form id="remove<%= index %>" action="/api/bot/searchWordData/remove">
                                 <input type="hidden" name="index" value="<%= index %>">
                                 <input type="hidden" name="redirect" value="/regexSearchWords">
-
-                                <button type="submit" class="btn btn-danger">Remove this RegEx string</button>
                             </form>
                         <% } %>
 
                         <button type="submit" class="btn btn-primary" form="edit<%= index %>">Aanpassen</button>
-                        <button type="submit" class="btn btn-danger" form="remove<%= index %>">Remove this RegEx string</button>
+                        <% if (index != 0){ %>
+                            <button type="submit" class="btn btn-danger" form="remove<%= index %>">Remove this RegEx string</button>
+                        <% } %>
                     </div>
                 </div>
                 </div>
