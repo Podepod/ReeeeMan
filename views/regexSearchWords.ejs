@@ -25,7 +25,7 @@
                 <div id="collapse<%= index %>" class="collapse" aria-labelledby="heading<%= index %>" data-parent="#accordionParent">
                     <div class="card-body">
                         
-                        <form action="/api/bot/searchWordData/edit" method="POST">
+                        <form id="edit<%= index %>" action="/api/bot/searchWordData/edit" method="POST">
 
                             <input type="hidden" name="index" value="<%= index %>">
                             <input type="hidden" name="redirect" value="/regexSearchWords">
@@ -108,17 +108,19 @@
 
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-primary">Aanpassen</button>
 
                         </form>
                         <% if (index != 0){ %>
-                            <form action="/api/bot/searchWordData/remove">
+                            <form id="remove<%= index %>" action="/api/bot/searchWordData/remove">
                                 <input type="hidden" name="index" value="<%= index %>">
                                 <input type="hidden" name="redirect" value="/regexSearchWords">
 
-                                <button type="button" class="btn btn-danger">Remove this RegEx string</button>
+                                <button type="submit" class="btn btn-danger">Remove this RegEx string</button>
                             </form>
                         <% } %>
+
+                        <button type="submit" class="btn btn-primary" form="edit<%= index %>">Aanpassen</button>
+                        <button type="submit" class="btn btn-danger" form="remove<%= index %>">Remove this RegEx string</button>
                     </div>
                 </div>
                 </div>
