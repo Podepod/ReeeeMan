@@ -10,7 +10,7 @@
         "response": "Reeeeeeee",
         "tts": false,
         "enabled": true
-    }
+    },
     {
         "regex": "(?i)(^\\bpls\\b)",
         "response": "Weeral?",
