@@ -16,7 +16,7 @@
                 <div class="card">
                 <div class="card-header" id="heading<%= index %>">
                     <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
+                    <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
                         <%= searchWord.regex %>
                     </button>
                     </h2>
@@ -107,12 +107,16 @@
                                 </div>
 
                             </div>
+
+                            <button type="submit" class="btn btn-primary">Aanpassen</button>
+
                         </form>
                         
                         <pre>
-                            <%= searchWord.regex %>
-                            <%= searchWord.response %>
-                            <%= searchWord.tts %> | <%= typeof searchWord.tts %> | <% !searchWord.tts %>
+                            <%= index %>
+                            <%= searchWord.regex %> | <%= typeof searchWord.response %>
+                            <%= searchWord.response %> | <%= typeof searchWord.response %>
+                            <%= searchWord.tts %> | <%= typeof searchWord.tts %>
                             <%= searchWord.enabled %> | <%= typeof searchWord.enabled %>
                         </pre>
                     </div>
