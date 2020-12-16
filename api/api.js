@@ -183,6 +183,10 @@ function changeSearchWordData(req, res)
     {
         console.log("werkt nog ni");
     }
+    else if (req.params.action == "remove")
+    {
+        console.log("werkt nog ni");
+    }
 
     changeData("regexSearchWords.json", searchWordData);
 
