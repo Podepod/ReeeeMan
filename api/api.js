@@ -32,6 +32,8 @@ api.get("/bot/customText", getCustomText);
 api.post("/bot/customText", changeCustomText);
 api.get("/bot/permissionClimbing", getPermissionClimbing);
 api.post("/bot/permissionClimbing", changePermissionClimbing);
+api.get("/bot/searchWordData", getSearchWordData);
+//api.post("/bot/searchWordData/:action", changeSearchWordData);
 
 function getSettings(req, res)
 {
@@ -149,6 +151,18 @@ function changePermissionClimbing(req, res)
         };
         res.send(reply);
     }
+}
+
+function getSearchWordData(req, res)
+{
+    searchWordData = updateData("regexSearchWords.json");
+
+    reply = {
+        status: "success",
+        data: searchWordData
+    };
+
+    res.send(reply);
 }
 
 module.exports = api;

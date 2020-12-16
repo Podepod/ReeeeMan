@@ -23,6 +23,11 @@ def getPermissionClimbingConfig():
     
     return json.loads(api_page.text)["data"]
 
+def getRegexSearchWordData():
+    api_page = requests.get("http://10.30.20.187:4005/api/bot/searchWordData")
+
+    return json.loads(api_page.text)["data"]
+
 def writeGuildData(data, append = False):
     if append:
         # append a new guild (for on_guild_join)
@@ -32,6 +37,7 @@ def writeGuildData(data, append = False):
         pass
 
 config = readConfig()
+regexSearchWords = getRegexSearchWordData()
 
 bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config["basic"]["description"])
 
@@ -40,31 +46,30 @@ bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config[
 @bot.listen()
 async def on_message(message):
     global config
+    global regexSearchWords
     if message.author == bot.user:
         return
 
-    if re.search(rf'(?i)(\bree+\b)', message.content) or re.search(rf'(?i)(v+i+b+e+c+h+e+c+k+)', message.content):
-        await message.channel.send("Reeeeeeee")
-
-    if re.search(r'(?i)(^\bpls\b)', message.content):
-        await message.channel.send("Weeral?")
-
-    if re.search(r'(?i)(^\byee+t the child!*\b)|(^\bytc\b)', message.content):
-        await message.channel.send("https://media.discordapp.net/attachments/564842933593833511/781156525896499250/6a2.png")
-
-    if re.search(r'(?i)(^\byee+t\b$)', message.content):
-        await message.channel.send("https://media.discordapp.net/attachments/564842933593833511/783411071184142336/yayeet.gif")
-
-    if re.search(r'(?i)(^\bbu+r+n+\b)', message.content):
-        await message.channel.send("https://media.discordapp.net/attachments/564842933593833511/783409469571858452/FLAMING_ELMO.gif?width=538&height=671")
-
+    for searchWord in regexSearchWords:
+        if re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
+            if searchWord["tts"]:
+                await message.channel.send(f'{searchWord["response"]}', tts=True)
+            else:
+                await message.channel.send(f'{searchWord["response"]}')
+    
 @bot.listen()
 async def on_message_edit(before, after):
+    global config
+    global regexSearchWords
     if after.author == bot.user:
         return
         
-    if re.search(rf'(?i)(\bre+\b)', after.content) or re.search(rf'(?i)(v+i+b+e+c+h+e+c+k+)', after.content):
-        await message.channel.send("Reeeeeeee")
+    for searchWord in regexSearchWords:
+        if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
+            if searchWord["tts"]:
+                await after.channel.send(f'{searchWord["response"]}', tts=True)
+            else:
+                await after.channel.send(f'{searchWord["response"]}')
 
 
 
@@ -169,6 +174,9 @@ async def restartLoop(ctx):
 # file settings file command check
 @tasks.loop(seconds=5.0)
 async def checkFilesLoop():
+    global regexSearchWords
+    regexSearchWords = getRegexSearchWordData()
+    
     global config
     log_channel = bot.get_channel(777697840464920586)
 

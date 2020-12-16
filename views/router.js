@@ -25,6 +25,9 @@ router.get("/instellingen", laadInstellingen);
 // Permission Climbing Pagina
 router.get("/permissionClimbing", laadPermissionClimbing);
 
+// Regex Search Word Pagina
+router.get("/regexSearchWords", laadRegexSearchWord);
+
 // =============================================================================================================
 
 // Index pagina
@@ -47,6 +50,14 @@ function laadPermissionClimbing(req, res)
     config = updateData("permissionClimbing.json");
 
     res.render("permissionClimbing", {page: "Permission Climbing", "navId": "permissionClimbingNav", "config": config});
+}
+
+// Regex Search Words Pagina
+function laadRegexSearchWord(req, res)
+{
+    searchWords = updateData("regexSearchWords.json");
+
+    res.render("regexSearchWords", {page: "Regex Search Words", "navId": "regexSearchWordsNav", "data": searchWords});
 }
 
 module.exports = router;
