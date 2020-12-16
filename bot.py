@@ -50,6 +50,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
+    print(len(regexSearchWords))
     for searchWord in regexSearchWords:
         if re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
             if searchWord["tts"]:
