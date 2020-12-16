@@ -8,6 +8,24 @@
 
     <div class="container text-left">
 
+        <div class="accordion" id="accordionParent">
+
+            <div class="card">
+                <div class="card-header" id="header1">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="collapse1" aria-expanded="true" aria-controls="collapse1">
+                            <%= data[0].regex %>
+                        </button>
+                    </h2>
+                </div>
+                <div class="collapse show" id="collapse1" aria-labelledby="header1" data-parent="#accordionParent">
+                    <div class="card-body">
+                        <%= data[0].respose %>
+                    </div>
+                </div>
+            </div>
+
+        </div>        
 
         <pre>
             <%= data %>
