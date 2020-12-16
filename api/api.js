@@ -181,11 +181,14 @@ function changeSearchWordData(req, res)
     } 
     else if (req.params.action == "add")
     {
-        console.log(req.body.index);
-        console.log(req.body.regex);
-        console.log(req.body.response);
-        console.log(req.body.tts);
-        console.log(req.body.enabled);
+        tempData = {
+            "regex": req.body.regex,
+            "response": req.body.response,
+            "tts": (req.body.tts == "true"),
+            "enabled": (req.body.enabled == "true")
+        };
+
+        searchWordData.push(tempData);
     }
     else if (req.params.action == "remove")
     {

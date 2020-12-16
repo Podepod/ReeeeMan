@@ -57,7 +57,7 @@ function laadRegexSearchWord(req, res)
 {
     searchWords = updateData("regexSearchWords.json");
 
-    res.render("regexSearchWords", {page: "Regex Search Words", "navId": "regexSearchWordsNav", "data": searchWords, "dataLength": searchWords.length});
+    res.render("regexSearchWords", {page: "Regex Search Words", "navId": "regexSearchWordsNav", "data": searchWords});
 }
 
 module.exports = router;

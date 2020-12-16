@@ -130,7 +130,7 @@
     <!-- MODAL TO ADD NEW REGEX STRING -->
 
     <div class="modal fade" id="modalAddRegexString" tabindex="-1" aria-labelledby="modalAddRegexString" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add a new RegEx string</h5>
@@ -140,7 +140,6 @@
                 </div>
                 <form action="/api/bot/searchWordData/add" method="POST">
 
-                    <input type="hidden" name="index" value="<%= dataLength %>">
                     <input type="hidden" name="redirect" value="/regexSearchWords">
 
                     <div class="modal-body">
