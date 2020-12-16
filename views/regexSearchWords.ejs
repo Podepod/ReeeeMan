@@ -16,7 +16,7 @@
                 <div class="card">
                 <div class="card-header" id="heading<%= index %>">
                     <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
                         <%= searchWord.regex %>
                     </button>
                     </h2>
@@ -24,7 +24,15 @@
             
                 <div id="collapse<%= index %>" class="collapse show" aria-labelledby="heading<%= index %>" data-parent="#accordionParent">
                     <div class="card-body">
+                        <form action="/api/bot/searchWordData/edit" method="POST">
+                            <!-- hidden input met index -->
+                            <!-- inputs class "form-control geven" -->
+                            <!-- booleans button group: True | False -->
+                            <!-- hoe worden die regex strings doorgegeven? -->
+                        </form>
+                        
                         <pre>
+                            <%= searchWord.regex %>
                             <%= searchWord.response %>
                             <%= searchWord.tts %>
                             <%= searchWord.enabled %>
@@ -38,9 +46,7 @@
 
         </div>        
 
-        <pre>
-            <%= data %>
-        </pre>
+        <!-- button voor nieuw search word toe te voegen -->
     </div>
 
     <%- include('./partials/scripts') -%>
