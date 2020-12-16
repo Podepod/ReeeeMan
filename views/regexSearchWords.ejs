@@ -62,14 +62,14 @@
                                         <div class="col-6">
                                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                                 <label class="btn btn-secondary">
-                                                    <% if (data.tts){ %>
+                                                    <% if (searchWord.tts){ %>
                                                         <input type="radio" name="tts" value="true" checked> On
                                                     <% } else { %>
                                                         <input type="radio" name="tts" value="true"> On
                                                     <% } %>
                                                 </label>
                                                 <label class="btn btn-secondary">
-                                                    <% if (!data.tts){ %>
+                                                    <% if (!searchWord.tts){ %>
                                                         <input type="radio" name="tts" value="false" checked> Off
                                                     <% } else { %>
                                                         <input type="radio" name="tts" value="false"> Off
@@ -88,14 +88,14 @@
                                         <div class="col-6">
                                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                                 <label class="btn btn-secondary">
-                                                    <% if (data.enabled){ %>
+                                                    <% if (searchWord.enabled){ %>
                                                         <input type="radio" name="enabled" value="true" checked> On
                                                     <% } else { %>
                                                         <input type="radio" name="enabled" value="true"> On
                                                     <% } %>
                                                 </label>
                                                 <label class="btn btn-secondary">
-                                                    <% if (!data.enabled){ %>
+                                                    <% if (!searchWord.enabled){ %>
                                                         <input type="radio" name="enabled" value="false" checked> Off
                                                     <% } else { %>
                                                         <input type="radio" name="enabled" value="false"> Off
@@ -112,7 +112,7 @@
                         <pre>
                             <%= searchWord.regex %>
                             <%= searchWord.response %>
-                            <%= searchWord.tts %> | <%= typeof searchWord.tts %>
+                            <%= searchWord.tts %> | <%= typeof searchWord.tts %> | <% !searchWord.tts %>
                             <%= searchWord.enabled %> | <%= typeof searchWord.enabled %>
                         </pre>
                     </div>

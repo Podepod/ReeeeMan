@@ -9,18 +9,18 @@
         "regex": "(?i)(v+i+b+e+c+h+e+c+k+)",
         "response": "Reeeeeeee",
         "tts": false,
-        "enabled": true
+        "enabled": false
     },
     {
         "regex": "(?i)(^\\bpls\\b)",
         "response": "Weeral?",
-        "tts": false,
-        "enabled": true
+        "tts": true,
+        "enabled": false
     },
     {
         "regex": "(?i)(^\\byee+t the child!*\\b)|(^\\bytc\\b)",
         "response": "https://media.discordapp.net/attachments/564842933593833511/781156525896499250/6a2.png",
-        "tts": false,
+        "tts": true,
         "enabled": true
     },
     {
