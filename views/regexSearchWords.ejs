@@ -111,7 +111,7 @@
 
                         </form>
                         <% if (index != 0){ %>
-                            <form id="remove<%= index %>" action="/api/bot/searchWordData/remove">
+                            <form id="remove<%= index %>" action="/api/bot/searchWordData/remove" method="POST">
                                 <input type="hidden" name="index" value="<%= index %>">
                                 <input type="hidden" name="redirect" value="/regexSearchWords">
                             </form>
