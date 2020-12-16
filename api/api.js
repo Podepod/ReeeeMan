@@ -169,8 +169,22 @@ function changeSearchWordData(req, res)
 {
     searchWordData = updateData("regexSearchWords.json");
 
-    console.log(req.body);
+    wordIndex = 0;
 
+    if (req.params.action == "edit")
+    {
+        wordIndex = req.body.index;
+        searchWordData[req.body.index].regex = req.body.regex;
+        searchWordData[req.body.index].response = req.body.response;
+        searchWordData[req.body.index].tts = (req.body.tts == "true");
+        searchWordData[req.body.index].enabled = (req.body.enabled == "true");
+    } 
+    else if (req.params.action == "add")
+    {
+        console.log("werkt nog ni");
+    }
+
+    changeData("regexSearchWords.json", searchWordData);
 
     if(req.body.redirect)
     {
@@ -180,7 +194,7 @@ function changeSearchWordData(req, res)
     {
         var reply = {
             status: "succes",
-            data: searchWordData
+            data: searchWordData[wordIndex]
         };
         res.send(reply);
     }
