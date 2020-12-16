@@ -191,8 +191,8 @@ function changeSearchWordData(req, res)
         searchWordData.push(tempData);
     }
     else if (req.params.action == "remove")
-    {
-        console.log("werkt nog ni");
+    {        
+        Array.splice(Number(req.body.index), 1);
     }
 
     changeData("regexSearchWords.json", searchWordData);
