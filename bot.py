@@ -215,6 +215,7 @@ async def beforeCheckFilesLoop():
 @commands.is_owner()
 async def die(ctx):
     await ctx.send("Bye")
+    print("Bye")
     await ctx.bot.logout()
 
 checkFilesLoop.start()
