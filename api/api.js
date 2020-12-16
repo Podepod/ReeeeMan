@@ -33,7 +33,7 @@ api.post("/bot/customText", changeCustomText);
 api.get("/bot/permissionClimbing", getPermissionClimbing);
 api.post("/bot/permissionClimbing", changePermissionClimbing);
 api.get("/bot/searchWordData", getSearchWordData);
-//api.post("/bot/searchWordData/:action", changeSearchWordData);
+api.post("/bot/searchWordData/:action", changeSearchWordData);
 
 function getSettings(req, res)
 {
@@ -163,6 +163,27 @@ function getSearchWordData(req, res)
     };
 
     res.send(reply);
+}
+
+function changeSearchWordData(req, res)
+{
+    searchWordData = updateData("regexSearchWords.json");
+
+    console.log(req.body);
+
+
+    if(req.body.redirect)
+    {
+        res.redirect(req.body.redirect);
+    }
+    else
+    {
+        var reply = {
+            status: "succes",
+            data: searchWordData
+        };
+        res.send(reply);
+    }
 }
 
 module.exports = api;

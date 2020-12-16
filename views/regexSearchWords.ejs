@@ -24,11 +24,89 @@
             
                 <div id="collapse<%= index %>" class="collapse" aria-labelledby="heading<%= index %>" data-parent="#accordionParent">
                     <div class="card-body">
+                        
                         <form action="/api/bot/searchWordData/edit" method="POST">
-                            <!-- hidden input met index -->
-                            <!-- inputs class "form-control geven" -->
-                            <!-- booleans button group: True | False -->
-                            <!-- hoe worden die regex strings doorgegeven? -->
+
+                            <input type="hidden" name="index" value="<%= index %>">
+                            <input type="hidden" name="redirect" value="/regexSearchWords">
+
+                            <div class="list-group">
+                                
+                                <div class="list-group-item list-group-item-action">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h3>Regex String</h3>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" name="regex" value="<%= searchWord.regex %>">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="list-group-item list-group-item-action">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h3>Response String</h3>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" name="response" value="<%= searchWord.response %>">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="list-group-item list-group-item-action">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h3>Text To Speak (TTS)</h3>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                <label class="btn btn-secondary">
+                                                    <% if (data.tts){ %>
+                                                        <input type="radio" name="tts" value="true" checked> On
+                                                    <% } else { %>
+                                                        <input type="radio" name="tts" value="true"> On
+                                                    <% } %>
+                                                </label>
+                                                <label class="btn btn-secondary">
+                                                    <% if (!data.tts){ %>
+                                                        <input type="radio" name="tts" value="false" checked> Off
+                                                    <% } else { %>
+                                                        <input type="radio" name="tts" value="false"> Off
+                                                    <% } %>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="list-group-item list-group-item-action">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h3>Enabled</h3>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                <label class="btn btn-secondary">
+                                                    <% if (data.enabled){ %>
+                                                        <input type="radio" name="enabled" value="true" checked> On
+                                                    <% } else { %>
+                                                        <input type="radio" name="enabled" value="true"> On
+                                                    <% } %>
+                                                </label>
+                                                <label class="btn btn-secondary">
+                                                    <% if (!data.enabled){ %>
+                                                        <input type="radio" name="enabled" value="false" checked> Off
+                                                    <% } else { %>
+                                                        <input type="radio" name="enabled" value="false"> Off
+                                                    <% } %>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </form>
                         
                         <pre>
