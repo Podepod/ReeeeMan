@@ -192,7 +192,7 @@ function changeSearchWordData(req, res)
     }
     else if (req.params.action == "remove")
     {        
-        Array.splice(Number(req.body.index), 1);
+        searchWordData.splice(Number(req.body.index), 1);
     }
 
     changeData("regexSearchWords.json", searchWordData);
