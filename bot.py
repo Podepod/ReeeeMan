@@ -56,7 +56,7 @@ async def on_message(message):
                 if searchWord["removeMessage"]:
                     await message.delete()     
             except Exception as e:
-                print("Couldn't delete the message: " + e)
+                print("Couldn't delete the message: ", e)
                 
             if searchWord["tts"]:
                 await message.channel.send(f'{searchWord["response"]}', tts=True)
@@ -76,7 +76,7 @@ async def on_message_edit(before, after):
                 if searchWord["removeMessage"]:
                     await after.delete()
             except Exception as e:
-                print("Couldn't delete the message: " + e)
+                print("Couldn't delete the message: ", e)
 
             if searchWord["tts"]:
                 await after.channel.send(f'{searchWord["response"]}', tts=True)
