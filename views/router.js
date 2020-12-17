@@ -68,7 +68,7 @@ function laadCustomText(req, res)
 {
     text = updateData("customText.json");
 
-    res.render("customText.ejs", {page: "Custom Text", "navId": "customTextNav", "customText": text});
+    res.render("customText.ejs", {page: "Custom Text", "navId": "customTextNav", "customText": text.text});
 }
 
 module.exports = router;

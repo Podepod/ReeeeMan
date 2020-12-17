@@ -7,8 +7,12 @@
     <%- include('./partials/navigatie') -%>
 
     <div class="container text-left">
+        <h1>Custom Text</h1>
+        <p>You can let the bot send this command by using the command <b>customText</b></p>
         <form action="/api/bot/customText" method="POST">
+            <input type="hidden" name="redirect" value="/customText">
             <input type="text" class="form-control" name="newText" value="<%= customText %>">
+            <br>
             <button type="submit" class="btn btn-primary">Save changes</button>
         </form>
 
