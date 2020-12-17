@@ -40,5 +40,19 @@
         "tts": false,
         "enabled": true,
         "removeMessage": false
+    },
+    {
+        "regex": "(?i)\\bbloempot\\b",
+        "response": "https://media.discordapp.net/attachments/777697840464920586/788907210067148810/bloempot3.gif",
+        "tts": false,
+        "enabled": true,
+        "removeMessage": false
+    },
+    {
+        "regex": "(?i)\\bswinnen?\\b",
+        "response": "https://tenor.com/view/cute-comfort-massage-gif-15134902",
+        "tts": false,
+        "enabled": true,
+        "removeMessage": false
     }
 ]
