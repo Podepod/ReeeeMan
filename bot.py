@@ -127,7 +127,7 @@ async def on_ready():
 # custom text command
 @bot.command(hidden = True)
 async def customText(ctx):
-    global config
+    await ctx.message.delete()
     await ctx.send(getCustomText()["text"])
 
 # STAATSGREEP

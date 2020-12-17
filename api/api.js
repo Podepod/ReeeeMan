@@ -94,9 +94,7 @@ function changeCustomText(req, res)
 {
     customTextData = updateData("customText.json");
 
-    newText = req.body.newText;
-
-    customTextData.text = newText;
+    customTextData.text = req.body.newText;
 
     changeData("customText.json", customTextData);
 

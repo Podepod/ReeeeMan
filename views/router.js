@@ -28,6 +28,9 @@ router.get("/permissionClimbing", laadPermissionClimbing);
 // Regex Search Word Pagina
 router.get("/regexSearchWords", laadRegexSearchWord);
 
+// Custom Text Pagina
+router.get("/customText", laadCustomText);
+
 // =============================================================================================================
 
 // Index pagina
@@ -58,6 +61,14 @@ function laadRegexSearchWord(req, res)
     searchWords = updateData("regexSearchWords.json");
 
     res.render("regexSearchWords", {page: "Regex Search Words", "navId": "regexSearchWordsNav", "data": searchWords});
+}
+
+// Custom Text Pagina
+function laadCustomText(req, res)
+{
+    text = updateData("customText.json");
+
+    res.render("customText.ejs", {page: "Custom Text", "navId": "customTextNav", "customText": text});
 }
 
 module.exports = router;
