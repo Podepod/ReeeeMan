@@ -69,7 +69,7 @@ async def on_message_edit(before, after):
     for searchWord in regexSearchWords:
         if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
             if searchWord["removeMessage"]:
-                await message.delete()
+                await after.delete()
             if searchWord["tts"]:
                 await after.channel.send(f'{searchWord["response"]}', tts=True)
             else:
