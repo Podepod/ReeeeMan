@@ -1,15 +1,15 @@
 {
-    "basic": {
-        "token": "NzE2NzUwODU4NDAyMTM2MjE0.XtQh0A.yECcbidhXfsSxkwAKhHyVnNSbw0",
-        "prefix": "!",
-        "name": "ReeeeMan",
-        "description": "Reeee Conrad is dronken, lol",
-        "version": "Alpha"
-    },
-    "activity": {
-        "status": "online",
-        "text": "Reeeeeeee",
-        "link": "link here",
-        "activity": "gaming"
-    }
+  "basic": {
+    "token": "NzE2NzUwODU4NDAyMTM2MjE0.XtQh0A.yECcbidhXfsSxkwAKhHyVnNSbw0",
+    "prefix": "!",
+    "name": "Yeeeet Master",
+    "description": "Reeee Man Discord Bot!",
+    "version": "Beta"
+  },
+  "activity": {
+    "status": "online",
+    "text": "Yeeet the child!",
+    "link": "",
+    "activity": "gaming"
+  }
 }

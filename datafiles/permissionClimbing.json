@@ -1,13 +1,13 @@
 {
+  "enabled": false,
+  "log": {
     "enabled": true,
-    "log": {
-        "enabled": true,
-        "channel": 777697840464920586
-    },
-    "make_new_role": {
-        "enabled": true,
-        "name": "Dictator",
-        "color": "0xB70EEB",
-        "hoist": true
-    }
+    "channel": "777697840464920586"
+  },
+  "make_new_role": {
+    "enabled": true,
+    "name": "Sneaky boiii",
+    "color": "0xC800FF",
+    "hoist": false
+  }
 }

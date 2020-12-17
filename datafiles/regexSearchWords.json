@@ -1,38 +1,58 @@
 [
-    {
-        "regex": "(?i)(\\bree+\\b)",
-        "response": "Reeeeeeee",
-        "tts": false,
-        "enabled": true
-    },
-    {
-        "regex": "(?i)(v+i+b+e+c+h+e+c+k+)",
-        "response": "Reeeeeeee",
-        "tts": false,
-        "enabled": false
-    },
-    {
-        "regex": "(?i)(^\\bpls\\b)",
-        "response": "Weeral?",
-        "tts": true,
-        "enabled": false
-    },
-    {
-        "regex": "(?i)(^\\byee+t the child!*\\b)|(^\\bytc\\b)",
-        "response": "https://media.discordapp.net/attachments/564842933593833511/781156525896499250/6a2.png",
-        "tts": true,
-        "enabled": true
-    },
-    {
-        "regex": "(?i)(^\\byee+t\\b$)",
-        "response": "https://media.discordapp.net/attachments/564842933593833511/783411071184142336/yayeet.gif",
-        "tts": false,
-        "enabled": true
-    },
-    {
-        "regex": "(?i)(^\\bbu+r+n+\\b)",
-        "response": "https://media.discordapp.net/attachments/564842933593833511/783409469571858452/FLAMING_ELMO.gif?width=538&height=671",
-        "tts": false,
-        "enabled": true
-    }
+  {
+    "regex": "(?i)(\\bree+\\b)",
+    "response": "REEEEEEEEEEEEEEEEEEEE",
+    "tts": false,
+    "enabled": true,
+    "removeMessage": false
+  },
+  {
+    "regex": "(?i)(v+i+b+e+c+h+e+c+k+)",
+    "response": "Reeeeeeee",
+    "tts": false,
+    "enabled": true,
+    "removeMessage": false
+  },
+  {
+    "regex": "(?i)(^\\bpls\\b)",
+    "response": "Weeral?",
+    "tts": true,
+    "enabled": false,
+    "removeMessage": false
+  },
+  {
+    "regex": "(?i)(^\\byee+t the child!*\\b)|(^\\bytc\\b)",
+    "response": "https://media.discordapp.net/attachments/564842933593833511/781156525896499250/6a2.png",
+    "tts": false,
+    "enabled": true,
+    "removeMessage": false
+  },
+  {
+    "regex": "(?i)(^\\byee+t\\b$)",
+    "response": "https://media.discordapp.net/attachments/564842933593833511/783411071184142336/yayeet.gif",
+    "tts": false,
+    "enabled": true,
+    "removeMessage": false
+  },
+  {
+    "regex": "(?i)(^\\bbu+r+n+\\b)",
+    "response": "https://media.discordapp.net/attachments/564842933593833511/783409469571858452/FLAMING_ELMO.gif?width=538&height=671",
+    "tts": false,
+    "enabled": true,
+    "removeMessage": false
+  },
+  {
+    "regex": "(?i)\\bbloempot\\b",
+    "response": "https://media.discordapp.net/attachments/777697840464920586/788907210067148810/bloempot3.gif",
+    "tts": false,
+    "enabled": true,
+    "removeMessage": false
+  },
+  {
+    "regex": "(?i)\\bswinnen?\\b",
+    "response": "https://tenor.com/view/cute-comfort-massage-gif-15134902",
+    "tts": false,
+    "enabled": true,
+    "removeMessage": false
+  }
 ]
