@@ -178,6 +178,7 @@ function changeSearchWordData(req, res)
         searchWordData[req.body.index].response = req.body.response;
         searchWordData[req.body.index].tts = (req.body.tts == "true");
         searchWordData[req.body.index].enabled = (req.body.enabled == "true");
+        searchWordData[req.body.index].enabled = (req.body.removeMessage == "true");
     } 
     else if (req.params.action == "add")
     {
@@ -185,7 +186,8 @@ function changeSearchWordData(req, res)
             "regex": req.body.regex,
             "response": req.body.response,
             "tts": (req.body.tts == "true"),
-            "enabled": (req.body.enabled == "true")
+            "enabled": (req.body.enabled == "true"),
+            "removeMessage": (req.body.removeMessage == "true")
         };
 
         searchWordData.push(tempData);

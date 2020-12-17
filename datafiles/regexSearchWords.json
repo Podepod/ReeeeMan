@@ -3,36 +3,42 @@
         "regex": "(?i)(\\bree+\\b)",
         "response": "Reeeeeeee",
         "tts": false,
-        "enabled": true
+        "enabled": true,
+        "removeMessage": false
     },
     {
         "regex": "(?i)(v+i+b+e+c+h+e+c+k+)",
         "response": "Reeeeeeee",
         "tts": false,
-        "enabled": false
+        "enabled": false,
+        "removeMessage": false
     },
     {
         "regex": "(?i)(^\\bpls\\b)",
         "response": "Weeral?",
         "tts": true,
-        "enabled": false
+        "enabled": false,
+        "removeMessage": false
     },
     {
         "regex": "(?i)(^\\byee+t the child!*\\b)|(^\\bytc\\b)",
         "response": "https://media.discordapp.net/attachments/564842933593833511/781156525896499250/6a2.png",
         "tts": true,
-        "enabled": true
+        "enabled": true,
+        "removeMessage": false
     },
     {
         "regex": "(?i)(^\\byee+t\\b$)",
         "response": "https://media.discordapp.net/attachments/564842933593833511/783411071184142336/yayeet.gif",
         "tts": false,
-        "enabled": true
+        "enabled": true,
+        "removeMessage": false
     },
     {
         "regex": "(?i)(^\\bbu+r+n+\\b)",
         "response": "https://media.discordapp.net/attachments/564842933593833511/783409469571858452/FLAMING_ELMO.gif?width=538&height=671",
         "tts": false,
-        "enabled": true
+        "enabled": true,
+        "removeMessage": false
     }
 ]
