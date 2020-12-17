@@ -1,6 +1,6 @@
 /logs
 *.log
-botSettings.json
-customText.json
-permissionClimbing.json
-regexSearchWords.json
+datafiles/botSettings.json
+datafiles/customText.json
+datafiles/permissionClimbing.json
+datafiles/regexSearchWords.json
