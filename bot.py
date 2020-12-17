@@ -52,8 +52,12 @@ async def on_message(message):
 
     for searchWord in regexSearchWords:
         if re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
-            if searchWord["removeMessage"]:
-                await message.delete()         
+            try:    
+                if searchWord["removeMessage"]:
+                    await message.delete()     
+            except Exception as e:
+                print("Couldn't delete the message: " + e)
+                
             if searchWord["tts"]:
                 await message.channel.send(f'{searchWord["response"]}', tts=True)
             else:
@@ -68,8 +72,12 @@ async def on_message_edit(before, after):
         
     for searchWord in regexSearchWords:
         if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
-            if searchWord["removeMessage"]:
-                await after.delete()
+            try:
+                if searchWord["removeMessage"]:
+                    await after.delete()
+            except Exception as e:
+                print("Couldn't delete the message: " + e)
+
             if searchWord["tts"]:
                 await after.channel.send(f'{searchWord["response"]}', tts=True)
             else:
