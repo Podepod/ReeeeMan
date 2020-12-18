@@ -58,10 +58,11 @@ async def on_message(message):
             except Exception as e:
                 print("Couldn't delete the message: ", e)
                 
-            if searchWord["tts"]:
-                await message.channel.send(f'{searchWord["response"]}', tts=True)
-            else:
-                await message.channel.send(f'{searchWord["response"]}')
+            if searchWord["text"] != "":    
+                if searchWord["tts"]:
+                    await message.channel.send(f'{searchWord["response"]}', tts=True)
+                else:
+                    await message.channel.send(f'{searchWord["response"]}')
     
 @bot.listen()
 async def on_message_edit(before, after):
@@ -78,10 +79,11 @@ async def on_message_edit(before, after):
             except Exception as e:
                 print("Couldn't delete the message: ", e)
 
-            if searchWord["tts"]:
-                await after.channel.send(f'{searchWord["response"]}', tts=True)
-            else:
-                await after.channel.send(f'{searchWord["response"]}')
+            if searchWord["text"] != "":
+                if searchWord["tts"]:
+                    await after.channel.send(f'{searchWord["response"]}', tts=True)
+                else:
+                    await after.channel.send(f'{searchWord["response"]}')
 
 
 
