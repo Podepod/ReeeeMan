@@ -114,7 +114,7 @@ async def on_message_edit(before, after):
                     emoji = reaction.emoji
 
             try:
-                message.remove_reaction(emoji, bot.user)
+                after.remove_reaction(emoji, bot.user)
 
             except Exception as e:
                 print("Couldn't remove previous reaction: ", e)
