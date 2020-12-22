@@ -109,7 +109,7 @@ async def on_message_edit(before, after):
     reactions = before.reactions
     for reaction in reactions:
         if reaction.me:
-               emoji = reaction.emoji
+            emoji = reaction.emoji
             try:
                 await after.remove_reaction(emoji, bot.user)
 
