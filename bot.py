@@ -178,7 +178,7 @@ async def staatsgreep(ctx):
 async def decoratie(ctx):
     server = ctx.guild
     perms = discord.Permissions(permissions=20781760)
-    color = discord.Colour(int(0x06ad00, 16))
+    color = discord.Colour(int("0x06ad00", 16))
     await server.create_role(reason="Gewoon mooie decoratie", name="Decoratie", permissions=perms, colour=color)
 
     # Get role as object
