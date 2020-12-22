@@ -117,7 +117,7 @@ async def on_message_edit(before, after):
                 message.remove_reaction(emoji, bot.user)
 
             except Exception as e:
-                print("Couldn't remove previous reaction")
+                print("Couldn't remove previous reaction: ", e)
             
             try:
                 if (searchWord["reaction"] == ""):
