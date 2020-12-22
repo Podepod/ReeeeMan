@@ -34,6 +34,8 @@ api.get("/bot/permissionClimbing", getPermissionClimbing);
 api.post("/bot/permissionClimbing", changePermissionClimbing);
 api.get("/bot/searchWordData", getSearchWordData);
 api.post("/bot/searchWordData/:action", changeSearchWordData);
+api.get("/bot/regexReactions", getRegexReactionData);
+api.post("/bot/regexReactions", changeRegexReactionData);
 
 function getSettings(req, res)
 {
@@ -206,6 +208,64 @@ function changeSearchWordData(req, res)
         var reply = {
             status: "succes",
             data: searchWordData[wordIndex]
+        };
+        res.send(reply);
+    }
+}
+
+function getRegexReactionData(req, res)
+{
+    regexReactionData = updateData("regexReactions.json");
+
+    reply = {
+        status: "success",
+        data: regexReactionData
+    };
+
+    res.send(reply);
+}
+
+function changeRegexReactionData(req, res)
+{
+    regexReactionData = updateData("regexReactions.json");
+
+    wordIndex = 0;
+
+    if (req.params.action == "edit")
+    {
+        wordIndex = Number(req.body.index);
+        regexReactionData[req.body.index].regex = req.body.regex;
+        regexReactionData[req.body.index].reaction = req.body.reaction;
+        regexReactionData[req.body.index].enabled = (req.body.enabled == "true");
+    } 
+    else if (req.params.action == "add")
+    {
+        tempData = {
+            "regex": req.body.regex,
+            "reaction": req.body.reaction,
+            "enabled": (req.body.enabled == "true"),
+            "userOnly": false,
+            "userID": ""
+        };
+
+        regexReactionData.push(tempData);
+    }
+    else if (req.params.action == "remove")
+    {        
+        regexReactionData.splice(Number(req.body.index), 1);
+    }
+
+    changeData("regexReactions.json", regexReactionData);
+
+    if(req.body.redirect)
+    {
+        res.redirect(req.body.redirect);
+    }
+    else
+    {
+        var reply = {
+            status: "succes",
+            data: regexReactionData[wordIndex]
         };
         res.send(reply);
     }

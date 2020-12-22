@@ -28,6 +28,9 @@ router.get("/permissionClimbing", laadPermissionClimbing);
 // Regex Search Word Pagina
 router.get("/regexSearchWords", laadRegexSearchWord);
 
+// Regex Reactions Pagina
+router.get("/regexReactions", laadRegexReactions);
+
 // Custom Text Pagina
 router.get("/customText", laadCustomText);
 
@@ -61,6 +64,14 @@ function laadRegexSearchWord(req, res)
     searchWords = updateData("regexSearchWords.json");
 
     res.render("regexSearchWords", {page: "Regex Search Words", "navId": "regexSearchWordsNav", "data": searchWords});
+}
+
+// Regex Search Words Pagina
+function laadRegexReactions(req, res)
+{
+    searchWords = updateData("regexReactions.json");
+
+    res.render("regexReactions", {page: "Regex Reactions", "navId": "regexReactionsNav", "data": searchWords});
 }
 
 // Custom Text Pagina

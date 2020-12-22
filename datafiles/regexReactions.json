@@ -1,0 +1,9 @@
+[
+    {
+        "regex": "(?i)\\byoghurt\\b",
+        "reaction": ":face_vomiting:",
+        "enabled": true,
+        "userOnly": false,
+        "userid": ""
+    }
+]

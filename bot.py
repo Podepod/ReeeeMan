@@ -28,6 +28,11 @@ def getRegexSearchWordData():
 
     return json.loads(api_page.text)["data"]
 
+def getRegexReactionData():
+    api_page = requests.get("http://10.30.20.187:4005/api/bot/regexReactions")
+
+    return json.loads(api_page.text)["data"]
+
 def writeGuildData(data, append = False):
     if append:
         # append a new guild (for on_guild_join)
@@ -38,6 +43,7 @@ def writeGuildData(data, append = False):
 
 config = readConfig()
 regexSearchWords = getRegexSearchWordData()
+regexReactions = getRegexReactionData()
 
 bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config["basic"]["description"])
 
@@ -47,6 +53,7 @@ bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config[
 async def on_message(message):
     global config
     global regexSearchWords
+    global regexReactions
     if message.author == bot.user:
         return
 
@@ -63,11 +70,27 @@ async def on_message(message):
                     await message.channel.send(f'{searchWord["response"]}', tts=True)
                 else:
                     await message.channel.send(f'{searchWord["response"]}')
+
+    for searchWord in regexReactions:
+        if re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
+            try:
+                if (searchWord["reaction"] == ""):
+                    reaction = ":sweat_smile:"
+                else:
+                    reaction = searchWord["reaction"]
+
+                emoji = discord.Emoji(name=reaction)
+
+                await message.add_reaction(emoji)
+
+            except Exception as e:
+                print("Couldn't react to the message: ", e)
     
 @bot.listen()
 async def on_message_edit(before, after):
     global config
     global regexSearchWords
+    global regexReactions
     if after.author == bot.user:
         return
         
@@ -85,6 +108,20 @@ async def on_message_edit(before, after):
                 else:
                     await after.channel.send(f'{searchWord["response"]}')
 
+    for searchWord in regexReactions:
+        if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
+            try:
+                if (searchWord["reaction"] == ""):
+                    reaction = ":sweat_smile:"
+                else:
+                    reaction = searchWord["reaction"]
+
+                emoji = discord.Emoji(name=reaction)
+
+                await after.add_reaction(emoji)
+
+            except Exception as e:
+                print("Couldn't react to the message: ", e)
 
 
 # on bot joins guild
@@ -210,6 +247,9 @@ async def restartLoop(ctx):
 async def checkFilesLoop():
     global regexSearchWords
     regexSearchWords = getRegexSearchWordData()
+
+    global regexReactions
+    regexReactions = getRegexReactionData()
     
     global config
     log_channel = bot.get_channel(777697840464920586)
