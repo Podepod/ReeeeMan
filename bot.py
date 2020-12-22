@@ -79,9 +79,7 @@ async def on_message(message):
                 else:
                     reaction = searchWord["reaction"]
 
-                emoji = discord.Emoji(name=reaction)
-
-                await message.add_reaction(emoji)
+                await message.add_reaction(reaction)
 
             except Exception as e:
                 print("Couldn't react to the message: ", e)
@@ -116,9 +114,7 @@ async def on_message_edit(before, after):
                 else:
                     reaction = searchWord["reaction"]
 
-                emoji = discord.Emoji(name=reaction)
-
-                await after.add_reaction(emoji)
+                await after.add_reaction(reaction)
 
             except Exception as e:
                 print("Couldn't react to the message: ", e)
