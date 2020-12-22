@@ -35,7 +35,7 @@ api.post("/bot/permissionClimbing", changePermissionClimbing);
 api.get("/bot/searchWordData", getSearchWordData);
 api.post("/bot/searchWordData/:action", changeSearchWordData);
 api.get("/bot/regexReactions", getRegexReactionData);
-api.post("/bot/regexReactions", changeRegexReactionData);
+api.post("/bot/regexReactions/:action", changeRegexReactionData);
 
 function getSettings(req, res)
 {
