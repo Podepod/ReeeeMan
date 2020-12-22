@@ -110,12 +110,11 @@ async def on_message_edit(before, after):
         for reaction in reactions:
             if reaction.me:
                 emoji = reaction.emoji
+                try:
+                    await after.remove_reaction(emoji, bot.user)
 
-        try:
-            await after.remove_reaction(emoji, bot.user)
-
-        except Exception as e:
-            print("Couldn't remove previous reaction: ", e)
+                except Exception as e:
+                    print("Couldn't remove previous reaction: ", e)
 
         if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:            
             try:
