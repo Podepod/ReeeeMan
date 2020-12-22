@@ -91,12 +91,6 @@ async def on_message_edit(before, after):
     global regexReactions
     if after.author == bot.user:
         return
-        
-    reactions = before.reactions
-    for reaction in reactions:
-        print(reaction)
-        if reaction.me:
-            print("dit is mijn reaction")
 
     for searchWord in regexSearchWords:
         if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
@@ -114,6 +108,17 @@ async def on_message_edit(before, after):
 
     for searchWord in regexReactions:
         if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
+            reactions = before.reactions
+            for reaction in reactions:
+                if reaction.me:
+                    emoji = reaction.emoji
+
+            try:
+                message.remove_reaction(emoji, bot.user)
+
+            except Exception as e:
+                print("Couldn't remove previous reaction")
+            
             try:
                 if (searchWord["reaction"] == ""):
                     reaction = ":sweat_smile:"
