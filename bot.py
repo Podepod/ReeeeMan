@@ -92,6 +92,12 @@ async def on_message_edit(before, after):
     if after.author == bot.user:
         return
         
+    reactions = before.reactions
+    for reaction in reactions:
+        print(reaction)
+        if reaction.me:
+            print("dit is mijn reaction")
+
     for searchWord in regexSearchWords:
         if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
             try:
