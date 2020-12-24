@@ -9,7 +9,7 @@ import re
 
 
 # MISC COG
-class Miscellaneous(commands.Cogs):
+class Miscellaneous(commands.Cog):
     def __init__(self, bot):
         sefl.bot = bot
 
