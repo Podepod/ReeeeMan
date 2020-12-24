@@ -18,7 +18,7 @@ bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config[
 # MISC COG
 class Miscellaneous(commands.Cog):
     def __init__(self, bot):
-        sefl.bot = bot
+        self.bot = bot
 
     # CLEANUP
     # command
