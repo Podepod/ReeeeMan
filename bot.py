@@ -190,12 +190,17 @@ async def cleanup(ctx, amount = 10):
 
     for message in messages:
         if message.author.id == ctx.message.author.id:
-            print(f"{removed} {message.content}\n")
+            message.delete()
             removed += 1
         if removed == amount:
             break
     
-    print(f"Removed {amount} messages.")
+    dmChannel = ctx.message.author.dm_channel
+    if dmChannel == None:
+        await ctx.message.author.create_dm()
+        dmChannel = ctx.message.author.dm_channel
+    
+    await dmChannel.send(f"Removed {removed} messages from the {ctx.message.channel.name} channel.")
 
 # STAATSGREEP
 # command
