@@ -178,7 +178,12 @@ async def customText(ctx):
 
 # CLEANUP
 # command
-@bot.command(hidden = True)
+@bot.command(
+    name="cleanup",
+    help="Use this function as follows \"<prefix>cleanup <numberOfMessages>\". Where numberOfMessages is the number of messages you want to remove",
+    brief="<prefix>cleanup <numberOfMessages>",
+    cog_name="Misc"
+)
 async def cleanup(ctx, amount = 10):
     if type(amount) != int:
         ctx.send("The second argument should be a number.")
