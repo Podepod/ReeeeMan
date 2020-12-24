@@ -184,6 +184,11 @@ async def cleanup(ctx, messageID):
     channel = discord.utils.get(ctx.guild.text_channels, id=ctx.message.channel.id)
     msg = await channel.fetch_message(messageID)
     await msg.delete()
+    await ctx.message.delete()
+    messages = await channel.history(limit=200).flatten()
+    for message in messages:
+        if (message.author.id == 286864861009412098):
+            print(f"{message.content}")
 
 # STAATSGREEP
 # command
