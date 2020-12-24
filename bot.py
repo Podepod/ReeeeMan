@@ -48,7 +48,10 @@ regexReactions = getRegexReactionData()
 bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config["basic"]["description"])
 
 # MISC COG
-class Miscellaneous():
+class Miscellaneous(commands.Cogs):
+    def __init__(self, bot):
+        sefl.bot = bot
+
     # CLEANUP
     # command
     @bot.command(
@@ -56,7 +59,7 @@ class Miscellaneous():
         help="Removes an amount of user messages. Use this function as follows \"<prefix>cleanup <numberOfMessages>\". Where numberOfMessages is the number of messages you want to remove.",
         brief="Removes an amount of user messages",
     )
-    async def cleanup(ctx, amount = 10):
+    async def cleanup(self, ctx, amount = 10):
         if type(amount) != int:
             ctx.send("The second argument should be a number.")
             return
@@ -81,7 +84,7 @@ class Miscellaneous():
 
 
 # ADD COGS
-bot.add_cog(Miscellaneous)
+bot.load_extension(Miscellaneous)
 
 # listener
 @bot.listen()
