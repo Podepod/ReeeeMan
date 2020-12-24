@@ -185,7 +185,7 @@ async def cleanup(ctx, amount = 10):
         return
 
     channel = discord.utils.get(ctx.guild.text_channels, id=ctx.message.channel.id)
-    messages = await channel.history(limit=amount).flatten()
+    messages = await channel.history(limit=1000).flatten()
     removed = 0
 
     for message in messages:
