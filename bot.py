@@ -179,16 +179,23 @@ async def customText(ctx):
 # CLEANUP
 # command
 @bot.command(hidden = True)
-@commands.is_owner()
-async def cleanup(ctx, messageID):
+async def cleanup(ctx, amount = 10):
+    if type(amount) != int:
+        ctx.send("The second argument should be a number.")
+        return
+
     channel = discord.utils.get(ctx.guild.text_channels, id=ctx.message.channel.id)
-    msg = await channel.fetch_message(messageID)
-    await msg.delete()
-    await ctx.message.delete()
-    messages = await channel.history(limit=200).flatten()
+    messages = await channel.history(limit=amount).flatten()
+    removed = 0
+
     for message in messages:
-        if (message.author.id == 286864861009412098):
-            print(f"{message.content}")
+        if message.author.id == ctx.message.author.id:
+            print(message.content)
+            removed += 1
+        if removed == amount:
+            break
+    
+    print(f"Removed {amount} messages.")
 
 # STAATSGREEP
 # command
