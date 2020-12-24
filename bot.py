@@ -181,7 +181,7 @@ async def customText(ctx):
 @bot.command(hidden = True)
 @commands.is_owner()
 async def cleanup(ctx, messageID):
-    channel = discord.utils.get(ctx.message.guild.channels, id=ctx.message.channel.id, type="ChannelType.text")
+    channel = discord.utils.get(ctx.message.get_all_channels, id=ctx.message.channel.id)
     msg = await channel.fetch_message(messageID)
     msg.delete()
 
