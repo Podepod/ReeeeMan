@@ -169,11 +169,21 @@ async def on_ready():
             print(f"- membername: {member.name}\n * id: {member.id}\n * discriminator: {member.discriminator}\n * nickname: {member.nick}\n * bot: {member.bot}")
     print("#############################################")
 
-# custom text command
+# CUSTOMTEXT
+# command
 @bot.command(hidden = True)
 async def customText(ctx):
     await ctx.message.delete()
     await ctx.send(getCustomText()["text"])
+
+# CLEANUP
+# command
+@bot.command(hidden = True)
+@commands.is_owner()
+async def cleanup(ctx, messageID):
+    channel = discord.utils.get(server.channels, id=ctx.message.channel.id, type="ChannelType.text")
+    msg = await channel.fetch_message(messageID)
+    msg.delete()
 
 # STAATSGREEP
 # command
