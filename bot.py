@@ -183,7 +183,7 @@ async def customText(ctx):
 async def cleanup(ctx, messageID):
     channel = discord.utils.get(ctx.guild.text_channels, id=ctx.message.channel.id)
     msg = await channel.fetch_message(messageID)
-    msg.delete()
+    await msg.delete()
 
 # STAATSGREEP
 # command
