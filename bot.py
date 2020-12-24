@@ -190,7 +190,7 @@ async def cleanup(ctx, amount = 10):
 
     for message in messages:
         if message.author.id == ctx.message.author.id:
-            message.delete()
+            await message.delete()
             removed += 1
         if removed == amount:
             break
