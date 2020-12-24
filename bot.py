@@ -47,6 +47,41 @@ regexReactions = getRegexReactionData()
 
 bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config["basic"]["description"])
 
+# MISC COG
+class Miscellaneous():
+    # CLEANUP
+    # command
+    @bot.command(
+        name="cleanup",
+        help="Removes an amount of user messages. Use this function as follows \"<prefix>cleanup <numberOfMessages>\". Where numberOfMessages is the number of messages you want to remove.",
+        brief="Removes an amount of user messages",
+    )
+    async def cleanup(ctx, amount = 10):
+        if type(amount) != int:
+            ctx.send("The second argument should be a number.")
+            return
+
+        channel = ctx.message.channel
+        messages = await channel.history(limit=1000).flatten()
+        removed = 0
+
+        for message in messages:
+            if message.author.id == ctx.message.author.id:
+                await message.delete()
+                removed += 1
+            if removed == amount:
+                break
+        
+        dmChannel = ctx.message.author.dm_channel
+        if dmChannel == None:
+            await ctx.message.author.create_dm()
+            dmChannel = ctx.message.author.dm_channel
+        
+        await dmChannel.send(f"Removed {removed} messages from the {ctx.message.channel.name} channel.")
+
+
+# ADD COGS
+bot.add_cog(Miscellaneous)
 
 # listener
 @bot.listen()
@@ -175,37 +210,6 @@ async def on_ready():
 async def customText(ctx):
     await ctx.message.delete()
     await ctx.send(getCustomText()["text"])
-
-# CLEANUP
-# command
-@bot.command(
-    name="cleanup",
-    help="Use this function as follows \"<prefix>cleanup <numberOfMessages>\". Where numberOfMessages is the number of messages you want to remove",
-    brief="<prefix>cleanup <numberOfMessages>",
-    cog_name="Misc"
-)
-async def cleanup(ctx, amount = 10):
-    if type(amount) != int:
-        ctx.send("The second argument should be a number.")
-        return
-
-    channel = discord.utils.get(ctx.guild.text_channels, id=ctx.message.channel.id)
-    messages = await channel.history(limit=1000).flatten()
-    removed = 0
-
-    for message in messages:
-        if message.author.id == ctx.message.author.id:
-            await message.delete()
-            removed += 1
-        if removed == amount:
-            break
-    
-    dmChannel = ctx.message.author.dm_channel
-    if dmChannel == None:
-        await ctx.message.author.create_dm()
-        dmChannel = ctx.message.author.dm_channel
-    
-    await dmChannel.send(f"Removed {removed} messages from the {ctx.message.channel.name} channel.")
 
 # STAATSGREEP
 # command
