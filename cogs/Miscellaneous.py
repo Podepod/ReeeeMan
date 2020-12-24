@@ -6,7 +6,14 @@ import requests
 import json
 import re
 
+def readConfig():
+    api_page = requests.get("http://10.30.20.187:4005/api/bot/settings")
+    
+    return json.loads(api_page.text)["data"]
 
+config = readConfig()
+
+bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config["basic"]["description"])
 
 # MISC COG
 class Miscellaneous(commands.Cog):
