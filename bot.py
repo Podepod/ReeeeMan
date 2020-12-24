@@ -306,7 +306,8 @@ async def beforeCheckFilesLoop():
 async def die(ctx):
     await ctx.send("Bye")
     print("Bye")
-    await ctx.bot.logout()
+    await bot.logout()
+    await bot.close()
 
 checkFilesLoop.start()
 
