@@ -78,7 +78,7 @@ function laadRegexReactions(req, res)
 }
 
 // Regex Bans Pagina
-function laadRegexReactions(req, res)
+function laadRegexBans(req, res)
 {
     searchWords = updateData("regexBans.json");
 
