@@ -93,6 +93,7 @@ async def on_message(message):
                 print("Couldn't react to the message: ", e)
 
     for searchWord in regexBans:
+        print(f'{searchWord.regex}')
         if message.author == message.guild.owner:
             await message.channel.send(f'{searchWord["ownerAnswer"]}')
         elif re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:

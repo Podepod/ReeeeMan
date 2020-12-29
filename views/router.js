@@ -69,12 +69,20 @@ function laadRegexSearchWord(req, res)
     res.render("regexSearchWords", {page: "Regex Search Words", "navId": "regexSearchWordsNav", "data": searchWords});
 }
 
-// Regex Search Words Pagina
+// Regex Reactions Pagina
 function laadRegexReactions(req, res)
 {
     searchWords = updateData("regexReactions.json");
 
     res.render("regexReactions", {page: "Regex Reactions", "navId": "regexReactionsNav", "data": searchWords});
+}
+
+// Regex Bans Pagina
+function laadRegexReactions(req, res)
+{
+    searchWords = updateData("regexBans.json");
+
+    res.render("regexBans", {page: "Regex Bans", "navId": "regexBansNav", "data": searchWords});
 }
 
 // Custom Text Pagina
