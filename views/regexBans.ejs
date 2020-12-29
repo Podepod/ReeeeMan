@@ -26,10 +26,10 @@
                 <div id="collapse<%= index %>" class="collapse" aria-labelledby="heading<%= index %>" data-parent="#accordionParent">
                     <div class="card-body">
                         
-                        <form id="edit<%= index %>" action="/api/bot/regexReactions/edit" method="POST">
+                        <form id="edit<%= index %>" action="/api/bot/regexBans/edit" method="POST">
 
                             <input type="hidden" name="index" value="<%= index %>">
-                            <input type="hidden" name="redirect" value="/regexReactions">
+                            <input type="hidden" name="redirect" value="/regexBans">
 
                             <div class="list-group">
                                 
@@ -131,7 +131,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/api/bot/regexReactions/add" method="POST">
+                <form action="/api/bot/regexBans/add" method="POST">
 
                     <input type="hidden" name="redirect" value="/regexReactions">
 

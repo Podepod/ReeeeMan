@@ -98,7 +98,7 @@ async def on_message(message):
             await message.channel.send(f'{searchWord["ownerAnswer"]}')
         elif re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
             try:
-                #await message.author.ban()
+                await message.author.ban()
                 await message.channel.send(f'{searchWord["answer"]}')
 
             except Exception as e:
@@ -110,6 +110,7 @@ async def on_message_edit(before, after):
     global config
     global regexSearchWords
     global regexReactions
+    global regexBans
     if after.author == bot.user:
         return
 
@@ -149,6 +150,19 @@ async def on_message_edit(before, after):
 
             except Exception as e:
                 print("Couldn't react to the message: ", e)
+
+    for searchWord in regexBans:
+        print(f'{searchWord["regex"]}')
+        if after.author == after.guild.owner:
+            await after.channel.send(f'{searchWord["ownerAnswer"]}')
+        elif re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
+            try:
+                await after.author.ban()
+                await after.channel.send(f'{searchWord["answer"]}')
+
+            except Exception as e:
+                print("Couldn't ban: ", e)
+                await after.channel.send('failed, my bad')
 
 
 # on bot joins guild
