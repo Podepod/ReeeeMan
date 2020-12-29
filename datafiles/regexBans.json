@@ -1,6 +1,6 @@
 [
     {
-        "regex": "",
+        "regex": "(?i)\\bowo\\b",
         "ownerAnswer": "Foei",
         "answer": "BANNED",
         "enabled": true,
