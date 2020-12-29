@@ -97,7 +97,7 @@ async def on_message(message):
             await message.channel.send(f'{searchWord["ownerAnswer"]}')
         elif re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
             try:
-                await message.author.ban()
+                #await message.author.ban()
                 await message.channel.send(f'{searchWord["answer"]}')
 
             except Exception as e:
