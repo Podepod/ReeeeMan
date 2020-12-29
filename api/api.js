@@ -36,6 +36,8 @@ api.get("/bot/searchWordData", getSearchWordData);
 api.post("/bot/searchWordData/:action", changeSearchWordData);
 api.get("/bot/regexReactions", getRegexReactionData);
 api.post("/bot/regexReactions/:action", changeRegexReactionData);
+api.get("/bot/regexBans", getRegexBanData);
+api.post("/bot/regexBans/:action", changeRegexBanData);
 
 function getSettings(req, res)
 {
@@ -266,6 +268,66 @@ function changeRegexReactionData(req, res)
         var reply = {
             status: "succes",
             data: regexReactionData[wordIndex]
+        };
+        res.send(reply);
+    }
+}
+
+function getRegexBanData(req, res)
+{
+    regexBanData = updateData("regexBans.json");
+
+    reply = {
+        status: "success",
+        data: regexBanData
+    };
+
+    res.send(reply);
+}
+
+function changeRegexBanData(req, res)
+{
+    regexBanData = updateData("regexBans.json");
+
+    wordIndex = 0;
+
+    if (req.params.action == "edit")
+    {
+        wordIndex = Number(req.body.index);
+        regexBanData[req.body.index].regex = req.body.regex;
+        regexBanData[req.body.index].ownerAnswer = req.body.ownerAnswer;
+        regexBanData[req.body.index].answer = req.body.answer;
+        regexBanData[req.body.index].enabled = (req.body.enabled == "true");
+    } 
+    else if (req.params.action == "add")
+    {
+        tempData = {
+            "regex": req.body.regex,
+            "ownerAnswer": req.body.ownerAnswer,
+            "answer": req.body.answer,
+            "enabled": (req.body.enabled == "true"),
+            "userOnly": false,
+            "userID": ""
+        };
+
+        regexBanData.push(tempData);
+    }
+    else if (req.params.action == "remove")
+    {        
+        regexBanData.splice(Number(req.body.index), 1);
+    }
+
+    changeData("regexBans.json", regexBanData);
+
+    if(req.body.redirect)
+    {
+        res.redirect(req.body.redirect);
+    }
+    else
+    {
+        var reply = {
+            status: "succes",
+            data: regexBanData[wordIndex]
         };
         res.send(reply);
     }

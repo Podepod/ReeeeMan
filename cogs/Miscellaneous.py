@@ -50,5 +50,8 @@ class Miscellaneous(commands.Cog):
         
         await dmChannel.send(f"Removed {removed} messages from the {ctx.message.channel.name} channel.")
 
+    # SNIPE
+    # command
+
 def setup(bot):
     bot.add_cog(Miscellaneous(bot))
