@@ -34,6 +34,9 @@ router.get("/regexReactions", laadRegexReactions);
 // Regex Bans Pagina
 router.get("/regexBans", laadRegexBans);
 
+// DM Pagina
+router.get("/DM", laadDMs);
+
 // Custom Text Pagina
 router.get("/customText", laadCustomText);
 
