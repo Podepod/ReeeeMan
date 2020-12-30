@@ -14,10 +14,11 @@
         <% nav.forEach(function(navPage, index){ %>
             <% if (!navPage.hidden.home){ %>
                 <div class="col-4">
-                    <a class="card text-muted" href="<%= navPage.link %>">
+                    <a class="card text-dark text-centered" href="<%= navPage.link %>">
                         <div class="card-body">
-                            <h3><%= navPage.title %></h3>
-                            <p><%= navPage.description %></p>
+                            <h3 class="card-title"><%= navPage.title %></h3>
+                            <p class="card-text"><%= navPage.description %></p>
+                            <p><small class="text-muted"><%= navPage.navID %></small></p>
                         </div>
                     </a>
                 </div>
@@ -25,7 +26,6 @@
 
             <% if ((i+1) % 3 == 0){ %>
             </div>
-            <br>
             <div class="row">
             <% } %>
         <% }) %>    
