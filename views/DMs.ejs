@@ -29,39 +29,28 @@
                         <form id="edit<%= index %>" action="/api/bot/regexBans/edit" method="POST">
 
                             <input type="hidden" name="index" value="<%= index %>">
-                            <input type="hidden" name="redirect" value="/regexBans">
+                            <input type="hidden" name="redirect" value="/DM">
 
                             <div class="list-group">
                                 
                                 <div class="list-group-item list-group-item-action">
                                     <div class="row">
                                         <div class="col-6">
-                                            <h3>RegEx String</h3>
+                                            <h3>Link</h3>
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control" name="regex" value="<%= searchWord.regex %>">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="list-group-item list-group-item-action">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <h3>Owner Answer</h3>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" name="ownerAnswer" value="<%= searchWord.ownerAnswer %>">
+                                            <input type="text" class="form-control" name="link" value="<%= searchWord.link %>" placeholder="Link where you found the text">
                                         </div>
                                     </div>
                                 </div>
-
+    
                                 <div class="list-group-item list-group-item-action">
                                     <div class="row">
                                         <div class="col-6">
-                                            <h3>Answer</h3>
+                                            <h3>DM text</h3>
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control" name="answer" value="<%= searchWord.answer %>">
+                                            <input type="text" class="form-control" name="text" value="<%= searchWord.text %>" placeholder="pickup line 😉">
                                         </div>
                                     </div>
                                 </div>
@@ -133,7 +122,7 @@
                 </div>
                 <form action="/api/bot/regexBans/add" method="POST">
 
-                    <input type="hidden" name="redirect" value="/regexBans">
+                    <input type="hidden" name="redirect" value="/DM">
 
                     <div class="modal-body">
                         
@@ -143,21 +132,10 @@
                             <div class="list-group-item list-group-item-action">
                                 <div class="row">
                                     <div class="col-6">
-                                        <h3>RegEx String</h3>
+                                        <h3>Link</h3>
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" class="form-control" name="regex" placeholder="(?i)\\bPlaceholder\\b">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <h3>Owner Answer</h3>
-                                    </div>
-                                    <div class="col-6">
-                                        <input type="text" class="form-control" name="ownerAnswer" placeholder="Foei">
+                                        <input type="text" class="form-control" name="link" placeholder="Link where you found the text">
                                     </div>
                                 </div>
                             </div>
@@ -165,10 +143,10 @@
                             <div class="list-group-item list-group-item-action">
                                 <div class="row">
                                     <div class="col-6">
-                                        <h3>Answer</h3>
+                                        <h3>DM text</h3>
                                     </div>
                                     <div class="col-6">
-                                        <input type="text" class="form-control" name="answer" placeholder="BANNED">
+                                        <input type="text" class="form-control" name="text" placeholder="pickup line 😉">
                                     </div>
                                 </div>
                             </div>

@@ -87,6 +87,14 @@ function laadRegexBans(req, res)
     res.render("regexBans", {page: "Regex Bans", "navId": "regexBansNav", "data": searchWords});
 }
 
+// DM Pagina
+function laadDMs(req, res)
+{
+    DMlist = updateData("DMs.json");
+
+    res.render("DMs", {page: "DMs", "navId": "DMNav", "data": DMlist});
+}
+
 // Custom Text Pagina
 function laadCustomText(req, res)
 {
