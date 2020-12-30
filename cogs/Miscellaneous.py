@@ -75,7 +75,7 @@ class Miscellaneous(commands.Cog):
             dmChannel = ctx.message.author.dm_channel
         
         random.seed(datetime.datetime.now())
-        randomNumber = random.randint(0, len(dmData))
+        randomNumber = random.randint(0, len(dmData)-1)
 
         await dmChannel.send(f"{dmData[randomNumber]['text']}")
 
