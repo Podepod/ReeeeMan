@@ -18,7 +18,7 @@
                 <div class="card-header" id="heading<%= index %>">
                     <h2 class="mb-0">
                     <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
-                        <%= searchWord.regex %>
+                        <%= searchWord.text %>
                     </button>
                     </h2>
                 </div>
@@ -36,21 +36,21 @@
                                 <div class="list-group-item list-group-item-action">
                                     <div class="row">
                                         <div class="col-6">
-                                            <h3>Link</h3>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" class="form-control" name="link" value="<%= searchWord.link %>" placeholder="Link where you found the text">
-                                        </div>
-                                    </div>
-                                </div>
-    
-                                <div class="list-group-item list-group-item-action">
-                                    <div class="row">
-                                        <div class="col-6">
                                             <h3>DM text</h3>
                                         </div>
                                         <div class="col-6">
                                             <input type="text" class="form-control" name="text" value="<%= searchWord.text %>" placeholder="pickup line 😉">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="list-group-item list-group-item-action">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h3>Link</h3>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" name="link" value="<%= searchWord.link %>" placeholder="Link where you found the text">
                                         </div>
                                     </div>
                                 </div>
@@ -128,17 +128,6 @@
                         
 
                         <div class="list-group">
-                                
-                            <div class="list-group-item list-group-item-action">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <h3>Link</h3>
-                                    </div>
-                                    <div class="col-6">
-                                        <input type="text" class="form-control" name="link" placeholder="Link where you found the text">
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="list-group-item list-group-item-action">
                                 <div class="row">
@@ -147,6 +136,17 @@
                                     </div>
                                     <div class="col-6">
                                         <input type="text" class="form-control" name="text" placeholder="pickup line 😉">
+                                    </div>
+                                </div>
+                            </div>
+                                
+                            <div class="list-group-item list-group-item-action">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3>Link</h3>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="link" placeholder="Link where you found the text">
                                     </div>
                                 </div>
                             </div>
