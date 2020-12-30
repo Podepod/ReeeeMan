@@ -42,7 +42,9 @@ router.get("/customText", laadCustomText);
 // Index pagina
 function laadIndex(req, res)
 {
-    res.render("index", {page: "Home", "navId": "indexNav"});
+    pages = updateData("botSettings.json");
+
+    res.render("index", {page: "Home", "navId": "indexNav", "data": pages});
 }
 
 // Instellingen pagina
