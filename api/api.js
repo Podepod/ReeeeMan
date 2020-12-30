@@ -38,6 +38,8 @@ api.get("/bot/regexReactions", getRegexReactionData);
 api.post("/bot/regexReactions/:action", changeRegexReactionData);
 api.get("/bot/regexBans", getRegexBanData);
 api.post("/bot/regexBans/:action", changeRegexBanData);
+api.get("/bot/DM", getDMData);
+api.post("/bot/DM/:action", changeDMData);
 
 function getSettings(req, res)
 {
@@ -328,6 +330,62 @@ function changeRegexBanData(req, res)
         var reply = {
             status: "succes",
             data: regexBanData[wordIndex]
+        };
+        res.send(reply);
+    }
+}
+
+function getDMData(req, res)
+{
+    DMData = updateData("DMs.json");
+
+    reply = {
+        status: "success",
+        data: DMData
+    };
+
+    res.send(reply);
+}
+
+function changeDMData(req, res)
+{
+    DMData = updateData("DMs.json");
+
+    wordIndex = 0;
+
+    if (req.params.action == "edit")
+    {
+        wordIndex = Number(req.body.index);
+        DMData[req.body.index].link = req.body.link;
+        DMData[req.body.index].text = req.body.text;
+        DMData[req.body.index].enabled = (req.body.enabled == "true");
+    } 
+    else if (req.params.action == "add")
+    {
+        tempData = {
+            "link": req.body.link,
+            "text": req.body.text,
+            "enabled": (req.body.enabled == "true"),
+        };
+
+        DMData.push(tempData);
+    }
+    else if (req.params.action == "remove")
+    {        
+        DMData.splice(Number(req.body.index), 1);
+    }
+
+    changeData("DMs.json", DMData);
+
+    if(req.body.redirect)
+    {
+        res.redirect(req.body.redirect);
+    }
+    else
+    {
+        var reply = {
+            status: "succes",
+            data: DMData[wordIndex]
         };
         res.send(reply);
     }
