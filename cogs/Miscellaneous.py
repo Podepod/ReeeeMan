@@ -77,7 +77,7 @@ class Miscellaneous(commands.Cog):
         random.seed(datetime.datetime.now())
         randomNumber = random.randint(0, len(dmData))
 
-        await dmChannel.send(f"{dmData[randomNumber]["text"]}")
+        await dmChannel.send(f"{dmData[randomNumber]['text']}")
 
 def setup(bot):
     bot.add_cog(Miscellaneous(bot))
