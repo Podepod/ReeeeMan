@@ -42,7 +42,7 @@ router.get("/customText", laadCustomText);
 // Index pagina
 function laadIndex(req, res)
 {
-    pages = updateData("botSettings.json");
+    pages = updateData("pages.json");
 
     res.render("index", {page: "Home", "navId": "indexNav", "data": pages});
 }
