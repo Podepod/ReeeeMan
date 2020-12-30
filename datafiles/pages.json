@@ -3,5 +3,32 @@
         "title": "Custom Text",
         "link": "/customText",
         "description": "A place to enter the custom text for the custom text command"
+    },
+    {
+        "title": "Permission Climbing",
+        "link": "/permissionClimbing",
+        "description": "Settings for permission climbing"
+    },
+    {
+        "title": "Regex Search Words",
+        "link": "/regexSearchWords",
+        "description": "The list of regex searchwords"
+    },
+    {
+        "title": "Regex Reaction",
+        "link": "/regexReaction",
+        "description": "The list of regex reactions"
+    },
+    {
+        "title": "Regex Bans",
+        "link": "/regexBans",
+        "description": "The list of regex Bans"
+    },
+    {
+        "title": "Settings",
+        "link": "/settings",
+        "description": "The general settings for the bot"
     }
+]
+]
 ]
