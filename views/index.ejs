@@ -15,8 +15,10 @@
             <% if (!navPage.hidden.home){ %>
                 <div class="col-4">
                     <a class="card text-muted" href="<%= navPage.link %>">
-                        <h3><%= navPage.title %></h3>
-                        <p><%= navPage.description %></p>
+                        <div class="card-body">
+                            <h3><%= navPage.title %></h3>
+                            <p><%= navPage.description %></p>
+                        </div>
                     </a>
                 </div>
             <% } %>
