@@ -17,7 +17,7 @@
         "navID": "customTextNav",
         "hidden": {
             "home": false,
-            "nav": true
+            "nav": false
         },
         "dropdown": false
     },

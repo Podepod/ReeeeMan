@@ -13,8 +13,8 @@
         <% i = 0 %>
         <% nav.forEach(function(navPage, index){ %>
             <% if (!navPage.hidden.home){ %>
-                <div class="card col-4">
-                    <a class="text-muted" href="<%= navPage.link %>">
+                <div class="col-4">
+                    <a class="card text-muted" href="<%= navPage.link %>">
                         <h3><%= navPage.title %></h3>
                         <p><%= navPage.description %></p>
                     </a>
