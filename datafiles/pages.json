@@ -15,8 +15,8 @@
         "description": "The list of regex searchwords"
     },
     {
-        "title": "Regex Reaction",
-        "link": "/regexReaction",
+        "title": "Regex Reactions",
+        "link": "/regexReactions",
         "description": "The list of regex reactions"
     },
     {
@@ -26,7 +26,7 @@
     },
     {
         "title": "Settings",
-        "link": "/settings",
+        "link": "/instellingen",
         "description": "The general settings for the bot"
     }
 ]
