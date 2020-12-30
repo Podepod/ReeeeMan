@@ -10,20 +10,22 @@
         <br>
 
             <div class="row">
-        <% for (i = 0; i < data.length; i++){ %>
-                
+        <% i = O %>
+        <% nav.forEach(function(navPage, index){ %>
+            <% if (!navPage.hidden.home){ %>
                 <div class="card col-4">
-                    <a class="text-muted" href="<%= data[i].link %>">
-                        <h3><%= data[i].title %></h3>
-                        <p><%= data[i].description %></p>
+                    <a class="text-muted" href="<%= navPage.link %>">
+                        <h3><%= navPage.title %></h3>
+                        <p><%= navPage.description %></p>
                     </a>
                 </div>
+            <% } %>
 
             <% if ((i+1) % 3 == 0){ %>
             </div>
             <div class="row">
             <% } %>
-        <% } %>    
+        <% }) %>    
 
             </div>
     </div>
