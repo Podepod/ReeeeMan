@@ -93,16 +93,17 @@ async def on_message(message):
                 print("Couldn't react to the message: ", e)
 
     for searchWord in regexBans:
-        if message.author == message.guild.owner:
-            await message.channel.send(f'{searchWord["ownerAnswer"]}')
-        elif re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
-            try:
-                await message.author.ban()
-                await message.channel.send(f'{searchWord["answer"]}')
+        if re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
+            if message.author == message.guild.owner:
+                await message.channel.send(f'{searchWord["ownerAnswer"]}')
+            else:
+                try:
+                    await message.author.ban()
+                    await message.channel.send(f'{searchWord["answer"]}')
 
-            except Exception as e:
-                print("Couldn't ban: ", e)
-                await message.channel.send('failed, my bad')
+                except Exception as e:
+                    print("Couldn't ban: ", e)
+                    await message.channel.send('failed, my bad')
     
 @bot.listen()
 async def on_message_edit(before, after):
@@ -151,16 +152,17 @@ async def on_message_edit(before, after):
                 print("Couldn't react to the message: ", e)
 
     for searchWord in regexBans:
-        if after.author == after.guild.owner:
-            await after.channel.send(f'{searchWord["ownerAnswer"]}')
-        elif re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
-            try:
-                await after.author.ban()
-                await after.channel.send(f'{searchWord["answer"]}')
+        if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
+            if after.author == after.guild.owner:
+                await after.channel.send(f'{searchWord["ownerAnswer"]}')
+            else:
+                try:
+                    await after.author.ban()
+                    await after.channel.send(f'{searchWord["answer"]}')
 
-            except Exception as e:
-                print("Couldn't ban: ", e)
-                await after.channel.send('failed, my bad')
+                except Exception as e:
+                    print("Couldn't ban: ", e)
+                    await after.channel.send('failed, my bad')
 
 
 # on bot joins guild

@@ -65,7 +65,7 @@ class Miscellaneous(commands.Cog):
     # command
     @bot.command(
         name="DM",
-        aliases="dm",
+        aliases=["dm"],
         help=f"Just use the command DM and I should slide right in with one of his cheezy pickup lines.",
         brief="Sends a random DM your way",
     )
