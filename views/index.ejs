@@ -9,12 +9,12 @@
     <div class="container text-left">
         <br>
 
-        <% for (var i = 0; i < data.length){ %>
+        <% for (var i = 0; i < data.length; i++){ %>
             <div class="row">
                 
                 <div class="card col-4">
-                    <a class="text-muted" href="<%= data[i].link %>>">
-                        <h3>data[i].title</h3>
+                    <a class="text-muted" href="<%= data[i].link %>">
+                        <h3><%= data[i].title %></h3>
                         <p><%= data[i].description %></p>
                     </a>
                 </div>
