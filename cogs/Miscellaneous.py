@@ -51,12 +51,16 @@ class Miscellaneous(commands.Cog):
             if removed == amount:
                 break
         
-        dmChannel = ctx.message.author.dm_channel
-        if dmChannel == None:
-            await ctx.message.author.create_dm()
+        try:
             dmChannel = ctx.message.author.dm_channel
-        
-        await dmChannel.send(f"Removed {removed} messages from the {ctx.message.channel.name} channel.")
+            if dmChannel == None:
+                await ctx.message.author.create_dm()
+                dmChannel = ctx.message.author.dm_channel
+            
+            await dmChannel.send(f"Removed {removed} messages from the {ctx.message.channel.name} channel.")
+
+        except discord.Forbidden:
+            pass
 
     # SNIPE
     # command
@@ -70,15 +74,18 @@ class Miscellaneous(commands.Cog):
         brief="Sends a random DM your way",
     )
     async def DM(self, ctx):
-        dmChannel = ctx.message.author.dm_channel
-        if dmChannel == None:
-            await ctx.message.author.create_dm()
+        try:
             dmChannel = ctx.message.author.dm_channel
-        
-        random.seed(datetime.datetime.now())
-        randomNumber = random.randint(0, len(dmData)-1)
+            if dmChannel == None:
+                await ctx.message.author.create_dm()
+                dmChannel = ctx.message.author.dm_channel
+            
+            random.seed(datetime.datetime.now())
+            randomNumber = random.randint(0, len(dmData)-1)
 
-        await dmChannel.send(f"{dmData[randomNumber]['text']}")
+            await dmChannel.send(f"{dmData[randomNumber]['text']}")
+        except discord.Forbidden:
+            await ctx.send("Can't send a DM to you for some reason, I'm sorry... 😕")
 
 def setup(bot):
     bot.add_cog(Miscellaneous(bot))
