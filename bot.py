@@ -207,6 +207,41 @@ async def customText(ctx):
     await ctx.message.delete()
     await ctx.send(api.getCustomText()["text"])
 
+@bot.command(hidden = True)
+async def loadCog(ctx, cog: string):
+    ctx.send("load ", cog)
+
+    # check cog list (datafile)
+
+    # if cog does not exist, try to add
+        # if adding it works, add to cog list
+        # else send error message in ctx
+    # else try to add cog
+        # send succes or error message to ctx
+
+@bot.command(hidden = True)
+async def reloadCog(ctx, cog: string):
+    ctx.send("reload ", cog)
+
+    # check cog list (datafile)
+
+    # if cog does not exist, try to add
+        # send send error message in ctx
+    # else
+        # unload cog
+        # try to load cog again
+            # send succes or error message to ctx
+
+@bot.command(hidden = True)
+async def unloadCog(ctx, cog: string):
+    ctx.send("unload ", cog)
+
+    # check cog list (bot)
+
+    # if cog does not exist, send send error message in ctx
+    # else
+        # unload cog
+
 # STAATSGREEP
 # command
 @bot.command(hidden = True)
