@@ -2,8 +2,6 @@ import discord
 from discord.ext import tasks, commands
 import datetime
 import asyncio
-import requests
-import json
 import re
 import random
 import apiRequests as api
