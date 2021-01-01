@@ -209,7 +209,7 @@ async def customText(ctx):
 
 @bot.command(hidden = True)
 async def loadCog(ctx, cog: str):
-    ctx.send("load ", cog)
+    print("load ", cog)
 
     # check cog list (datafile)
 
@@ -221,7 +221,7 @@ async def loadCog(ctx, cog: str):
 
 @bot.command(hidden = True)
 async def reloadCog(ctx, cog: str):
-    ctx.send("reload ", cog)
+    print("reload ", cog)
 
     # check cog list (datafile)
 
@@ -234,7 +234,7 @@ async def reloadCog(ctx, cog: str):
 
 @bot.command(hidden = True)
 async def unloadCog(ctx, cog: str):
-    ctx.send("unload ", cog)
+    print("unload ", cog)
 
     # check cog list (bot)
 
