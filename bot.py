@@ -297,7 +297,7 @@ async def checkFilesLoop():
     old_config = config
     config = api.readConfig()
 
-    checkConfig(old_config)
+    await checkConfig(old_config)
 
 @checkFilesLoop.before_loop
 async def beforeCheckFilesLoop():
