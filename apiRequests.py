@@ -30,3 +30,8 @@ def getRegexBansData():
     api_page = requests.get("http://10.30.20.187:4005/api/bot/regexBans")
 
     return json.loads(api_page.text)["data"]
+
+def readDMFile():
+    api_page = requests.get("http://10.30.20.187:4005/api/bot/DM")
+
+    return json.loads(api_page.text)["data"]
