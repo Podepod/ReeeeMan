@@ -208,7 +208,7 @@ async def customText(ctx):
     await ctx.send(api.getCustomText()["text"])
 
 @bot.command(hidden = True)
-async def loadCog(ctx, cog: string):
+async def loadCog(ctx, cog: str):
     ctx.send("load ", cog)
 
     # check cog list (datafile)
@@ -220,7 +220,7 @@ async def loadCog(ctx, cog: string):
         # send succes or error message to ctx
 
 @bot.command(hidden = True)
-async def reloadCog(ctx, cog: string):
+async def reloadCog(ctx, cog: str):
     ctx.send("reload ", cog)
 
     # check cog list (datafile)
@@ -233,7 +233,7 @@ async def reloadCog(ctx, cog: string):
             # send succes or error message to ctx
 
 @bot.command(hidden = True)
-async def unloadCog(ctx, cog: string):
+async def unloadCog(ctx, cog: str):
     ctx.send("unload ", cog)
 
     # check cog list (bot)
