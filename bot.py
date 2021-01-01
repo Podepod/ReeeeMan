@@ -24,6 +24,32 @@ if __name__ == '__main__':
         except Exception as e:
             print(f'Failed to load extension {extension}.', e)
 
+def checkConfig(old_config):
+    global config
+
+    # BASIC config
+    if (old_config["basic"]["prefix"] != config["basic"]["prefix"]):
+        bot.command_prefix = config["basic"]["prefix"]
+        await log_channel.send(f"Changed the prefix from '{old_config['basic']['prefix']}' to '{config['basic']['prefix']}'")
+
+    if (old_config["basic"]["name"] != config["basic"]["name"]):
+        await bot.user.edit(username=config["basic"]["name"])
+        await log_channel.send(f"Changed the bot's username from '{old_config['basic']['name']}' to '{config['basic']['name']}'")
+
+    if (old_config["basic"]["description"] != config["basic"]["description"]):
+        bot.description = config["basic"]["description"]
+        await log_channel.send(f"Changed the bot's description from '{old_config['basic']['description']}' to '{config['basic']['description']}'")
+
+    # ACTIVITY config
+    if (old_config["activity"]["status"] != config["activity"]["status"]):
+        # opties: online, offline, idle, do_no_disturb, invisible
+        await bot.change_presence(status=config["activity"]["status"])
+        await log_channel.send(f"Changed the activity status from '{old_config['activity']['status']}' to '{config['activity']['status']}'")
+
+    if (old_config["activity"]["text"] != config["activity"]["text"]):
+        await bot.change_presence(activity=discord.Game(name=config["activity"]["text"]))
+        await log_channel.send(f"Changed the activity text from '{old_config['activity']['text']}' to '{config['activity']['text']}'")
+
 # listener
 @bot.listen()
 async def on_message(message):
@@ -271,28 +297,7 @@ async def checkFilesLoop():
     old_config = config
     config = api.readConfig()
 
-    # BASIC config
-    if (old_config["basic"]["prefix"] != config["basic"]["prefix"]):
-        bot.command_prefix = config["basic"]["prefix"]
-        await log_channel.send(f"Changed the prefix from '{old_config['basic']['prefix']}' to '{config['basic']['prefix']}'")
-
-    if (old_config["basic"]["name"] != config["basic"]["name"]):
-        await bot.user.edit(username=config["basic"]["name"])
-        await log_channel.send(f"Changed the bot's username from '{old_config['basic']['name']}' to '{config['basic']['name']}'")
-
-    if (old_config["basic"]["description"] != config["basic"]["description"]):
-        bot.description = config["basic"]["description"]
-        await log_channel.send(f"Changed the bot's description from '{old_config['basic']['description']}' to '{config['basic']['description']}'")
-
-    # ACTIVITY config
-    if (old_config["activity"]["status"] != config["activity"]["status"]):
-        # opties: online, offline, idle, do_no_disturb, invisible
-        await bot.change_presence(status=discord.Status(config["activity"]["status"]))
-        await log_channel.send(f"Changed the activity status from '{old_config['activity']['status']}' to '{config['activity']['status']}'")
-
-    if (old_config["activity"]["text"] != config["activity"]["text"]):
-        await bot.change_presence(activity=discord.Game(name=config["activity"]["text"]))
-        await log_channel.send(f"Changed the activity text from '{old_config['activity']['text']}' to '{config['activity']['text']}'")
+    checkConfig(old_config)
 
 @checkFilesLoop.before_loop
 async def beforeCheckFilesLoop():
