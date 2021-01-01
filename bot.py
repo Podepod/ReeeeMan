@@ -7,41 +7,12 @@ import asyncio
 import requests
 import json
 import re
+import apiRequests as api
 
-def readConfig():
-    api_page = requests.get("http://10.30.20.187:4005/api/bot/settings")
-    
-    return json.loads(api_page.text)["data"]
-
-def getCustomText():
-    api_page = requests.get("http://10.30.20.187:4005/api/bot/customText")
-    
-    return json.loads(api_page.text)["data"]
-
-def getPermissionClimbingConfig():
-    api_page = requests.get("http://10.30.20.187:4005/api/bot/permissionClimbing")
-    
-    return json.loads(api_page.text)["data"]
-
-def getRegexSearchWordData():
-    api_page = requests.get("http://10.30.20.187:4005/api/bot/searchWordData")
-
-    return json.loads(api_page.text)["data"]
-
-def getRegexReactionData():
-    api_page = requests.get("http://10.30.20.187:4005/api/bot/regexReactions")
-
-    return json.loads(api_page.text)["data"]
-
-def getRegexBansData():
-    api_page = requests.get("http://10.30.20.187:4005/api/bot/regexBans")
-
-    return json.loads(api_page.text)["data"]
-
-config = readConfig()
-regexSearchWords = getRegexSearchWordData()
-regexReactions = getRegexReactionData()
-regexBans = getRegexBansData()
+config = api.readConfig()
+regexSearchWords = api.getRegexSearchWordData()
+regexReactions = api.getRegexReactionData()
+regexBans = api.getRegexBansData()
 
 cogList = ['cogs.Miscellaneous']
 
@@ -184,7 +155,7 @@ async def on_guild_join(guild):
 
 # on ready
 @bot.event
-async def on_ready():
+async def on_ready():   
     global config
     print(f"{config['basic']['name']} is up and running...")
 
@@ -209,14 +180,14 @@ async def on_ready():
 @bot.command(hidden = True)
 async def customText(ctx):
     await ctx.message.delete()
-    await ctx.send(getCustomText()["text"])
+    await ctx.send(api.getCustomText()["text"])
 
 # STAATSGREEP
 # command
 @bot.command(hidden = True)
 @commands.is_owner()
 async def staatsgreep(ctx):
-    pCconfig = getPermissionClimbingConfig()
+    pCconfig = api.getPermissionClimbingConfig()
 
     if pCconfig["enabled"]:
         # Create a role (with admin permissions and a color)
@@ -288,19 +259,19 @@ async def restartLoop(ctx):
 @tasks.loop(seconds=5.0)
 async def checkFilesLoop():
     global regexSearchWords
-    regexSearchWords = getRegexSearchWordData()
+    regexSearchWords = api.getRegexSearchWordData()
 
     global regexReactions
-    regexReactions = getRegexReactionData()
+    regexReactions = api.getRegexReactionData()
 
     global regexBans
-    regexBans = getRegexBansData()
+    regexBans = api.getRegexBansData()
     
     global config
     log_channel = bot.get_channel(777697840464920586)
 
     old_config = config
-    config = readConfig()
+    config = api.readConfig()
 
     # BASIC config
     if (old_config["basic"]["prefix"] != config["basic"]["prefix"]):
