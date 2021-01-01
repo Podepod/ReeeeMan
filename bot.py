@@ -24,7 +24,7 @@ if __name__ == '__main__':
         except Exception as e:
             print(f'Failed to load extension {extension}.', e)
 
-def checkConfig(old_config):
+async def checkConfig(old_config):
     global config
 
     # BASIC config
