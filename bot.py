@@ -26,6 +26,7 @@ if __name__ == '__main__':
 
 async def checkConfig(old_config):
     global config
+    log_channel = bot.get_channel(777697840464920586)
 
     # BASIC config
     if (old_config["basic"]["prefix"] != config["basic"]["prefix"]):
@@ -292,7 +293,6 @@ async def checkFilesLoop():
     regexBans = api.getRegexBansData()
     
     global config
-    log_channel = bot.get_channel(777697840464920586)
 
     old_config = config
     config = api.readConfig()
