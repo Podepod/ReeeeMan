@@ -40,6 +40,7 @@ api.get("/bot/regexBans", getRegexBanData);
 api.post("/bot/regexBans/:action", changeRegexBanData);
 api.get("/bot/DM", getDMData);
 api.post("/bot/DM/:action", changeDMData);
+api.get("/bot/cogs/list", getCogData);
 
 function getSettings(req, res)
 {
@@ -389,6 +390,17 @@ function changeDMData(req, res)
         };
         res.send(reply);
     }
+}
+
+function getCogData(req, res){
+    cogData = updateData("cogs.json");
+
+    reply = {
+        status: "success",
+        data: cogData
+    };
+
+    res.send(reply);
 }
 
 module.exports = api;

@@ -12,17 +12,18 @@ regexSearchWords = api.getRegexSearchWordData()
 regexReactions = api.getRegexReactionData()
 regexBans = api.getRegexBansData()
 
-cogList = ['cogs.Miscellaneous']
+cogList = api.getCogs()
 
 bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config["basic"]["description"])
 
 # ADD COGS
 if __name__ == '__main__':
     for extension in cogList:
-        try:
-            bot.load_extension(extension)
-        except Exception as e:
-            print(f'Failed to load extension {extension}.', e)
+        if extension["enabled"]:
+            try:
+                bot.load_extension(extension["name"])
+            except Exception as e:
+                print(f'Failed to load extension {extension["name"]}.', e)
 
 async def checkConfig(old_config):
     global config
