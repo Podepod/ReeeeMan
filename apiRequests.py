@@ -44,7 +44,7 @@ def getCogs():
 def changeCog(cogName: str, action: str):
     api_link = "http://10.30.20.187:4005/api/bot/cogs/change"
 
-    cogList = getCog()
+    cogList = getCogs()
     i = 0
 
     if (action == "load"):
