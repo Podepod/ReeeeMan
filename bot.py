@@ -212,7 +212,7 @@ async def customText(ctx):
 async def loadCog(ctx, cog: str):
     cogList = api.getCogs()
     for cogName in cogList:
-        if (cogName["name"] = cog):
+        if (cogName["name"] == cog):
             try:
                 response = api.changeCog(cog, "load")
                 bot.load_extension(cogName["name"])
@@ -259,7 +259,7 @@ async def reloadCog(ctx, cog: str):
 async def unloadCog(ctx, cog: str):
     cogList = api.getCogs()
     for cogName in cogList:
-        if (cogName["name"] = cog):
+        if (cogName["name"] == cog):
             try:
                 response = api.changeCog(cog, "unload")
                 bot.unload_extension(cogName["name"])
