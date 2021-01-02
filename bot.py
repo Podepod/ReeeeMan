@@ -242,7 +242,34 @@ async def loadCog(ctx, cog: str):
 @bot.command(hidden = True)
 @commands.is_owner()
 async def reloadCog(ctx, cog: str):
-    pass
+    cogList = api.getCogs()
+    for cogName in cogList:
+        if (cogName["name"] == cog):
+            try:
+                bot.unload_extension(cogName["name"])
+                bot.load_extension(cogName["name"])
+                response = f"{cogName} succesfully reloaded"
+            except Exception as e:
+                response = f"{e}"
+            finally:
+                embed = discord.Embed(title=f"Load {cog}", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
+                embed.add_field(
+                    name = "Response",
+                    value = response,
+                    inline = False
+                )
+
+                return await ctx.send(embed=embed)
+    
+    response = f"Could not find the Cog '{cog}'"
+
+    embed = discord.Embed(title=f"Load {cog}", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
+    embed.add_field(
+        name = "Response",
+        value = response,
+        inline = False
+    )
+    return await ctx.send(embed=embed)
 
 @bot.command(hidden = True)
 @commands.is_owner()
