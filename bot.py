@@ -209,6 +209,7 @@ async def customText(ctx):
     await ctx.send(api.getCustomText()["text"])
 
 @bot.command(hidden = True)
+@commands.is_owner()
 async def loadCog(ctx, cog: str):
     cogList = api.getCogs()
     for cogName in cogList:
@@ -239,17 +240,22 @@ async def loadCog(ctx, cog: str):
     return await ctx.send(embed=embed)
 
 @bot.command(hidden = True)
+@commands.is_owner()
 async def reloadCog(ctx, cog: str):
     pass
 
 @bot.command(hidden = True)
+@commands.is_owner()
 async def unloadCog(ctx, cog: str):
     cogList = api.getCogs()
     for cogName in cogList:
         if (cogName["name"] == cog):
             try:
+                print("gevonden")
                 response = api.changeCog(cog, "unload")
+                print("api ding")
                 bot.unload_extension(cogName["name"])
+                print("unloaded")
             except Exception as e:
                 response = f"{e}"
             finally:

@@ -48,7 +48,7 @@ def changeCog(cogName: str, action: str):
     i = 0
 
     if (action == "load"):
-        for cog in cogList():
+        for cog in cogList:
             if (cogName == cog["name"]):
                 if (cog["enabled"]):
                     postBody = {
@@ -63,14 +63,18 @@ def changeCog(cogName: str, action: str):
         return f"couldn't find {cogName}"
 
     elif (action == "unload"):
-        for cog in cogList():
+        print("Unload apiRequests")
+        for cog in cogList:
             if (cogName == cog["name"]):
+                print("gevonden")
                 if (cog["enabled"]):
+                    print("enabled")
                     postBody = {
                         "index": i,
                         "action": "unload"
                     }
                     requests.post(api_link, postBody)
+                    print("post request done")
                     return f"{cog['name']} succesfully unloaded"
                 else:
                     return f"{cog['name']} wasn't loaded"
