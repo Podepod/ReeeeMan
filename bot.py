@@ -226,7 +226,7 @@ async def loadCog(ctx, cog: str):
                     inline = False
                 )
 
-                return await ctx.sent(embed=embed)
+                return await ctx.send(embed=embed)
     
     response = f"Could not find the Cog '{cog}'"
 
@@ -236,7 +236,8 @@ async def loadCog(ctx, cog: str):
         value = response,
         inline = False
     )
-    return await ctx.sent(embed=embed)
+    return await ctx.send(embed=embed)
+
 @bot.command(hidden = True)
 async def reloadCog(ctx, cog: str):
     pass
@@ -259,7 +260,7 @@ async def unloadCog(ctx, cog: str):
                     inline = False
                 )
 
-                return await ctx.sent(embed=embed)
+                return await ctx.send(embed=embed)
     
     response = f"Could not find the Cog '{cog}'"
 
@@ -269,7 +270,7 @@ async def unloadCog(ctx, cog: str):
         value = response,
         inline = False
     )
-    return await ctx.sent(embed=embed)
+    return await ctx.send(embed=embed)
 
 # STAATSGREEP
 # command
