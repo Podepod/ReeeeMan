@@ -239,21 +239,7 @@ async def loadCog(ctx, cog: str):
     return await ctx.sent(embed=embed)
 @bot.command(hidden = True)
 async def reloadCog(ctx, cog: str):
-    print(f"reload {cog}")
-
-    cogList = api.getCogs()
-    index = 0
-    for cogName in cogList:
-        if (cogName["name"] = cog):
-            try:
-                response = api.changeCog(cog, unload) 
-
-    # if cog does not exist, try to add
-        # send send error message in ctx
-    # else
-        # unload cog
-        # try to load cog again
-            # send succes or error message to ctx
+    pass
 
 @bot.command(hidden = True)
 async def unloadCog(ctx, cog: str):
