@@ -37,6 +37,6 @@ def readDMFile():
     return json.loads(api_page.text)["data"]
 
 def getCogs():
-    api_page = requests.get("htpp://10.30.20.187:4005/api/bot/cogs/load")
+    api_page = requests.get("http://10.30.20.187:4005/api/bot/cogs/load")
 
     return json.loads(api_page.text)["data"]
