@@ -50,7 +50,7 @@ def changeCog(cogName: str, action: str):
     if (action == "load"):
         for cog in cogList:
             if (cogName == cog["name"]):
-                if !(cog["enabled"]):
+                if not (cog["enabled"]):
                     postBody = {
                         "index": i,
                         "action": "unload"
