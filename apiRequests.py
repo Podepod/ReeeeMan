@@ -42,7 +42,7 @@ def getCogs():
     return json.loads(api_page.text)["data"]
 
 def changeCog(cogName: str, action: str):
-    api_link = "http://10.30.20.187:4005/api/bot/cogs/change?"
+    api_link = "http://10.30.20.187:4005/api/bot/cogs/change"
 
     cogList = getCog()
     i = 0
@@ -51,8 +51,11 @@ def changeCog(cogName: str, action: str):
         for cog in cogList():
             if (cogName == cog["name"]):
                 if (cog["enabled"]):
-                    api_link += f"index={i}&action=load"
-                    requests.get(api_link)
+                    postBody = {
+                        "index": i,
+                        "action": "unload"
+                    }
+                    requests.post(api_link, postBody)
                     return f"{cog['name']} succesfully loaded"
                 else:
                     return f"{cog['name']} was already loaded"
@@ -63,8 +66,11 @@ def changeCog(cogName: str, action: str):
         for cog in cogList():
             if (cogName == cog["name"]):
                 if (cog["enabled"]):
-                    api_link += f"index={i}&action=unload"
-                    requests.get(api_link)
+                    postBody = {
+                        "index": i,
+                        "action": "unload"
+                    }
+                    requests.post(api_link, postBody)
                     return f"{cog['name']} succesfully unloaded"
                 else:
                     return f"{cog['name']} wasn't loaded"

@@ -210,22 +210,43 @@ async def customText(ctx):
 
 @bot.command(hidden = True)
 async def loadCog(ctx, cog: str):
-    print(f"load {cog}")
-    await ctx.send(bot.cogs)
+    cogList = api.getCogs()
+    for cogName in cogList:
+        if (cogName["name"] = cog):
+            try:
+                response = api.changeCog(cog, "load")
+                bot.load_extension(cogName["name"])
+            except Exception as e:
+                response = f"{e}"
+            finally:
+                embed = discord.Embed(title=f"Load {cog}", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
+                embed.add_field(
+                    name = "Response",
+                    value = response,
+                    inline = False
+                )
 
-    # check cog list (datafile)
+                return await ctx.sent(embed=embed)
+    
+    response = f"Could not find the Cog '{cog}'"
 
-    # if cog does not exist, try to add
-        # if adding it works, add to cog list
-        # else send error message in ctx
-    # else try to add cog
-        # send succes or error message to ctx
-
+    embed = discord.Embed(title=f"Load {cog}", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
+    embed.add_field(
+        name = "Response",
+        value = response,
+        inline = False
+    )
+    return await ctx.sent(embed=embed)
 @bot.command(hidden = True)
 async def reloadCog(ctx, cog: str):
     print(f"reload {cog}")
 
-    # check cog list (datafile)
+    cogList = api.getCogs()
+    index = 0
+    for cogName in cogList:
+        if (cogName["name"] = cog):
+            try:
+                response = api.changeCog(cog, unload) 
 
     # if cog does not exist, try to add
         # send send error message in ctx
@@ -236,13 +257,33 @@ async def reloadCog(ctx, cog: str):
 
 @bot.command(hidden = True)
 async def unloadCog(ctx, cog: str):
-    print(f"unload {cog}")
+    cogList = api.getCogs()
+    for cogName in cogList:
+        if (cogName["name"] = cog):
+            try:
+                response = api.changeCog(cog, "unload")
+                bot.unload_extension(cogName["name"])
+            except Exception as e:
+                response = f"{e}"
+            finally:
+                embed = discord.Embed(title=f"Unload {cog}", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
+                embed.add_field(
+                    name = "Response",
+                    value = response,
+                    inline = False
+                )
 
-    # check cog list (bot)
+                return await ctx.sent(embed=embed)
+    
+    response = f"Could not find the Cog '{cog}'"
 
-    # if cog does not exist, send send error message in ctx
-    # else
-        # unload cog
+    embed = discord.Embed(title=f"Unload {cog}", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
+    embed.add_field(
+        name = "Response",
+        value = response,
+        inline = False
+    )
+    return await ctx.sent(embed=embed)
 
 # STAATSGREEP
 # command
