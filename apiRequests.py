@@ -53,9 +53,9 @@ def changeCog(cogName: str, action: str):
                 if (cog["enabled"]):
                     api_link += f"index={i}&action=load"
                     requests.get(api_link)
-                    return f"{cog["name"]} succesfully loaded"
+                    return f"{cog['name']} succesfully loaded"
                 else:
-                    return f"{cog["name"]} was already loaded"
+                    return f"{cog['name']} was already loaded"
             i += 1
         return f"couldn't find {cogName}"
 
@@ -65,12 +65,12 @@ def changeCog(cogName: str, action: str):
                 if (cog["enabled"]):
                     api_link += f"index={i}&action=unload"
                     requests.get(api_link)
-                    return f"{cog["name"]} succesfully unloaded"
+                    return f"{cog['name']} succesfully unloaded"
                 else:
-                    return f"{cog["name"]} wasn't loaded"
+                    return f"{cog['name']} wasn't loaded"
             i += 1
         return f"couldn't find {cogName}"
-        
+
     elif (action == "reload"):
         pass
 
