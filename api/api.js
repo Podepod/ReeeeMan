@@ -408,6 +408,8 @@ function changeCogData(req, res){
     cogData = updateData("cogs.json");
     cogIndex = 0;
 
+    console.log(req.body.action);
+
     if (req.body.action == "load"){
         cogIndex = Number(req.body.index);
         cogData[cogIndex].enabled = true;
