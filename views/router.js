@@ -40,6 +40,9 @@ router.get("/DM", laadDMs);
 // Custom Text Pagina
 router.get("/customText", laadCustomText);
 
+// Cogs Pagina
+router.get("/cogs", laadCogs);
+
 // =============================================================================================================
 
 // Index pagina
@@ -111,6 +114,15 @@ function laadCustomText(req, res)
     nav = updateData("pages.json");
 
     res.render("customText.ejs", {page: "Custom Text", "navId": "customTextNav", "nav": nav, "customText": text.text});
+}
+
+// Cogs Pagina
+function laadCogs(req, res)
+{
+    data = updateData("cogs.json");
+    nav = updateData("pages.json");
+
+    res.render("customText.ejs", {page: "Custom Text", "navId": "customTextNav", "nav": nav, "data": data});
 }
 
 module.exports = router;
