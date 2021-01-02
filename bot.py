@@ -248,7 +248,7 @@ async def reloadCog(ctx, cog: str):
             try:
                 bot.unload_extension(cogName["name"])
                 bot.load_extension(cogName["name"])
-                response = f"{cogName} succesfully reloaded"
+                response = f"{cogName["name"]} succesfully reloaded"
             except Exception as e:
                 response = f"{e}"
             finally:
@@ -304,6 +304,22 @@ async def unloadCog(ctx, cog: str):
         inline = False
     )
     return await ctx.send(embed=embed)
+
+@bot.command(hidden = True)
+@commands.is_owner()
+async def listCog(ctx):
+    cogList = api.getCogs()
+
+    embed = discord.Embed(title="Cog List", description="This is a list of all the available cogs. (name and enabled?)", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
+
+    for cog in cogList:
+        embed.add_field(
+            name = cog["name"],
+            value = f"{cog['enabled']}",
+            inline = False
+        )
+
+    return await ctx.send(embed=embed)    
 
 # STAATSGREEP
 # command
