@@ -41,7 +41,7 @@ api.post("/bot/regexBans/:action", changeRegexBanData);
 api.get("/bot/DM", getDMData);
 api.post("/bot/DM/:action", changeDMData);
 api.get("/bot/cogs/list", getCogData);
-api.get("/bot/cogs/change", changeCogData);
+api.post("/bot/cogs/change", changeCogData);
 
 function getSettings(req, res)
 {
