@@ -422,29 +422,34 @@ function changeCogData(req, res){
         else{
             cogData[cogIndex].enabled = (req.body.enabled == "true");
         }
-
-        changeData("cogs.json", cogData);
-
-        if(req.body.redirect)
-        {
-            res.redirect(req.body.redirect);
-        }
-        else
-        {
-            var reply = {
-                status: "succes",
-                data: cogData[cogIndex]
-            };
-            res.send(reply);
-        }
     }
     else if(req.params.action == "add")
     {
+        tempData = {
+            "name": req.body.name,
+            "enabled": (req.body.enabled == "true"),
+        };
 
+        cogData.push(tempData);
     }
     else if(req.params.action == "remove")
     {
+        cogData.splice(Number(req.body.index), 1);
+    }
 
+    changeData("cogs.json", cogData);
+
+    if(req.body.redirect)
+    {
+        res.redirect(req.body.redirect);
+    }
+    else
+    {
+        var reply = {
+            status: "succes",
+            data: cogData[cogIndex]
+        };
+        res.send(reply);
     }
 }
 
