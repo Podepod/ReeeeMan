@@ -41,6 +41,7 @@ api.post("/bot/regexBans/:action", changeRegexBanData);
 api.get("/bot/DM", getDMData);
 api.post("/bot/DM/:action", changeDMData);
 api.get("/bot/cogs/list", getCogData);
+api.get("/bot/cogs/change", changeCogData);
 
 function getSettings(req, res)
 {
@@ -401,6 +402,35 @@ function getCogData(req, res){
     };
 
     res.send(reply);
+}
+
+function changeCogData(req, res){
+    cogData = updateData("cogs.json");
+    cogIndex = 0;
+
+    if (req.body.action == "load"){
+        cogIndex = Number(req.body.index);
+        cogData[cogIndex].enabled = true
+    }
+    else if (req.body.action == "unload"){
+        cogIndex = Number(req.body.index);
+        cogData[cogIndex].enabled = false
+    }
+
+    changeData("cogs.json", cogData);
+
+    if(req.body.redirect)
+    {
+        res.redirect(req.body.redirect);
+    }
+    else
+    {
+        var reply = {
+            status: "succes",
+            data: cogData[cogIndex]
+        };
+        res.send(reply);
+    }
 }
 
 module.exports = api;

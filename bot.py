@@ -211,6 +211,7 @@ async def customText(ctx):
 @bot.command(hidden = True)
 async def loadCog(ctx, cog: str):
     print(f"load {cog}")
+    ctx.send(bot.cogs)
 
     # check cog list (datafile)
 
