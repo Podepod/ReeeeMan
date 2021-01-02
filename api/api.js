@@ -41,7 +41,7 @@ api.post("/bot/regexBans/:action", changeRegexBanData);
 api.get("/bot/DM", getDMData);
 api.post("/bot/DM/:action", changeDMData);
 api.get("/bot/cogs/list", getCogData);
-api.post("/bot/cogs/change", changeCogData);
+api.post("/bot/cogs/:action", changeCogData);
 
 function getSettings(req, res)
 {
@@ -406,35 +406,45 @@ function getCogData(req, res){
 
 function changeCogData(req, res){
     cogData = updateData("cogs.json");
-    cogIndex = 0;
-
-    console.log(req.body.action);
-
-    if (req.body.action == "load"){
-        cogIndex = Number(req.body.index);
-        cogData[cogIndex].enabled = true;
-    }
-    else if (req.body.action == "unload"){
-        cogIndex = Number(req.body.index);
-        console.log("unload:\nindex: ");
-        console.log(cogIndex);
-        cogData[cogIndex].enabled = false;
-        console.log(cogData);
-    }
-
-    changeData("cogs.json", cogData);
-
-    if(req.body.redirect)
+    if (req.params.action == "change")
     {
-        res.redirect(req.body.redirect);
+        cogIndex = 0;
+
+        console.log(req.body.action);
+
+        cogIndex = Number(req.body.index);
+        if (req.body.action == "load"){
+            cogData[cogIndex].enabled = true;
+        }
+        else if (req.body.action == "unload"){
+            cogData[cogIndex].enabled = false;
+        }
+        else{
+            cogData[cogIndex].enabled = (req.body.enabled == "true");
+        }
+
+        changeData("cogs.json", cogData);
+
+        if(req.body.redirect)
+        {
+            res.redirect(req.body.redirect);
+        }
+        else
+        {
+            var reply = {
+                status: "succes",
+                data: cogData[cogIndex]
+            };
+            res.send(reply);
+        }
     }
-    else
+    else if(req.params.action == "add")
     {
-        var reply = {
-            status: "succes",
-            data: cogData[cogIndex]
-        };
-        res.send(reply);
+
+    }
+    else if(req.params.action == "remove")
+    {
+
     }
 }
 

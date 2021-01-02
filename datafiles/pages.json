@@ -77,6 +77,17 @@
         "dropdown": false
     },
     {
+        "title": "Cogs",
+        "link": "/cogs",
+        "description": "Manage loaded cogs",
+        "navID": "cogsNav",
+        "hidden": {
+            "home": false,
+            "nav": false
+        },
+        "dropdown": false
+    },
+    {
         "title": "Settings",
         "link": "/instellingen",
         "description": "The general settings for the bot",
