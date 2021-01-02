@@ -248,7 +248,7 @@ async def reloadCog(ctx, cog: str):
             try:
                 bot.unload_extension(cogName["name"])
                 bot.load_extension(cogName["name"])
-                response = f"{cogName["name"]} succesfully reloaded"
+                response = f"{cogName['name']} succesfully reloaded"
             except Exception as e:
                 response = f"{e}"
             finally:
@@ -263,7 +263,7 @@ async def reloadCog(ctx, cog: str):
     
     response = f"Could not find the Cog '{cog}'"
 
-    embed = discord.Embed(title=f"Load {cog}", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
+    embed = discord.Embed(title=f"Reload {cog}", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
     embed.add_field(
         name = "Response",
         value = response,
