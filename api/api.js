@@ -414,7 +414,10 @@ function changeCogData(req, res){
     }
     else if (req.body.action == "unload"){
         cogIndex = Number(req.body.index);
+        console.log("unload:\nindex: ");
+        console.log(cogIndex);
         cogData[cogIndex].enabled = false;
+        console.log(cogData);
     }
 
     changeData("cogs.json", cogData);
