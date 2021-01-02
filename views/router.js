@@ -122,7 +122,7 @@ function laadCogs(req, res)
     data = updateData("cogs.json");
     nav = updateData("pages.json");
 
-    res.render("customText.ejs", {page: "Custom Text", "navId": "customTextNav", "nav": nav, "data": data});
+    res.render("cogs.ejs", {page: "Custom Text", "navId": "customTextNav", "nav": nav, "data": data});
 }
 
 module.exports = router;
