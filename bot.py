@@ -20,7 +20,7 @@ if __name__ == '__main__':
     for extension in cogList:
         if extension["enabled"]:
             try:
-                bot.load_extension(extension["name"])
+                bot.load_extension(f"cogs.{extension['name']}")
             except Exception as e:
                 print(f'Failed to load extension {extension["name"]}.', e)
 
@@ -56,6 +56,9 @@ async def checkCogs():
     log_channel = bot.get_channel(777697840464920586)
 
     print(bot.cogs)
+
+    for botCog in bot.cogs:
+        print(cog.name)
     
 
 
@@ -227,7 +230,7 @@ async def loadCog(ctx, cog: str):
         if (cogName["name"] == cog):
             try:
                 response = api.changeCog(cog, "load")
-                bot.load_extension(cogName["name"])
+                bot.load_extension(f"cogs.{cogName['name']}")
             except Exception as e:
                 response = f"{e}"
             finally:
@@ -260,8 +263,8 @@ async def reloadCog(ctx, cog: str):
     for cogName in cogList:
         if (cogName["name"] == cog):
             try:
-                bot.unload_extension(cogName["name"])
-                bot.load_extension(cogName["name"])
+                bot.unload_extension(f"cogs.{cogName['name']}")
+                bot.load_extension(f"cogs.{cogName['name']}")
                 response = f"{cogName['name']} succesfully reloaded"
             except Exception as e:
                 response = f"{e}"
@@ -295,11 +298,8 @@ async def unloadCog(ctx, cog: str):
     for cogName in cogList:
         if (cogName["name"] == cog):
             try:
-                print("gevonden")
                 response = api.changeCog(cog, "unload")
-                print("api ding")
-                bot.unload_extension(cogName["name"])
-                print("unloaded")
+                bot.unload_extension(f"cogs.{cogName['name']}")
             except Exception as e:
                 response = f"{e}"
             finally:
