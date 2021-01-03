@@ -58,9 +58,6 @@ async def checkCogs():
     botCogFound = False
     apiCogFound = False
 
-    print(cogList)
-    print(list(bot.cogs))
-
     for botCog in list(bot.cogs):
         botCogFound = False
         for cog in cogList:
@@ -73,9 +70,6 @@ async def checkCogs():
         if not botCogFound:
             bot.unload_extension(f"cogs.{botCog}")
 
-    print(cogList)
-    print(list(bot.cogs))
-
     for apiCog in cogList:
         apiCogFound = False
         for cog in list(bot.cogs):
@@ -85,9 +79,6 @@ async def checkCogs():
 
         if (not apiCogFound) and (apiCog["enabled"]):
             bot.load_extension(f"cogs.{apiCog['name']}")
-
-    print(cogList)
-    print(list(bot.cogs))
 
 # listener
 @bot.listen()
@@ -364,16 +355,7 @@ async def listCog(ctx):
             inline = False
         )
 
-    return await ctx.send(embed=embed)    
-
-@bot.command(hidden = True)
-@commands.is_owner()
-async def testCog(ctx):
-    global cogList
-
-    cogList = api.getCogs()
-
-    await checkCogs()
+    return await ctx.send(embed=embed)
 
 # STAATSGREEP
 # command
@@ -461,11 +443,13 @@ async def checkFilesLoop():
     regexBans = api.getRegexBansData()
     
     global config
-
     old_config = config
     config = api.readConfig()
-
     await checkConfig(old_config)
+
+    global cogList
+    cogList = api.getCogs()
+    await checkCogs()
 
 @checkFilesLoop.before_loop
 async def beforeCheckFilesLoop():
