@@ -360,6 +360,10 @@ async def listCog(ctx):
 @bot.command(hidden = True)
 @commands.is_owner()
 async def testCog(ctx):
+    global cogList
+
+    cogList = api.getCogs()
+
     await checkCogs()
 
 # STAATSGREEP
