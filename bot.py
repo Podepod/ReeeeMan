@@ -78,7 +78,10 @@ async def checkCogs():
                 break
 
         if (not apiCogFound) and (apiCog["enabled"]):
-            bot.load_extension(f"cogs.{apiCog['name']}")
+            try:
+                bot.load_extension(f"cogs.{apiCog['name']}")
+            except discord.ext.commands.errors.ExtensionNotFound:
+                pass
 
 # listener
 @bot.listen()
