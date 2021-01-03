@@ -82,4 +82,4 @@ def changeCog(cogName: str, action: str):
 def getQuoteLink():
     api_page = requests.get("https://inspirobot.me/api?generate=true")
 
-    return api_page.content
+    return api_page.content.decode("utf-8") 
