@@ -78,7 +78,7 @@ async def checkCogs():
                 break
 
         if not apiCogFound:
-            bot.load_extension(f"cogs.{apiCog["name"]}")
+            bot.load_extension(f"cogs.{apiCog['name']}")
 
 # listener
 @bot.listen()
