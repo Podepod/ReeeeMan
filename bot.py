@@ -55,12 +55,30 @@ async def checkCogs():
     global cogsList
     log_channel = bot.get_channel(777697840464920586)
 
-    print(bot.cogs)
+    botCogFound = False
+    apiCogFound = False
 
     for botCog in bot.cogs:
-        print(botCog)
-    
+        botCogFound = False
+        for cog in cogsList:
+            if (cog["name"] == botCog):
+                botCogFound = True
+                if not cog["enabled"]:
+                    bot.unload_extension(f"cogs.{botCog}")
+                break
 
+        if not botCogFound:
+            bot.unload_extension(f"cogs.{botCog}")
+
+    for apiCog in cogsList:
+        apiCogFound = False
+        for cog in bot.cogs:
+            if (cog == apiCog["name"]):
+                apiCogFound = True
+                break
+
+        if not apiCogFound:
+            bot.load_extension(f"cogs.{apiCog["name"]}")
 
 # listener
 @bot.listen()
