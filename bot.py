@@ -83,7 +83,7 @@ async def checkCogs():
                 apiCogFound = True
                 break
 
-        if not apiCogFound:
+        if (not apiCogFound) and (apiCog["enabled"]):
             bot.load_extension(f"cogs.{apiCog['name']}")
 
     print(cogList)
