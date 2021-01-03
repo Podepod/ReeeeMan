@@ -11,7 +11,6 @@ config = api.readConfig()
 regexSearchWords = api.getRegexSearchWordData()
 regexReactions = api.getRegexReactionData()
 regexBans = api.getRegexBansData()
-
 cogList = api.getCogs()
 
 bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config["basic"]["description"])
@@ -51,6 +50,15 @@ async def checkConfig(old_config):
     if (old_config["activity"]["text"] != config["activity"]["text"]):
         await bot.change_presence(activity=discord.Game(name=config["activity"]["text"]))
         await log_channel.send(f"Changed the activity text from '{old_config['activity']['text']}' to '{config['activity']['text']}'")
+
+async def checkCogs():
+    global cogsList
+    log_channel = bot.get_channel(777697840464920586)
+
+    bot.cogs = botCogs
+    print(bot.cogs)
+    
+
 
 # listener
 @bot.listen()
@@ -208,9 +216,13 @@ async def customText(ctx):
     await ctx.message.delete()
     await ctx.send(api.getCustomText()["text"])
 
+# COGS
+# load cog command
 @bot.command(hidden = True)
 @commands.is_owner()
 async def loadCog(ctx, cog: str):
+    global cogList
+
     cogList = api.getCogs()
     for cogName in cogList:
         if (cogName["name"] == cog):
@@ -239,9 +251,12 @@ async def loadCog(ctx, cog: str):
     )
     return await ctx.send(embed=embed)
 
+# reload cog command
 @bot.command(hidden = True)
 @commands.is_owner()
 async def reloadCog(ctx, cog: str):
+    global cogList
+
     cogList = api.getCogs()
     for cogName in cogList:
         if (cogName["name"] == cog):
@@ -271,9 +286,12 @@ async def reloadCog(ctx, cog: str):
     )
     return await ctx.send(embed=embed)
 
+# unload cog command
 @bot.command(hidden = True)
 @commands.is_owner()
 async def unloadCog(ctx, cog: str):
+    global cogList
+
     cogList = api.getCogs()
     for cogName in cogList:
         if (cogName["name"] == cog):
@@ -305,6 +323,7 @@ async def unloadCog(ctx, cog: str):
     )
     return await ctx.send(embed=embed)
 
+# cog list command
 @bot.command(hidden = True)
 @commands.is_owner()
 async def listCog(ctx):
@@ -320,6 +339,11 @@ async def listCog(ctx):
         )
 
     return await ctx.send(embed=embed)    
+
+@bot.command(hidden = True)
+@commands.is_owner()
+async def testCog(ctx):
+    await checkCogs()
 
 # STAATSGREEP
 # command
