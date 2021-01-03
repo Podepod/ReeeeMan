@@ -420,6 +420,9 @@ function changeCogData(req, res){
         else{
             cogData[cogIndex].enabled = (req.body.enabled == "true");
         }
+        if(req.body.name){
+            cogData[cogIndex].name = req.body.name
+        }
     }
     else if(req.params.action == "add")
     {
