@@ -85,7 +85,7 @@ class Miscellaneous(commands.Cog):
         brief="Sends a random quote",
     )
     async def Quote(self, ctx):
-        return await ctx.send(api.getQuoteLink)
+        return await ctx.send(api.getQuoteLink())
 
 
 def setup(bot):
