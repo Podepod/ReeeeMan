@@ -55,7 +55,6 @@ async def checkCogs():
     global cogsList
     log_channel = bot.get_channel(777697840464920586)
 
-    bot.cogs = botCogs
     print(bot.cogs)
     
 
