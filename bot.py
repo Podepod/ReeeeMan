@@ -52,7 +52,7 @@ async def checkConfig(old_config):
         await log_channel.send(f"Changed the activity text from '{old_config['activity']['text']}' to '{config['activity']['text']}'")
 
 async def checkCogs():
-    global cogsList
+    global cogList
     log_channel = bot.get_channel(777697840464920586)
 
     botCogFound = False
@@ -60,7 +60,7 @@ async def checkCogs():
 
     for botCog in bot.cogs:
         botCogFound = False
-        for cog in cogsList:
+        for cog in cogList:
             if (cog["name"] == botCog):
                 botCogFound = True
                 if not cog["enabled"]:
@@ -70,7 +70,7 @@ async def checkCogs():
         if not botCogFound:
             bot.unload_extension(f"cogs.{botCog}")
 
-    for apiCog in cogsList:
+    for apiCog in cogList:
         apiCogFound = False
         for cog in bot.cogs:
             if (cog == apiCog["name"]):
