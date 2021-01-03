@@ -78,3 +78,8 @@ def changeCog(cogName: str, action: str):
         return f"couldn't find {cogName}"
 
     return "action not a valid action."
+
+def getQuoteLink():
+    api_page = requests.get("https://inspirobot.me/api?generate=true")
+
+    return api_page.body
