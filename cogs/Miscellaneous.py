@@ -20,11 +20,12 @@ class Miscellaneous(commands.Cog):
     # CLEANUP
     # command
     @bot.command(
-        name="cleanup",
+        name="Cleanup",
+        aliasses=["cleanup", "clean"]
         help="Removes an amount of user messages. Use this function as follows \"<prefix>cleanup <numberOfMessages>\". Where numberOfMessages is the number of messages you want to remove.",
         brief="Removes an amount of user messages",
     )
-    async def cleanup(self, ctx, amount = 10):
+    async def Cleanup(self, ctx, amount = 10):
         if type(amount) != int:
             ctx.send("The second argument should be a number.")
             return
