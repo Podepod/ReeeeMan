@@ -241,7 +241,13 @@ async def customText(ctx):
 
 # COGS
 # load cog command
-@bot.command(hidden = True)
+@bot.command(
+    hidden = True,
+    name = "loadCog",
+    aliases = ["load"],
+    help = "Loads the given cog if this cog exists and is unloaded",
+    brief = "Loads cogs"
+)
 @commands.is_owner()
 async def loadCog(ctx, cog: str):
     global cogList
@@ -275,7 +281,13 @@ async def loadCog(ctx, cog: str):
     return await ctx.send(embed=embed)
 
 # reload cog command
-@bot.command(hidden = True)
+@bot.command(
+    hidden = True,
+    name = "reloadCog",
+    aliases = ["reload"],
+    help = "Reloads the given cog if this cog exists and is loaded",
+    brief = "Reloads cogs"
+)
 @commands.is_owner()
 async def reloadCog(ctx, cog: str):
     global cogList
@@ -310,7 +322,13 @@ async def reloadCog(ctx, cog: str):
     return await ctx.send(embed=embed)
 
 # unload cog command
-@bot.command(hidden = True)
+@bot.command(
+    hidden = True,
+    name = "unloadCog",
+    aliases = ["unload"],
+    help = "Unloads the given cog if this cog exists and is loaded",
+    brief = "Unloads cogs"
+)
 @commands.is_owner()
 async def unloadCog(ctx, cog: str):
     global cogList
