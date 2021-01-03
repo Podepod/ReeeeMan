@@ -21,7 +21,7 @@ class Miscellaneous(commands.Cog):
     # command
     @bot.command(
         name="Cleanup",
-        aliasses=["cleanup", "clean"]
+        aliasses=["cleanup", "clean"],
         help="Removes an amount of user messages. Use this function as follows \"<prefix>cleanup <numberOfMessages>\". Where numberOfMessages is the number of messages you want to remove.",
         brief="Removes an amount of user messages",
     )
