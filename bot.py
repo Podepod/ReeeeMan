@@ -58,7 +58,7 @@ async def checkCogs():
     print(bot.cogs)
 
     for botCog in bot.cogs:
-        print(botCog.name)
+        print(botCog)
     
 
 
