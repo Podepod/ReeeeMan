@@ -72,7 +72,7 @@ async def checkCogs():
 
         if not botCogFound:
             bot.unload_extension(f"cogs.{botCog}")
-            
+
     print(cogList)
     print(list(bot.cogs))
 
@@ -85,6 +85,9 @@ async def checkCogs():
 
         if not apiCogFound:
             bot.load_extension(f"cogs.{apiCog['name']}")
+
+    print(cogList)
+    print(list(bot.cogs))
 
 # listener
 @bot.listen()
