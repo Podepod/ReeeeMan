@@ -57,9 +57,8 @@ async def checkCogs():
 
     botCogFound = False
     apiCogFound = False
-    botCogs = bot.cogs
 
-    for botCog in botCogs:
+    for botCog in list(bot.cogs):
         botCogFound = False
         for cog in cogList:
             if (cog["name"] == botCog):
@@ -71,9 +70,7 @@ async def checkCogs():
         if not botCogFound:
             bot.unload_extension(f"cogs.{botCog}")
 
-    botCogs = bot.cogs
-
-    for apiCog in cogList:
+    for apiCog in list(bot.cogs):
         apiCogFound = False
         for cog in botCogs:
             if (cog == apiCog["name"]):
