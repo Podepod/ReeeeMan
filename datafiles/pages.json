@@ -11,28 +11,6 @@
         "dropdown": false
     },
     {
-        "title": "Custom Text",
-        "link": "/customText",
-        "description": "A place to enter the custom text for the custom text command",
-        "navID": "customTextNav",
-        "hidden": {
-            "home": false,
-            "nav": false
-        },
-        "dropdown": false
-    },
-    {
-        "title": "Permission Climbing",
-        "link": "/permissionClimbing",
-        "description": "Settings for permission climbing",
-        "navID": "permissionClimbingNav",
-        "hidden": {
-            "home": false,
-            "nav": false
-        },
-        "dropdown": false
-    },
-    {
         "title": "RegEx",
         "link": "#",
         "description": "All RegEx pages",
@@ -79,15 +57,50 @@
         ]
     },
     {
-        "title": "DMs",
-        "link": "/DM",
-        "description": "A list of pick-up lines to send as a dm",
-        "navID": "DMNav",
+        "title": "Miscellaneous",
+        "link": "#",
+        "description": "All Miscellaneous pages",
+        "navID": "miscellaneousNav",
         "hidden": {
             "home": false,
             "nav": false
         },
-        "dropdown": false
+        "dropdown": true,
+        "dropdownItems": [
+            {
+                "title": "Custom Text",
+                "link": "/customText",
+                "description": "A place to enter the custom text for the custom text command",
+                "navID": "customTextNav",
+                "hidden": {
+                    "home": false,
+                    "nav": false
+                },
+                "dropdown": false
+            },
+            {
+                "title": "Permission Climbing",
+                "link": "/permissionClimbing",
+                "description": "Settings for permission climbing",
+                "navID": "permissionClimbingNav",
+                "hidden": {
+                    "home": false,
+                    "nav": false
+                },
+                "dropdown": false
+            },
+            {
+                "title": "DMs",
+                "link": "/DM",
+                "description": "A list of pick-up lines to send as a dm",
+                "navID": "DMNav",
+                "hidden": {
+                    "home": false,
+                    "nav": false
+                },
+                "dropdown": false
+            }
+        ]
     },
     {
         "title": "Cogs",
