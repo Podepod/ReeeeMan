@@ -33,6 +33,20 @@
         "dropdown": false
     },
     {
+        "title": "RegEx",
+        "link": "#",
+        "description": "All RegEx pages",
+        "navID": "RegExNav",
+        "hidden": {
+            "home": false,
+            "nav": false
+        },
+        "dropdown": true,
+        "dropdownItems": [
+            
+        ]
+    },
+    {
         "title": "Regex Search Words",
         "link": "/regexSearchWords",
         "description": "The list of regex searchwords",
