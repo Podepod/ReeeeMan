@@ -54,28 +54,7 @@
                 },
                 "dropdown": false
             },
-            {
-                "title": "Regex Reactions",
-                "link": "/regexReactions",
-                "description": "The list of regex reactions",
-                "navID": "regexReactionsNav",
-                "hidden": {
-                    "home": false,
-                    "nav": false
-                },
-                "dropdown": false
-            },
-            {
-                "title": "Regex Bans",
-                "link": "/regexBans",
-                "description": "The list of regex Bans",
-                "navID": "regexBansNav",
-                "hidden": {
-                    "home": false,
-                    "nav": false
-                },
-                "dropdown": false
-            }
+            
         ]
     },
     {
