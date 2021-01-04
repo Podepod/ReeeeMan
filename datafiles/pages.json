@@ -97,5 +97,40 @@
             "nav": false
         },
         "dropdown": false
+    },
+    {
+        "title": "Test",
+        "link": "#",
+        "description": "just a tester dropdown",
+        "navID": "testerNav",
+        "hidden": {
+            "home": false,
+            "nav": false
+        },
+        "dropdown": true,
+        "dropdownItems": [
+            {
+                "title": "Settings test",
+                "link": "/instellingen",
+                "description": "The general settings for the bot",
+                "navID": "instellingenNav2",
+                "hidden": {
+                    "home": false,
+                    "nav": false
+                },
+                "dropdown": false
+            },
+            {
+                "title": "Settings",
+                "link": "/instellingen",
+                "description": "The general settings for the bot",
+                "navID": "instellingenNav3",
+                "hidden": {
+                    "home": false,
+                    "nav": false
+                },
+                "dropdown": false
+            }            
+        ]
     }
 ]
