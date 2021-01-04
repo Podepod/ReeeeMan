@@ -33,37 +33,51 @@
         "dropdown": false
     },
     {
-        "title": "Regex Search Words",
-        "link": "/regexSearchWords",
-        "description": "The list of regex searchwords",
-        "navID": "regexSearchWordsNav",
+        "title": "RegEx",
+        "link": "#",
+        "description": "All RegEx pages",
+        "navID": "RegExNav",
         "hidden": {
             "home": false,
-            "nav": false
+            "nav": false,
         },
-        "dropdown": false
-    },
-    {
-        "title": "Regex Reactions",
-        "link": "/regexReactions",
-        "description": "The list of regex reactions",
-        "navID": "regexReactionsNav",
-        "hidden": {
-            "home": false,
-            "nav": false
-        },
-        "dropdown": false
-    },
-    {
-        "title": "Regex Bans",
-        "link": "/regexBans",
-        "description": "The list of regex Bans",
-        "navID": "regexBansNav",
-        "hidden": {
-            "home": false,
-            "nav": false
-        },
-        "dropdown": false
+        "dropdown": true,
+        "dropdownItems": [
+            {
+                "title": "Regex Search Words",
+                "link": "/regexSearchWords",
+                "description": "The list of regex searchwords",
+                "navID": "regexSearchWordsNav",
+                "hidden": {
+                    "home": false,
+                    "nav": false
+                },
+                "dropdown": false
+            },
+            {
+                "title": "Regex Reactions",
+                "link": "/regexReactions",
+                "description": "The list of regex reactions",
+                "navID": "regexReactionsNav",
+                "hidden": {
+                    "home": false,
+                    "nav": false
+                },
+                "dropdown": false
+            },
+            {
+                "title": "Regex Bans",
+                "link": "/regexBans",
+                "description": "The list of regex Bans",
+                "navID": "regexBansNav",
+                "hidden": {
+                    "home": false,
+                    "nav": false
+                },
+                "dropdown": false
+            }
+
+        ]
     },
     {
         "title": "DMs",
@@ -97,40 +111,5 @@
             "nav": false
         },
         "dropdown": false
-    },
-    {
-        "title": "Test",
-        "link": "#",
-        "description": "just a tester dropdown",
-        "navID": "testerNav",
-        "hidden": {
-            "home": false,
-            "nav": false
-        },
-        "dropdown": true,
-        "dropdownItems": [
-            {
-                "title": "Settings test",
-                "link": "/instellingen",
-                "description": "The general settings for the bot",
-                "navID": "instellingenNav2",
-                "hidden": {
-                    "home": false,
-                    "nav": false
-                },
-                "dropdown": false
-            },
-            {
-                "title": "Settings",
-                "link": "/instellingen",
-                "description": "The general settings for the bot",
-                "navID": "instellingenNav3",
-                "hidden": {
-                    "home": false,
-                    "nav": false
-                },
-                "dropdown": false
-            }            
-        ]
     }
 ]
