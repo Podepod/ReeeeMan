@@ -19,6 +19,11 @@ class Testing(commands.Cog):
     def cog_unload(self):
         self.testLoop.cancel()
 
+    @bot.command(hidden = True)
+    @commands.is_owner()
+    async def checkLoop(self, ctx):
+        await ctx.send(f"Failed? {checkFilesLoop.failed()}")
+
     # file settings file command check
     @tasks.loop(seconds=5.0)
     async def testLoop(self):
