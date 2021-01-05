@@ -64,6 +64,9 @@ class Miscellaneous(commands.Cog):
         brief="Sends a random DM your way",
     )
     async def DM(self, ctx):
+        global dmData
+        dmData = api.readDMFile()
+
         try:
             dmChannel = ctx.message.author.dm_channel
             if dmChannel == None:
