@@ -29,4 +29,4 @@ class Testing(commands.Cog):
         await self.bot.wait_until_ready()
 
 def setup(bot):
-    bot.add_cog(Miscellaneous(bot))
+    bot.add_cog(Testing(bot))
