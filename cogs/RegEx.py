@@ -18,18 +18,24 @@ class RegEx(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-        self.config = config
-        self.regexSearchWords = regexSearchWords
-        self.regexReactions = regexReactions
-        self.regexBans = regexBans
+        self.config = api.readConfig()
+        self.regexSearchWords = api.getRegexSearchWordData()
+        self.regexReactions = api.getRegexReactionData()
+        self.regexBans = api.getRegexBansData()
 
         self.configLoop.start()
+
+        print("init done")
 
     def cog_unload(self):
         self.configLoop.cancel()
 
     @bot.listen()
     async def on_message(message):
+        print("on message")
+        print(self.config)
+        print(self.regexBans)
+
         if message.author == self.bot.user:
             return
 
