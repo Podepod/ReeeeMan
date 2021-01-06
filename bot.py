@@ -82,66 +82,6 @@ async def checkCogs():
                 bot.load_extension(f"cogs.{apiCog['name']}")
             except discord.ext.commands.errors.ExtensionNotFound:
                 pass
-    
-@bot.listen()
-async def on_message_edit(before, after):
-    global config
-    global regexSearchWords
-    global regexReactions
-    global regexBans
-    if after.author == bot.user:
-        return
-
-    for searchWord in regexSearchWords:
-        if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
-            try:
-                if searchWord["removeMessage"]:
-                    await after.delete()
-            except Exception as e:
-                print("Couldn't delete the message: ", e)
-
-            if searchWord["response"] != "":
-                if searchWord["tts"]:
-                    await after.channel.send(f'{searchWord["response"]}', tts=True)
-                else:
-                    await after.channel.send(f'{searchWord["response"]}')
-
-    reactions = before.reactions
-    for reaction in reactions:
-        if reaction.me:
-            emoji = reaction.emoji
-            try:
-                await after.remove_reaction(emoji, bot.user)
-
-            except Exception as e:
-                print("Couldn't remove previous reaction: ", e)
-
-    for searchWord in regexReactions:
-        if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:            
-            try:
-                if (searchWord["reaction"] == ""):
-                    reaction = ":sweat_smile:"
-                else:
-                    reaction = searchWord["reaction"]
-
-                await after.add_reaction(reaction)
-
-            except Exception as e:
-                print("Couldn't react to the message: ", e)
-
-    for searchWord in regexBans:
-        if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
-            if after.author == after.guild.owner:
-                await after.channel.send(f'{searchWord["ownerAnswer"]}')
-            else:
-                try:
-                    await after.author.ban()
-                    await after.channel.send(f'{searchWord["answer"]}')
-
-                except Exception as e:
-                    print("Couldn't ban: ", e)
-                    await after.channel.send('failed, my bad')
-
 
 # on bot joins guild
 @bot.event
@@ -317,7 +257,7 @@ async def unloadCog(ctx, cog: str):
 async def listCog(ctx):
     cogList = api.getCogs()
 
-    embed = discord.Embed(title="Cog List", description="This is a list of all the available cogs. (name and enabled?)", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
+    embed = discord.Embed(title="Cog List (from api)", description="This is a list of all the available cogs. (name and enabled?)", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
 
     for cog in cogList:
         embed.add_field(
@@ -326,7 +266,9 @@ async def listCog(ctx):
             inline = False
         )
 
-    return await ctx.send(embed=embed)
+    await ctx.send(embed=embed)
+
+    return await ctx.send(bot.cogs)
 
 # STAATSGREEP
 # command

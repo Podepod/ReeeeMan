@@ -25,17 +25,11 @@ class RegEx(commands.Cog):
 
         self.configLoop.start()
 
-        print("init done")
-
     def cog_unload(self):
         self.configLoop.cancel()
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        print("on message")
-        print(self.config)
-        print(self.regexBans)
-
         if message.author == self.bot.user:
             return
 
@@ -79,11 +73,64 @@ class RegEx(commands.Cog):
                         print("Couldn't ban: ", e)
                         await message.channel.send('failed, my bad')
 
+    @commands.Cog.listener()
+    async def on_message_edit(self, before, after):
+        if after.author == self.bot.user:
+            return
+
+        for searchWord in self.regexSearchWords:
+            if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
+                try:
+                    if searchWord["removeMessage"]:
+                        await after.delete()
+                except Exception as e:
+                    print("Couldn't delete the message: ", e)
+
+                if searchWord["response"] != "":
+                    if searchWord["tts"]:
+                        await after.channel.send(f'{searchWord["response"]}', tts=True)
+                    else:
+                        await after.channel.send(f'{searchWord["response"]}')
+
+        reactions = before.reactions
+        for reaction in reactions:
+            if reaction.me:
+                emoji = reaction.emoji
+                try:
+                    await after.remove_reaction(emoji, self.bot.user)
+
+                except Exception as e:
+                    print("Couldn't remove previous reaction: ", e)
+
+        for searchWord in self.regexReactions:
+            if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:            
+                try:
+                    if (searchWord["reaction"] == ""):
+                        reaction = ":sweat_smile:"
+                    else:
+                        reaction = searchWord["reaction"]
+
+                    await after.add_reaction(reaction)
+
+                except Exception as e:
+                    print("Couldn't react to the message: ", e)
+
+        for searchWord in self.regexBans:
+            if re.search(rf'{searchWord["regex"]}', after.content) and searchWord["enabled"]:
+                if after.author == after.guild.owner:
+                    await after.channel.send(f'{searchWord["ownerAnswer"]}')
+                else:
+                    try:
+                        await after.author.ban()
+                        await after.channel.send(f'{searchWord["answer"]}')
+
+                    except Exception as e:
+                        print("Couldn't ban: ", e)
+                        await after.channel.send('failed, my bad')
 
     # file settings file command check
     @tasks.loop(seconds=5.0)
     async def configLoop(self):
-
         self.config = api.readConfig()
         self.regexSearchWords = api.getRegexSearchWordData()
         self.regexReactions = api.getRegexReactionData()
