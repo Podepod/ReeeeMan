@@ -142,7 +142,7 @@ class Miscellaneous(commands.Cog):
                 await log_channel.send(f"Staatsgreep gepleegd in '{server.name}', de rol '{pCconfig['make_new_role']['name']}'")
 
         else:
-            ctx.send("Staatsgrepen zijn uitgeschakeld.")
+            await ctx.send("Staatsgrepen zijn uitgeschakeld.")
 
     # DECORATIE
     # command
@@ -162,6 +162,7 @@ class Miscellaneous(commands.Cog):
         await person.add_roles(new_role)
 
         log_channel = self.bot.get_channel(77769784046492058)
+        print(log_channel)
         await log_channel.send(f"Decoratie toegevoegd in '{server.name}', de rol 'Decoratie'")
 
 
