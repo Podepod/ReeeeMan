@@ -17,6 +17,12 @@ bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config[
 class RegEx(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+        self.config = config
+        self.regexSearchWords = regexSearchWords
+        self.regexReactions = regexReactions
+        self.regexBans = regexBans
+
         self.configLoop.start()
 
     def cog_unload(self):
@@ -24,14 +30,10 @@ class RegEx(commands.Cog):
 
     @bot.listen()
     async def on_message(message):
-        global config
-        global regexSearchWords
-        global regexReactions
-        global regexBans
         if message.author == self.bot.user:
             return
 
-        for searchWord in regexSearchWords:
+        for searchWord in self.regexSearchWords:
             if re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
                 try:    
                     if searchWord["removeMessage"]:
@@ -45,7 +47,7 @@ class RegEx(commands.Cog):
                     else:
                         await message.channel.send(f'{searchWord["response"]}')
 
-        for searchWord in regexReactions:
+        for searchWord in self.regexReactions:
             if re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
                 try:
                     if (searchWord["reaction"] == ""):
@@ -58,7 +60,7 @@ class RegEx(commands.Cog):
                 except Exception as e:
                     print("Couldn't react to the message: ", e)
 
-        for searchWord in regexBans:
+        for searchWord in self.regexBans:
             if re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
                 if message.author == message.guild.owner:
                     await message.channel.send(f'{searchWord["ownerAnswer"]}')
@@ -75,15 +77,11 @@ class RegEx(commands.Cog):
     # file settings file command check
     @tasks.loop(seconds=5.0)
     async def configLoop(self):
-        global config
-        global regexSearchWords
-        global regexReactions
-        global regexBans
 
-        config = api.readConfig()
-        regexSearchWords = api.getRegexSearchWordData()
-        regexReactions = api.getRegexReactionData()
-        regexBans = api.getRegexBansData()
+        self.config = api.readConfig()
+        self.regexSearchWords = api.getRegexSearchWordData()
+        self.regexReactions = api.getRegexReactionData()
+        self.regexBans = api.getRegexBansData()
 
     @configLoop.before_loop
     async def beforeConfigLoop(self):
