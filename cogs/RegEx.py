@@ -31,7 +31,7 @@ class RegEx(commands.Cog):
         self.configLoop.cancel()
 
     @commands.Cog.listener()
-    async def on_message(message):
+    async def on_message(self, message):
         print("on message")
         print(self.config)
         print(self.regexBans)
