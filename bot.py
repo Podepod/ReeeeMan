@@ -82,56 +82,6 @@ async def checkCogs():
                 bot.load_extension(f"cogs.{apiCog['name']}")
             except discord.ext.commands.errors.ExtensionNotFound:
                 pass
-
-# listener
-@bot.listen()
-async def on_message(message):
-    global config
-    global regexSearchWords
-    global regexReactions
-    global regexBans
-    if message.author == bot.user:
-        return
-
-    for searchWord in regexSearchWords:
-        if re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
-            try:    
-                if searchWord["removeMessage"]:
-                    await message.delete()     
-            except Exception as e:
-                print("Couldn't delete the message: ", e)
-                
-            if searchWord["response"] != "":    
-                if searchWord["tts"]:
-                    await message.channel.send(f'{searchWord["response"]}', tts=True)
-                else:
-                    await message.channel.send(f'{searchWord["response"]}')
-
-    for searchWord in regexReactions:
-        if re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
-            try:
-                if (searchWord["reaction"] == ""):
-                    reaction = ":sweat_smile:"
-                else:
-                    reaction = searchWord["reaction"]
-
-                await message.add_reaction(reaction)
-
-            except Exception as e:
-                print("Couldn't react to the message: ", e)
-
-    for searchWord in regexBans:
-        if re.search(rf'{searchWord["regex"]}', message.content) and searchWord["enabled"]:
-            if message.author == message.guild.owner:
-                await message.channel.send(f'{searchWord["ownerAnswer"]}')
-            else:
-                try:
-                    await message.author.ban()
-                    await message.channel.send(f'{searchWord["answer"]}')
-
-                except Exception as e:
-                    print("Couldn't ban: ", e)
-                    await message.channel.send('failed, my bad')
     
 @bot.listen()
 async def on_message_edit(before, after):
