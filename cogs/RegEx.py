@@ -128,7 +128,6 @@ class RegEx(commands.Cog):
                         print("Couldn't ban: ", e)
                         await after.channel.send('failed, my bad')
 
-    # file settings file command check
     @tasks.loop(seconds=5.0)
     async def configLoop(self):
         self.config = api.readConfig()

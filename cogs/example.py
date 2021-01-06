@@ -19,7 +19,6 @@ class COGNAME(commands.Cog):
     def cog_unload(self):
         self.configLoop.cancel()
 
-    # file settings file command check
     @tasks.loop(seconds=5.0)
     async def configLoop(self):
         pass

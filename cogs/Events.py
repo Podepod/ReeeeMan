@@ -14,15 +14,17 @@ bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config[
 class Events(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+        self.config = api.readConfig()
+
         self.configLoop.start()
 
     def cog_unload(self):
         self.configLoop.cancel()
 
-    # file settings file command check
     @tasks.loop(seconds=5.0)
     async def configLoop(self):
-        pass
+        self.config = api.readConfig()
 
     @configLoop.before_loop
     async def beforeConfigLoop(self):
