@@ -30,6 +30,7 @@ class RegEx(commands.Cog):
     def cog_unload(self):
         self.configLoop.cancel()
 
+    @commands.Cog.listener()
     async def on_message(message):
         print("on message")
         print(self.config)
