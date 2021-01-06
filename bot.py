@@ -80,45 +80,6 @@ async def checkCogs():
             except discord.ext.commands.errors.ExtensionNotFound:
                 pass
 
-# on bot joins guild
-@bot.event
-async def on_guild_join(guild):
-    global config
-
-    print("#############################################")
-    print(f"joined a new guild:\nname: {guild.name}\ncreated at: {guild.created_at}\nregion: {guild.region}\nowner: {guild.owner}\nicon url: {guild.icon_url}\nchannels:")
-    for channel in guild.text_channels:
-        print(f"- channelname: {channel.name}\n * id: {channel.id}\n * nsfw: {channel.is_nsfw()}\n * news: {channel.is_news()}")
-    print("roles:")
-    for role in guild.roles:
-        print(f"- Rolename: {role.name}\n * ID: {role.id}")
-    print(f"members ({guild.member_count}):")
-    for member in guild.members:
-        print(f"- membername: {member.name}\n * id: {member.id}\n * discriminator: {member.discriminator}\n * nickname: {member.nick}\n * bot: {member.bot}")
-    print("#############################################")
-
-# on ready
-@bot.event
-async def on_ready():   
-    global config
-    print(f"{config['basic']['name']} is up and running...")
-
-    await bot.change_presence(activity=discord.Game(name=config["activity"]["text"]))
-
-    print("#############################################")
-    print(f"Active in {len(bot.guilds)} guilds:")
-    for guild in bot.guilds:
-        print(f"name: {guild.name}\ncreated at: {guild.created_at}\nregion: {guild.region}\nowner: {guild.owner}\nicon url: {guild.icon_url}\nchannels:")
-        for channel in guild.text_channels:
-            print(f"- channelname: {channel.name}\n * id: {channel.id}\n * nsfw: {channel.is_nsfw()}\n * news: {channel.is_news()}")
-        print("roles:")
-        for role in guild.roles:
-            print(f"- Rolename: {role.name}\n * ID: {role.id}")
-        print(f"members ({guild.member_count}):")
-        for member in guild.members:
-            print(f"- membername: {member.name}\n * id: {member.id}\n * discriminator: {member.discriminator}\n * nickname: {member.nick}\n * bot: {member.bot}")
-    print("#############################################")
-
 # COGS
 # load cog command
 @bot.command(
