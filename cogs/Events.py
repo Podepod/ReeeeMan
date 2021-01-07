@@ -43,7 +43,7 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):   
         config = self.config
-        logChannel = self.bot.get_channel(int(self.config["log"]["channelID"]))
+        logchannel = self.bot.get_channel(int(self.config["log"]["channelID"]))
         print(f"{config['basic']['name']} is up and running...")
 
         await self.bot.change_presence(activity=discord.Game(name=config["activity"]["text"]))
@@ -76,6 +76,7 @@ class Events(commands.Cog):
                     value=f"ID: {channel.id}\nNSFW: {channel.is_nsfw()}\nNews: {channel.is_news()}",
                     inline=False
                 )
+            logchannel.send(embed=embed)
 
 
     @tasks.loop(seconds=5.0)
