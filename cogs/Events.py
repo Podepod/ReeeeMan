@@ -68,7 +68,7 @@ class Events(commands.Cog):
         logchannel.send(embed=embed)
 
         for guild in self.bot.guilds:
-            embed = discord.Embed(title=f"{guild.name}", description=f"Created at: {guild.created_at}\n Region: {guild.region}\n Owner: {guild.owner}" timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
+            embed = discord.Embed(title=f"{guild.name}", description=f"Created at: {guild.created_at}\n Region: {guild.region}\n Owner: {guild.owner}", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
             embed.set_image(guild.icon_url)
             for channel in guild.text_channels:
                 embed.add_field(
