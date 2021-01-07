@@ -71,11 +71,8 @@ class Events(commands.Cog):
             embed = discord.Embed(title=f"{guild.name}", description=f"Created at: {guild.created_at}\n Region: {guild.region}\n Owner: {guild.owner}", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
             icon = guild.icon_url
             print(icon)
-            print(type(icon))
             print(str(icon))
-            print(await icon.read())
-            print(await icon.read().decode("utf-8"))
-            embed.set_image(icon)
+            embed.set_image(str(icon))
             for channel in guild.text_channels:
                 embed.add_field(
                     name=channel.name,
