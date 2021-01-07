@@ -70,7 +70,7 @@ class Events(commands.Cog):
         for guild in self.bot.guilds:
             embed = discord.Embed(
                 title=f"{guild.name}", 
-                description=f"Created at: {guild.created_at}\nRegion: {guild.region}\nOwner: {guild.owner.name}\nMember Count: {guild.member_count}\nRole Count: {len(guild.roles)}\nText Channels: {len(guild.text_channels)}\nVoice Channels: {len(guild.voice_channels)}", 
+                description=f"Created at: {guild.created_at}\nRegion: {guild.region}\nMember Count: {guild.member_count}\nRole Count: {len(guild.roles)}\nText Channels: {len(guild.text_channels)}\nVoice Channels: {len(guild.voice_channels)}", 
                 timestamp=datetime.datetime.utcnow(), 
                 color=discord.Color.red()
             )
