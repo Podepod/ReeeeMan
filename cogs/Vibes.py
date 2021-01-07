@@ -31,7 +31,7 @@ class Vibes(commands.Cog):
     async def Vibe(self, ctx):
         vibe = api.getRandomVibe()
 
-        return ctx.send(vibe["text"])
+        return await ctx.send(vibe["text"])
 
     @bot.command(
         name="SuggestVibe",
