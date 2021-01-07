@@ -73,7 +73,7 @@ class Events(commands.Cog):
             for channel in guild.text_channels:
                 embed.add_field(
                     name=channel.name,
-                    value=f"ID: {channel.id}\nNSFW: {channel.is_nsfw()}\nNews: {channel.is_news()}"
+                    value=f"ID: {channel.id}\nNSFW: {channel.is_nsfw()}\nNews: {channel.is_news()}",
                     inline=False
                 )
 
