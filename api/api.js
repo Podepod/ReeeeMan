@@ -466,7 +466,7 @@ function getVibesData(req, res){
         randomNumber = Math.floor(Math.random() * 4);
         vibeType = vibeTypes[randomNumber];
         vibeTypeLen = vibes[vibeType].length;
-        ReplyData = vibes[vibeType][Math.floor(Math.random() * vibeTypeLen)];
+        replyData = vibes[vibeType][Math.floor(Math.random() * vibeTypeLen)];
         replyStatus = "Success";
     }
     else if (req.params.action == "all"){
