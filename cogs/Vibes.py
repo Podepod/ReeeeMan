@@ -54,7 +54,7 @@ class Vibes(commands.Cog):
             for vibe in vibes[vibeType]:
                 embed.add_field(
                     name=vibe["text"],
-                    value=f"Category: {vibeType}\nEnabled: {vibe['enabled']}",
+                    value=f"Category: {vibeType}\nSuggested By: {vibe['suggested_by']}\nEnabled: {vibe['enabled']}",
                     inline=False
                 )
 
