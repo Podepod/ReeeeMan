@@ -72,6 +72,9 @@ class Events(commands.Cog):
             icon = guild.icon_url
             print(icon)
             print(type(icon))
+            print(str(icon))
+            print(icon.read())
+            print(icon.read().decode("utf-8"))
             embed.set_image(icon)
             for channel in guild.text_channels:
                 embed.add_field(
