@@ -70,6 +70,8 @@ function changeSettings(req, res)
     settingsData["activity"]["link"] = req.body.activity.link;
     settingsData["activity"]["activity"] = req.body.activity.activity;
 
+    settingsData["log"]["channelID"] = req.body.log.channelID;
+
     changeData("botSettings.json", settingsData);
 
     if(req.body.redirect)
