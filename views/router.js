@@ -125,7 +125,7 @@ function laadVibes(req, res)
     vibes = updateData("vibes.json");
     nav = updateData("pages.json");
 
-    res.render("customText.ejs", {page: "Custom Text", "navId": "VibesNav", "nav": nav, "vibes": vibes});
+    res.render("vibes.ejs", {page: "Custom Text", "navId": "VibesNav", "nav": nav, "vibes": vibes});
 }
 
 // Cogs Pagina
