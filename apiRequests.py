@@ -85,7 +85,23 @@ def getQuoteLink():
     return api_page.content.decode("utf-8")
 
 def getRandomVibe():
-    pass
+    api_page = requests.get("http://10.30.20.187:4005/api/bot/vibes/random")
+
+    return json.loads(api_page)["data"]
+
+def getAllVibes():
+    api_page = requests.get("http://10.30.20.187:4005/api/bot/vibes/all")
+
+    return json.loads(api_page)["data"]
 
 def suggestVibe(text, author, guildname):
-    pass
+    api_link = "http://10.30.20.187:4005/api/bot/vibes/add"
+    postBody = {
+        "type": "requests",
+        "text": text,
+        "suggested_by": author,
+        "suggested_from": guildname
+    }
+    requests.post(api_link, postBody)
+    
+    return "Suggestion added."
