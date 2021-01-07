@@ -120,7 +120,7 @@ function laadCustomText(req, res)
 }
 
 // Custom Text Pagina
-function laadCustomText(req, res)
+function laadVibes(req, res)
 {
     vibes = updateData("vibes.json");
     nav = updateData("pages.json");
