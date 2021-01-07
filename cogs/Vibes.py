@@ -39,10 +39,10 @@ class Vibes(commands.Cog):
         help=f"SuggestVibe x - suggest a vibe to be added to the vibelist (aliases: suggestVibe, suggestvibe, suggest, svibe, vibesug)",
         brief="Suggest a new vibe",
     )
-    async def SuggestVibe(self, ctx):
-        # api.suggestVibe(text, author, guildname)
-        # log ook in logkanaal dat er een nieuwe sugestion is
-        pass
+    async def SuggestVibe(self, ctx, *, text):
+        reply = api.suggestVibe(text, ctx.message.author.nick, ctx.guild.name)
+
+        return await ctx.send(reply)
 
     @tasks.loop(seconds=5.0)
     async def configLoop(self):
