@@ -43,7 +43,7 @@ class Vibes(commands.Cog):
         vibes = api.getAllVibes()
 
         embed = discord.Embed(
-            title="A list of all the available vibes,
+            title="A list of all the available vibes",
             timestamp=datetime.datetime.utcnow(),
             color=discord.Color.red()
         )
