@@ -63,8 +63,8 @@ class Events(commands.Cog):
         print("#############################################")
 
         embed = discord.Embed(title=f"{self.config['basic']['name']} is up and running...", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
-        embed.add_field(name="Active Guilds", value=len(self.bot.guilds), inline=True)
-        embed.add_field(name="Activity text", value=self.config["activity"]["text"], inline=True)
+        embed.add_field(name="Active Guilds", value=len(self.bot.guilds), inline=False)
+        embed.add_field(name="Activity text", value=self.config["activity"]["text"], inline=False)
         await logchannel.send(embed=embed)
 
         for guild in self.bot.guilds:
