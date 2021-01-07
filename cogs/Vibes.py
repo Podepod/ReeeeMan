@@ -25,7 +25,7 @@ class COGNAME(commands.Cog):
     @bot.command(
         name="Vibe",
         aliases=["vibe", "VibeCheck", "Vibecheck", "vibecheck"],
-        help=f"{self.config['basic']['prefix']}Vibe - sends a random vibe (aliases: vibe, VibeCheck, Vibecheck, vibecheck)",
+        help=f"Vibe - sends a random vibe (aliases: vibe, VibeCheck, Vibecheck, vibecheck)",
         brief="sends the vibe",
     )
     async def Vibe(self, ctx):
@@ -36,7 +36,7 @@ class COGNAME(commands.Cog):
     @bot.command(
         name="SuggestVibe",
         aliases=["suggestVibe", "suggestvibe", "suggest", "svibe", "vibesug"],
-        help=f"{self.config['basic']['prefix']}SuggestVibe x - suggest a vibe to be added to the vibelist (aliases: suggestVibe, suggestvibe, suggest, svibe, vibesug)",
+        help=f"SuggestVibe x - suggest a vibe to be added to the vibelist (aliases: suggestVibe, suggestvibe, suggest, svibe, vibesug)",
         brief="Suggest a new vibe",
     )
     async def SuggestVibe(self, ctx):
