@@ -463,8 +463,9 @@ function getVibesData(req, res){
 
     vibeTypes = ["positive", "negative", "neutral", "neither"];
     randomNumber = Math.floor(Math.random() * 4)
-    
-    vibe = vibes[randomNumber][Math.floor(Math.random() * vibes[randomNumber].length)];
+    vibeType = vibeTypes[randomNumber];
+    vibeTypeLen = vibes[vibeType].length;
+    vibe = vibes[vibeType][Math.floor(Math.random() * vibeTypeLen)];
 
     console.log(vibe.text);
 
