@@ -42,6 +42,8 @@ api.get("/bot/DM", getDMData);
 api.post("/bot/DM/:action", changeDMData);
 api.get("/bot/cogs/list", getCogData);
 api.post("/bot/cogs/:action", changeCogData);
+api.get("/bot/vibes/:action", getVibesData);
+api.get("/bot/vibes/:action", changeVibesData);
 
 function getSettings(req, res)
 {
@@ -454,6 +456,28 @@ function changeCogData(req, res){
         };
         res.send(reply);
     }
+}
+
+function getVibesData(req, res){
+    vibes = updateData("vibes.json");
+
+    vibeTypes = ["positive", "negative", "neutral", "neither"];
+    randomNumber = Math.floor(Math.random() * 4)
+    
+    vibe = vibes[randomNumber][Math.floor(Math.random() * vibes[randomNumber].length)];
+
+    console.log(vibe.text);
+
+    reply = {
+        status: "success",
+        data: vibes
+    };
+
+    res.send(reply);
+}
+
+function changeVibesData(req, res){
+    res.send("not working yet... :/");
 }
 
 module.exports = api;

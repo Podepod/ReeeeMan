@@ -1,17 +1,37 @@
 {
     "positive": [
-
+        {
+            "text": "Trying to find your vibe is like trying to divide by zero.",
+            "enabled": true,
+            "suggested_by": "Me"
+        }
     ],
     "negative": [
-
+        {
+            "text": "Trying to find your vibe is like trying to divide by zero.",
+            "enabled": true,
+            "suggested_by": "Me"
+        }
     ],
     "neutral": [
-
+        {
+            "text": "Vibe = 5/7 marks",
+            "enabled": true,
+            "suggested_by": "Me"
+        }
     ],
     "neither": [
-        
+        {
+            "text": "I wanna be like you when I grow up!",
+            "enabled": true,
+            "suggested_by": "Me"
+        }
     ],
     "requests": [
-        
+        {
+            "text": "HEY",
+            "suggested_by": "Me",
+            "suggested_from": "Bot Control Server"
+        }
     ]
 }

@@ -82,4 +82,10 @@ def changeCog(cogName: str, action: str):
 def getQuoteLink():
     api_page = requests.get("https://inspirobot.me/api?generate=true")
 
-    return api_page.content.decode("utf-8") 
+    return api_page.content.decode("utf-8")
+
+def getRandomVibe():
+    pass
+
+def suggestVibe(text, author, guildname):
+    pass

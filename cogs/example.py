@@ -14,6 +14,9 @@ bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config[
 class COGNAME(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+        self.cofig = api.readConfig()
+
         self.configLoop.start()
 
     def cog_unload(self):
@@ -21,7 +24,7 @@ class COGNAME(commands.Cog):
 
     @tasks.loop(seconds=5.0)
     async def configLoop(self):
-        pass
+        self.cofig = api.readConfig()
 
     @configLoop.before_loop
     async def beforeConfigLoop(self):

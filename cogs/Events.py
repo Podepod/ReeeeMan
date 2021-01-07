@@ -25,42 +25,31 @@ class Events(commands.Cog):
     # on bot joins guild
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
-        config = self.config
+        logchannel = self.bot.get_channel(int(self.config["log"]["channelID"]))
+        print(f"{self.config['basic']['name']} joined a new server")
 
-        print("#############################################")
-        print(f"joined a new guild:\nname: {guild.name}\ncreated at: {guild.created_at}\nregion: {guild.region}\nowner: {guild.owner}\nicon url: {guild.icon_url}\nchannels:")
+        embed = discord.Embed(
+            title=f"{guild.name}",
+            description=f"Created at: {guild.created_at}\nRegion: {guild.region}\nMember Count: {guild.member_count}\nRole Count: {len(guild.roles)}\nText Channels: {len(guild.text_channels)}\nVoice Channels: {len(guild.voice_channels)}",
+            timestamp=datetime.datetime.utcnow(),
+            color=discord.Color.red()
+        )
         for channel in guild.text_channels:
-            print(f"- channelname: {channel.name}\n * id: {channel.id}\n * nsfw: {channel.is_nsfw()}\n * news: {channel.is_news()}")
-        print("roles:")
-        for role in guild.roles:
-            print(f"- Rolename: {role.name}\n * ID: {role.id}")
-        print(f"members ({guild.member_count}):")
-        for member in guild.members:
-            print(f"- membername: {member.name}\n * id: {member.id}\n * discriminator: {member.discriminator}\n * nickname: {member.nick}\n * bot: {member.bot}")
-        print("#############################################")
+            embed.add_field(
+                name=channel.name,
+                value=f"Channel ID: {channel.id}\nNSFW Channel: {channel.is_nsfw()}\nNews Channel: {channel.is_news()}",
+                inline=False
+            )
+        await logchannel.send(embed=embed)
+
 
     # on ready
     @commands.Cog.listener()
     async def on_ready(self):   
-        config = self.config
         logchannel = self.bot.get_channel(int(self.config["log"]["channelID"]))
-        print(f"{config['basic']['name']} is up and running...")
+        print(f"{self.config['basic']['name']} is up and running...")
 
-        await self.bot.change_presence(activity=discord.Game(name=config["activity"]["text"]))
-
-        print("#############################################")
-        print(f"Active in {len(bot.guilds)} guilds:")
-        for guild in self.bot.guilds:
-            print(f"name: {guild.name}\ncreated at: {guild.created_at}\nregion: {guild.region}\nowner: {guild.owner}\nicon url: {guild.icon_url}\nchannels:")
-            for channel in guild.text_channels:
-                print(f"- channelname: {channel.name}\n * id: {channel.id}\n * nsfw: {channel.is_nsfw()}\n * news: {channel.is_news()}")
-            print("roles:")
-            for role in guild.roles:
-                print(f"- Rolename: {role.name}\n * ID: {role.id}")
-            print(f"members ({guild.member_count}):")
-            for member in guild.members:
-                print(f"- membername: {member.name}\n * id: {member.id}\n * discriminator: {member.discriminator}\n * nickname: {member.nick}\n * bot: {member.bot}")
-        print("#############################################")
+        await self.bot.change_presence(activity=discord.Game(name=self.config["activity"]["text"]))
 
         embed = discord.Embed(title=f"{self.config['basic']['name']} is up and running...", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
         embed.add_field(name="Active Guilds", value=len(self.bot.guilds), inline=False)
