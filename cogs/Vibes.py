@@ -39,7 +39,7 @@ class Vibes(commands.Cog):
         help=f"sends a list of all the vibes",
         brief="sends all the vibes",
     )
-    async def Vibe(self, ctx):
+    async def AllVibes(self, ctx):
         vibes = api.getAllVibes()
 
         embed = discord.Embed(
