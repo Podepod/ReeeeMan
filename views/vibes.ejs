@@ -7,7 +7,7 @@
     <%- include('./partials/navigatie') -%>
 
     <div class="container text-left">
-        <h1>Vibes</h1>
+        <h1><%= page %>></h1>
 
         <div class="accordion" id="bigAccordionParent">
 
@@ -24,88 +24,7 @@
                 <div id="bigCollapse<%= vibeTypeIndex %>" class="collapse" aria-labelledby="bigHeader<%= vibeTypeIndex %>" data-parent="#bigAccordionParrent">
                     <div class="card-body">
                         <% vibes[vibeType].forEach(function(vibe, vibeIndex){ %>
-                            <div class="accordion" id="smallAccordionParent<%= vibeTypeIndex %>">
-                                <div class="card">
-                                    <div class="card-header" id="smallHeader<%= vibeIndex %>type<%= vibeTypeIndex %>">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#smallCollapse<%= vibeIndex %>type<%= vibeTypeIndex %>" aria-expanded="false" aria-controls="smallCollapse<%= vibeIndex %>type<%= vibeTypeIndex %>">
-                                                <%= vibe.text %>
-                                            </button>
-                                        </h2>
-                                    </div>
-                                    <div id="smallCollapse<%= vibeIndex %>type<%= vibeTypeIndex %>" class="collapse" aria-labelledby="smallHeader<%= vibeIndex %>type<%= vibeTypeIndex %>" data-parent="#smallAccordionParent<%= vibeTypeIndex %>">
-                                        <div class="card-body">
-                                            <form id="edit<%= vibeIndex %>type<%= vibeTypeIndex %>" action="/api/bot/vibes/edit" method="POST">
-                                                <input type="hidden" name="index" value="<%= vibeIndex %>">
-                                                <input type="hidden" name="type" value="<%= vibeType %>">
-                                                <input type="hidden" name="redirect" value="/vibes">
-
-                                                <div class="list-group">
-                                                    <div class="list-group-item list-group-action">
-                                                        <div class="row">
-                                                            <div class="col-6">
-                                                                <h3>Vibe Text</h3>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <input type="text" class="form-control" name="text" value="<%= vibe.text %>">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="list-group-item list-group-action">
-                                                        <div class="row">
-                                                            <div class="col-6">
-                                                                <h3>Suggested By</h3>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <input type="text" class="form-control" name="suggested_by" value="<%= vibe.suggested_by %>">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="list-group-item list-group-action">
-                                                        <div class="row">
-                                                            <div class="col-6">
-                                                                <h3>Enabled</h3>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                                    <label class="btn btn-secondary">
-                                                                        <% if (vibe.enabled){ %>
-                                                                            <input type="radio" name="enabled" value="true" checked> On
-                                                                        <% } else { %>
-                                                                            <input type="radio" name="enabled" value="true"> On
-                                                                        <% } %>
-                                                                    </label>
-                                                                    <label class="btn btn-secondary">
-                                                                        <% if (!vibe.enabled){ %>
-                                                                            <input type="radio" name="enabled" value="false" checked> Off
-                                                                        <% } else { %>
-                                                                            <input type="radio" name="enabled" value="false"> Off
-                                                                        <% } %>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-
-                                            <% if (vibeIndex != 0){ %>
-                                                <form id="remove<%= vibeIndex %>type<%= vibeTypeIndex %>" action="/api/bot/vibes/remove" method="POST">
-                                                    <input type="hidden" name="index" value="<%= vibeIndex %>">
-                                                    <input type="hidden" name="type" value="<%= vibeType %>">
-                                                    <input type="hidden" name="redirect" value="/vibes">
-                                                </form>
-                                            <% } %>
-
-                                            <button type="submit" class="btn btn-primary" form="edit<%= vibeIndex %>type<%= vibeTypeIndex %>">Aanpassen</button>
-                                        
-                                            <% if (vibeIndex != 0){ %>
-                                                <button type="submit" class="btn btn-primary" form="edit<%= vibeIndex %>type<%= vibeTypeIndex %>">Aanpassen</button>
-                                            <% } %> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         <% }) %>
                     </div>
                 </div>
