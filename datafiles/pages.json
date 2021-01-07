@@ -103,6 +103,17 @@
         ]
     },
     {
+        "title": "Vibes",
+        "link": "/vibes",
+        "description": "Manage the vibes",
+        "navID": "vibesNav",
+        "hidden": {
+            "home": false,
+            "nav": false
+        },
+        "dropdown": false
+    },
+    {
         "title": "Cogs",
         "link": "/cogs",
         "description": "Manage loaded cogs",

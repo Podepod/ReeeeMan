@@ -40,6 +40,7 @@ class COGNAME(commands.Cog):
     )
     async def SuggestVibe(self, ctx):
         # api.suggestVibe(text, author, guildname)
+        # log ook in logkanaal dat er een nieuwe sugestion is
         pass
 
     @tasks.loop(seconds=5.0)

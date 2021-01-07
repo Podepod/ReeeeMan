@@ -40,6 +40,9 @@ router.get("/DM", laadDMs);
 // Custom Text Pagina
 router.get("/customText", laadCustomText);
 
+// Vibes Pagina
+router.get("/vibes", laadVibes);
+
 // Cogs Pagina
 router.get("/cogs", laadCogs);
 
@@ -114,6 +117,15 @@ function laadCustomText(req, res)
     nav = updateData("pages.json");
 
     res.render("customText.ejs", {page: "Custom Text", "navId": "customTextNav", "nav": nav, "customText": text.text});
+}
+
+// Custom Text Pagina
+function laadCustomText(req, res)
+{
+    vibes = updateData("vibes.json");
+    nav = updateData("pages.json");
+
+    res.render("customText.ejs", {page: "Custom Text", "navId": "VibesNav", "nav": nav, "vibes": vibes});
 }
 
 // Cogs Pagina
