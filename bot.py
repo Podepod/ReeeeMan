@@ -23,7 +23,7 @@ if __name__ == '__main__':
 
 async def checkConfig(old_config):
     global config
-    log_channel = bot.get_channel(777697840464920586)
+    log_channel = bot.get_channel(int(config["log"]["channelID"]))
 
     # BASIC config
     if (old_config["basic"]["prefix"] != config["basic"]["prefix"]):
@@ -50,7 +50,7 @@ async def checkConfig(old_config):
 
 async def checkCogs():
     global cogList
-    log_channel = bot.get_channel(777697840464920586)
+    log_channel = bot.get_channel(int(config["log"]["channelID"]))
 
     botCogFound = False
     apiCogFound = False

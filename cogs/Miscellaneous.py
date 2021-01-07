@@ -161,7 +161,7 @@ class Miscellaneous(commands.Cog):
         person = ctx.message.author
         await person.add_roles(new_role)
 
-        log_channel = self.bot.get_channel(777697840464920586)
+        log_channel = self.bot.get_channel(int(self.config["log"]["channelID"]))
         print(log_channel)
         await log_channel.send(f"Decoratie toegevoegd in '{server.name}', de rol 'Decoratie'")
 
