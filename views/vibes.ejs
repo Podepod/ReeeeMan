@@ -151,7 +151,7 @@
                                                 <button type="submit" class="btn btn-primary" form="requestThing<%= vibeIndex %>type<%= vibeTypeIndex %>">In Category plaatsen</button>
                                             <% } %>
 
-                                            <% if (vibeIndex != 0){ %>
+                                            <% if (vibeIndex != 0 && vibeTypeIndex != 4){ %>
                                                 <button type="submit" class="btn btn-danger" form="remove<%= vibeIndex %>type<%= vibeTypeIndex %>">Verwijder Vibe</button>
                                                 
                                                 <form id="remove<%= vibeIndex %>type<%= vibeTypeIndex %>" action="/api/bot/vibes/remove" method="POST">
