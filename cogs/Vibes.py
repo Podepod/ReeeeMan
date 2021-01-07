@@ -10,8 +10,8 @@ config = api.readConfig()
 
 bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config["basic"]["description"])
 
-# COGNAME COG
-class COGNAME(commands.Cog):
+# Vibes COG
+class Vibes(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -54,4 +54,4 @@ class COGNAME(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(COGNAME(bot))
+    bot.add_cog(Vibes(bot))
