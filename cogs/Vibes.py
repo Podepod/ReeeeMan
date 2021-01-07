@@ -29,8 +29,9 @@ class COGNAME(commands.Cog):
         brief="sends the vibe",
     )
     async def Vibe(self, ctx):
-        #vibe = api.getRandomVibe() 
-        pass
+        vibe = api.getRandomVibe()
+
+        return ctx.send(vibe["text"])
 
     @bot.command(
         name="SuggestVibe",
