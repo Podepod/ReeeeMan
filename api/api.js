@@ -43,7 +43,7 @@ api.post("/bot/DM/:action", changeDMData);
 api.get("/bot/cogs/list", getCogData);
 api.post("/bot/cogs/:action", changeCogData);
 api.get("/bot/vibes/:action", getVibesData);
-api.get("/bot/vibes/:action", changeVibesData);
+api.post("/bot/vibes/:action", changeVibesData);
 
 function getSettings(req, res)
 {
@@ -461,7 +461,8 @@ function changeCogData(req, res){
 function getVibesData(req, res){
     vibes = updateData("vibes.json");
 
-    if(req.params.action == "random"){
+    if(req.params.action == "random")
+    {
         vibeTypes = ["positive", "negative", "neutral", "neither"];
         randomNumber = Math.floor(Math.random() * 4);
         vibeType = vibeTypes[randomNumber];
@@ -469,11 +470,13 @@ function getVibesData(req, res){
         replyData = vibes[vibeType][Math.floor(Math.random() * vibeTypeLen)];
         replyStatus = "Success";
     }
-    else if (req.params.action == "all"){
+    else if (req.params.action == "all")
+    {
         replyData = vibes;
         replyStatus = "Success";
     }
-    else{
+    else
+    {
         replyData = "Action not found.";
         replyStatus = "Failed";
     }
@@ -487,7 +490,65 @@ function getVibesData(req, res){
 }
 
 function changeVibesData(req, res){
-    res.send("not working yet... :/");
+    vibes = updateData("vibes.json");
+
+    if (req.params.action == "edit")
+    {
+        vibes[req.body.type].text = req.body.text;
+        vibes[req.body.type].enabled = (req.body.enabled == "true");
+        vibes[req.body.type].suggested_by = req.body.suggested_by;
+    }
+    else if (req.params.action == "remove")
+    {
+        vibes[req.body.type].splice(Number(req.body.index), 1);
+    }
+    else if (req.params.action == "handleRequest")
+    {
+        tempData = {
+            "text": req.body.text,
+            "enabled": true,
+            "suggested_by": req.body.suggested_by
+        };
+
+        vibes[req.body.category].push(tempData);
+
+        vibes[req.body.type].splice(Number(req.body.index), 1);
+    }
+    else if (req.params.action == "add")
+    {
+        if (req.body.type == "requests")
+        {
+            tempData = {
+                "text": req.body.text,
+                "suggested_by": req.body.suggested_by,
+                "suggested_from": req.body.suggested_from
+            };
+        }
+        else
+        {
+            tempData = {
+                "text": req.body.text,
+                "enabled": (req.body.enabled == "true"),
+                "suggested_by": req.body.suggested_by
+            };
+        }
+        vibes[req.body.type].push(tempData);
+    }
+
+    changeData("vibes.json", vibes);
+
+    if(req.body.redirect)
+    {
+        res.redirect(req.body.redirect);
+    }
+    else
+    {
+        var reply = {
+            status: "succes",
+            data: vibes
+        };
+        res.send(reply);
+    }
 }
 
 module.exports = api;
