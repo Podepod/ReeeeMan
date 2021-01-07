@@ -68,12 +68,17 @@ class Events(commands.Cog):
         await logchannel.send(embed=embed)
 
         for guild in self.bot.guilds:
-            embed = discord.Embed(title=f"{guild.name}", description=f"Created at: {guild.created_at}\n Region: {guild.region}\n Owner: {guild.owner}", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
+            embed = discord.Embed(
+                title=f"{guild.name}", 
+                description=f"Created at: {guild.created_at}\nRegion: {guild.region}\nOwner: {guild.owner.name}\nMember Count: {guild.member_count}\nRole Count: {len(guild.roles)}\nText Channels: {len(guild.text_channels)}\nVoice Channels: {len(guild.voice_channels)}", 
+                timestamp=datetime.datetime.utcnow(), 
+                color=discord.Color.red()
+            )
             embed.set_thumbnail(url=guild.icon_url)
             for channel in guild.text_channels:
                 embed.add_field(
                     name=channel.name,
-                    value=f"ID: {channel.id}\nNSFW: {channel.is_nsfw()}\nNews: {channel.is_news()}",
+                    value=f"Channel ID: {channel.id}\nNSFW Channel: {channel.is_nsfw()}\nNews Channel: {channel.is_news()}",
                     inline=False
                 )
             await logchannel.send(embed=embed)
