@@ -65,7 +65,7 @@ class Events(commands.Cog):
         embed = discord.Embed(title=f"{self.config['basic']['name']} is up and running...", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
         embed.add_field(name="Active Guilds", value=len(self.bot.guilds), inline=True)
         embed.add_field(name="Activity text", value=self.config["activity"]["text"], inline=True)
-        logchannel.send(embed=embed)
+        await logchannel.send(embed=embed)
 
         for guild in self.bot.guilds:
             embed = discord.Embed(title=f"{guild.name}", description=f"Created at: {guild.created_at}\n Region: {guild.region}\n Owner: {guild.owner}", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
@@ -76,7 +76,7 @@ class Events(commands.Cog):
                     value=f"ID: {channel.id}\nNSFW: {channel.is_nsfw()}\nNews: {channel.is_news()}",
                     inline=False
                 )
-            logchannel.send(embed=embed)
+            await logchannel.send(embed=embed)
 
 
     @tasks.loop(seconds=5.0)
