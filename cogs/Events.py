@@ -43,6 +43,7 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):   
         config = self.config
+        logChannel = self.bot.get_channel(int(self.config["log"]["channelID"]))
         print(f"{config['basic']['name']} is up and running...")
 
         await self.bot.change_presence(activity=discord.Game(name=config["activity"]["text"]))
@@ -60,6 +61,21 @@ class Events(commands.Cog):
             for member in guild.members:
                 print(f"- membername: {member.name}\n * id: {member.id}\n * discriminator: {member.discriminator}\n * nickname: {member.nick}\n * bot: {member.bot}")
         print("#############################################")
+
+        embed = discord.Embed(title=f"{self.config['basic']['name']} is up and running...", timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
+        embed.add_field(name="Active Guilds", value=len(self.bot.guilds), inline=True)
+        embed.add_field(name="Activity text", value=self.config["activity"]["text"], inline=True)
+        logchannel.send(embed=embed)
+
+        for guild in self.bot.guilds:
+            embed = discord.Embed(title=f"{guild.name}", description=f"Created at: {guild.created_at}\n Region: {guild.region}\n Owner: {guild.owner}" timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
+            embed.set_image(guild.icon_url)
+            for channel in guild.text_channels:
+                embed.add_field(
+                    name=channel.name,
+                    value=f"ID: {channel.id}\nNSFW: {channel.is_nsfw()}\nNews: {channel.is_news()}"
+                    inline=False
+                )
 
 
     @tasks.loop(seconds=5.0)
