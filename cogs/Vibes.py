@@ -40,9 +40,6 @@ class Vibes(commands.Cog):
         brief="Suggest a new vibe",
     )
     async def SuggestVibe(self, ctx, *, text):
-        print(ctx.message.author.nick)
-        print(ctx.guild.name)
-
         reply = api.suggestVibe(text, ctx.message.author.nick, ctx.guild.name)
 
         return await ctx.send(reply)
