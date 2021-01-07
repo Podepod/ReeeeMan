@@ -494,9 +494,9 @@ function changeVibesData(req, res){
 
     if (req.params.action == "edit")
     {
-        vibes[req.body.type].text = req.body.text;
-        vibes[req.body.type].enabled = (req.body.enabled == "true");
-        vibes[req.body.type].suggested_by = req.body.suggested_by;
+        vibes[req.body.type][req.body.index].text = req.body.text;
+        vibes[req.body.type][req.body.index].enabled = (req.body.enabled == "true");
+        vibes[req.body.type][req.body.index].suggested_by = req.body.suggested_by;
     }
     else if (req.params.action == "remove")
     {
