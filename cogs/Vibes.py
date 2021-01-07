@@ -34,6 +34,33 @@ class Vibes(commands.Cog):
         return await ctx.send(vibe["text"])
 
     @bot.command(
+        name="AllVibes",
+        aliases=["vibes", "allvibes", "allVibes", "Allvibes"],
+        help=f"sends a list of all the vibes",
+        brief="sends all the vibes",
+    )
+    async def Vibe(self, ctx):
+        vibes = api.getAllVibes()
+
+        embed = discord.Embed(
+            title="A list of all the available vibes,
+            timestamp=datetime.datetime.utcnow(),
+            color=discord.Color.red()
+        )
+
+        vibeTypes = ["positive", "negative", "neutral", "neither"]
+
+        for vibeType in vibeTypes:
+            for vibe in vibes[vibeType]:
+                embed.add_field(
+                    name=vibe["text"],
+                    value=f"Category: {vibeType}\nEnabled: {vibe['enabled']}",
+                    inline=False
+                )
+
+        return await ctx.send(embed=embed)
+
+    @bot.command(
         name="SuggestVibe",
         aliases=["suggestVibe", "suggestvibe", "suggest", "svibe", "vibesug"],
         help=f"SuggestVibe x - suggest a vibe to be added to the vibelist (aliases: suggestVibe, suggestvibe, suggest, svibe, vibesug)",
