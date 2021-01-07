@@ -461,18 +461,26 @@ function changeCogData(req, res){
 function getVibesData(req, res){
     vibes = updateData("vibes.json");
 
-    vibeTypes = ["positive", "negative", "neutral", "neither"];
-    randomNumber = Math.floor(Math.random() * 4);
-    console.log(randomNumber)
-    vibeType = vibeTypes[randomNumber];
-    vibeTypeLen = vibes[vibeType].length;
-    vibe = vibes[vibeType][Math.floor(Math.random() * vibeTypeLen)];
-
-    console.log(vibe.text);
+    if(req.params.action == "random"){
+        vibeTypes = ["positive", "negative", "neutral", "neither"];
+        randomNumber = Math.floor(Math.random() * 4);
+        vibeType = vibeTypes[randomNumber];
+        vibeTypeLen = vibes[vibeType].length;
+        ReplyData = vibes[vibeType][Math.floor(Math.random() * vibeTypeLen)];
+        replyStatus = "Success";
+    }
+    else if (req.params.action == "all"){
+        replyData = vibes;
+        replyStatus = "Success";
+    }
+    else{
+        replyData = "Action not found.";
+        replyStatus = "Failed";
+    }
 
     reply = {
-        status: "success",
-        data: vibes
+        status: replyStatus,
+        data: replyData
     };
 
     res.send(reply);
