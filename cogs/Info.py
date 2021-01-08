@@ -15,7 +15,7 @@ class Info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-        self.cofig = api.readConfig()
+        self.config = api.readConfig()
 
         self.configLoop.start()
 
@@ -81,7 +81,7 @@ class Info(commands.Cog):
 
     @tasks.loop(seconds=5.0)
     async def configLoop(self):
-        self.cofig = api.readConfig()
+        self.config = api.readConfig()
 
     @configLoop.before_loop
     async def beforeConfigLoop(self):
