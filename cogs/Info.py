@@ -41,7 +41,7 @@ class Info(commands.Cog):
 
         embed.add_field(
             name="Prefix",
-            value=self.config.basic.prefix
+            value=self.config.basic.prefix,
             inline=False
         )
         embed.add_field(
@@ -51,7 +51,7 @@ class Info(commands.Cog):
         )
         embed.add_field(
             name="Description",
-            value=self.config.basic.description
+            value=self.config.basic.description,
             inline=False
         )
         embed.add_field(
