@@ -135,6 +135,7 @@
         <h2>Log Channel</h2>
         <!-- 
             channelID
+            stalkChannelID
          -->
         <div class="list-group">
             <div class="list-group-item list-group-item-action">
@@ -144,6 +145,41 @@
                     </div>
                     <div class="col-6">
                         <input type="text" class="form-control" name="log[channelID]" value="<%= instellingen.log.channelID %>">
+                    </div>
+                </div>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col-6">
+                        <h3>Stalking Enabledy</h3>
+                    </div>
+                    <div class="col-6">
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary">
+                                <% if(instellingen.log.stalkingEnabled){ %>
+                                    <input type="radio" name="log[stalkingEnabled]" value="true" checked> On
+                                <% } else { %>
+                                    <input type="radio" name="log[stalkingEnabled]" value="true"> On
+                                <% } %>
+                            </label>
+                            <label class="btn btn-secondary">
+                                <% if(!instellingen.log.stalkingEnabled){ %>
+                                    <input type="radio" name="log[stalkingEnabled]" value="false" checked> Off
+                                <% } else { %>
+                                    <input type="radio" name="log[stalkingEnabled]" value="false"> Off
+                                <% } %>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col-6">
+                        <h3>Stalk Channel ID</h3>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" class="form-control" name="log[stalkChannelID]" value="<%= instellingen.log.stalkChannelID %>">
                     </div>
                 </div>
             </div>

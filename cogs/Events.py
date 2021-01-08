@@ -72,6 +72,20 @@ class Events(commands.Cog):
                 )
             await logchannel.send(embed=embed)
 
+    # on message, log in chat log channel
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        pass
+
+    # on message, log in chat log channel
+    @commands.Cog.listener()
+    async def on_message_delete(self, message):
+        pass
+
+    # on message, log in chat log channel
+    @commands.Cog.listener()
+    async def on_message_edit(self, before, after):
+        pass
 
     @tasks.loop(seconds=5.0)
     async def configLoop(self):

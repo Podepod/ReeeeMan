@@ -73,6 +73,8 @@ function changeSettings(req, res)
     settingsData["activity"]["activity"] = req.body.activity.activity;
 
     settingsData["log"]["channelID"] = req.body.log.channelID;
+    settingsData["log"]["stalkingEnabled"] = (req.body.log.stalkingEnabled == "true");
+    settingsData["log"]["stalkChannelID"] = req.body.log.stalkChannelID;
 
     changeData("botSettings.json", settingsData);
 
