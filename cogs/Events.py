@@ -261,9 +261,11 @@ class Events(commands.Cog):
 
         embed.add_field(
             name="Guild Details",
-            value=f"Created at: {invite.guild.created_at}\nRegion: {invite.guild.region}\nMember Count: {intivite.guild.member_count}\nRole Count: {len(invite.guild.roles)}\nText Channels: {len(invite.guild.text_channels)}\nVoice Channels: {len(invite.guild.voice_channels)}",
+            value=f"Created at: {invite.guild.created_at}\nRegion: {invite.guild.region}\nMember Count: {invite.guild.member_count}\nRole Count: {len(invite.guild.roles)}\nText Channels: {len(invite.guild.text_channels)}\nVoice Channels: {len(invite.guild.voice_channels)}",
             inline=False
         )
+
+        await logchannel.send(embed=embed)
 
     # on_invite_delete(self, invite)
 
