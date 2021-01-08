@@ -75,17 +75,77 @@ class Events(commands.Cog):
     # on message, log in chat log channel
     @commands.Cog.listener()
     async def on_message(self, message):
-        pass
+        if message.author == self.bot.user:
+            return
+
+        if self.config["log"]["stalkingEnabled"]:
+            logchannel = self.bot.get_channel(int(self.config["log"]["stalkChannelID"]))
+
+            embed = discord.Embed(
+                title=f"{message.author.nick} send a message in {message.channel.guild.name}",
+                timestamp=datetime.datetime.utcnow(),
+                color=discord.Color.red()
+            )
+            embed.add_field(
+                name="Channel",
+                value=f"Name: {message.channel.name}\nID: {message.channel.id}",
+                iunline=False
+            )
+            embed.add_field(
+                name="User",
+                value=f"Nickname: {message.author.nick}\nUsername: {message.author.name}\nID: {message?author.id}",
+                iunline=False
+            )
+            embed.add_field(
+                name="Message",
+                value=message.content,
+                inline=False
+            )
+
+            return await logchannel.send(embed=embed)
+
+        return
+
 
     # on message, log in chat log channel
     @commands.Cog.listener()
     async def on_message_delete(self, message):
-        pass
+        if message.author == self.bot.user:
+            return
+
+        if self.config["log"]["stalkingEnabled"]:
+            logchannel = self.bot.get_channel(int(self.config["log"]["stalkChannelID"]))
+
+            embed = discord.Embed(
+                title=f"{message.author.nick} send a message in {message.channel.guild.name}",
+                timestamp=datetime.datetime.utcnow(),
+                color=discord.Color.red()
+            )
+            embed.add_field(
+                name="Channel",
+                value=f"Name: {message.channel.name}\nID: {message.channel.id}",
+                iunline=False
+            )
+            embed.add_field(
+                name="User",
+                value=f"Nickname: {message.author.nick}\nUsername: {message.author.name}\nID: {message?author.id}",
+                iunline=False
+            )
+            embed.add_field(
+                name="Message",
+                value=message.content,
+                inline=False
+            )
+
+            return await logchannel.send(embed=embed)
+
+        return
 
     # on message, log in chat log channel
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
-        pass
+        if message.author == self.bot.user:
+            return
 
     @tasks.loop(seconds=5.0)
     async def configLoop(self):
