@@ -87,6 +87,8 @@ class Events(commands.Cog):
                 color=discord.Color.red()
             )
 
+            embed.set_thumbnail(url=message.auther.avatar_url)
+
             embed.add_field(
                 name="User",
                 value=f"Nickname: {message.author.nick}\nUsername: {message.author.name}\nID: {message.author.id}",
@@ -123,6 +125,8 @@ class Events(commands.Cog):
                 color=discord.Color.red()
             )
 
+            embed.set_thumbnail(url=message.auther.avatar_url)
+
             embed.add_field(
                 name="Author",
                 value=f"Nickname: {message.author.nick}\nUsername: {message.author.name}\nID: {message.author.id}",
@@ -157,6 +161,8 @@ class Events(commands.Cog):
                 timestamp=datetime.datetime.utcnow(), 
                 color=discord.Color.red()
             )
+
+            embed.set_thumbnail(url=message.auther.avatar_url)
 
             embed.add_field(
                 name="User",
