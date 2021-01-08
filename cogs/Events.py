@@ -87,7 +87,7 @@ class Events(commands.Cog):
                 color=discord.Color.red()
             )
 
-            embed.set_thumbnail(url=message.auther.avatar_url)
+            embed.set_thumbnail(url=message.author.avatar_url)
 
             embed.add_field(
                 name="User",
@@ -125,7 +125,7 @@ class Events(commands.Cog):
                 color=discord.Color.red()
             )
 
-            embed.set_thumbnail(url=message.auther.avatar_url)
+            embed.set_thumbnail(url=message.author.avatar_url)
 
             embed.add_field(
                 name="Author",
@@ -162,7 +162,7 @@ class Events(commands.Cog):
                 color=discord.Color.red()
             )
 
-            embed.set_thumbnail(url=message.auther.avatar_url)
+            embed.set_thumbnail(url=message.author.avatar_url)
 
             embed.add_field(
                 name="User",
