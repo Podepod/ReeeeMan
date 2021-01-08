@@ -245,27 +245,30 @@ class Events(commands.Cog):
     # on_invite_create(self, invite)
     @commands.Cog.listener()
     async def on_invite_create(self, invite):
-        logchannel = self.bot.get_channel(int(self.config["log"]["channelID"]))
+        if self.config["log"]["stalkingEnabled"]:
+            logchannel = self.bot.get_channel(int(self.config["log"]["stalkChannelID"]))
 
-        embed = discord.Embed(
-            title=f"New invite created for {invite.guild.name}",
-            timestamp=datetime.datetime.utcnow(),
-            color=discord.Color.red()
-        )
+            embed = discord.Embed(
+                title=f"New invite created for {invite.guild.name}",
+                timestamp=datetime.datetime.utcnow(),
+                color=discord.Color.red()
+            )
 
-        embed.add_field(
-            name="Invite Details",
-            value=f"Created at: {invite.created_at}\nCreated By: {invite.inviter.name}\nTemporary: {invite.temporary}\nURL: {invite.url}\nMax Age: {invite.max_age}\nMax Uses: {invite.max_uses}\nID: {invite.id}",
-            inline=False
-        )
+            embed.add_field(
+                name="Invite Details",
+                value=f"Created at: {invite.created_at}\nCreated By: {invite.inviter.name}\nTemporary: {invite.temporary}\nURL: {invite.url}\nMax Age: {invite.max_age}\nMax Uses: {invite.max_uses}\nID: {invite.id}",
+                inline=False
+            )
 
-        embed.add_field(
-            name="Guild Details",
-            value=f"Created at: {invite.guild.created_at}\nRegion: {invite.guild.region}\nMember Count: {invite.guild.member_count}\nRole Count: {len(invite.guild.roles)}\nText Channels: {len(invite.guild.text_channels)}\nVoice Channels: {len(invite.guild.voice_channels)}",
-            inline=False
-        )
+            embed.add_field(
+                name="Guild Details",
+                value=f"Created at: {invite.guild.created_at}\nRegion: {invite.guild.region}\nMember Count: {invite.guild.member_count}\nRole Count: {len(invite.guild.roles)}\nText Channels: {len(invite.guild.text_channels)}\nVoice Channels: {len(invite.guild.voice_channels)}",
+                inline=False
+            )
 
-        await logchannel.send(embed=embed)
+            await logchannel.send(embed=embed)
+
+        return
 
     # on_invite_delete(self, invite)
 
