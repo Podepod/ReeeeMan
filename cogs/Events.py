@@ -98,7 +98,7 @@ class Events(commands.Cog):
             )
             embed.add_field(
                 name="Message",
-                value=message.content,
+                value=f"{message.content}",
                 inline=False
             )
 
@@ -133,7 +133,7 @@ class Events(commands.Cog):
             )
             embed.add_field(
                 name="Message",
-                value=message.content,
+                value=f"{message.content}",
                 inline=False
             )
 
