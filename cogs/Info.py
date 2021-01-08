@@ -26,7 +26,7 @@ class Info(commands.Cog):
     # command
     @bot.command(
         name="botInfo",
-        aliases=["info", "Botinfo", "BotInfo", "bInfo", "binfo"],
+        aliases=["info", "Botinfo", "BotInfo", "botinfo", "bInfo", "binfo"],
         help="Gives you some info about this bot and its settings",
         brief="Gives you some info about this bot",
     )
