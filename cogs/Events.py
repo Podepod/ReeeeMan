@@ -114,6 +114,35 @@ class Events(commands.Cog):
         if message.author == self.bot.user:
             return
 
+        if self.config["log"]["stalkingEnabled"]:
+            logchannel = self.bot.get_channel(int(self.config["log"]["stalkChannelID"]))
+
+            embed = discord.Embed(
+                title=f"{message.author.nick} has sent a message in {message.guild.name}", 
+                timestamp=datetime.datetime.utcnow(), 
+                color=discord.Color.red()
+            )
+
+            embed.add_field(
+                name="User",
+                value=f"Nickname: {message.author.nick}\nUsername: {message.author.name}\nID: {message.author.id}",
+                inline=False
+            )
+            embed.add_field(
+                name="Channel",
+                value=f"Name: {message.channel.name}\nID: {message.channel.id}\nguild: {message.guild.name}",
+                inline=False
+            )
+            embed.add_field(
+                name="Message",
+                value=f"{message.content}",
+                inline=False
+            )
+
+            await logchannel.send(embed=embed)
+
+        return
+
     # on message, log in chat log channel
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
