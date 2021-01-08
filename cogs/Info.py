@@ -41,39 +41,39 @@ class Info(commands.Cog):
 
         embed.add_field(
             name="Prefix",
-            value=self.config.basic.prefix,
+            value=self.config["basic"]["prefix"],
             inline=False
         )
         embed.add_field(
             name="Name",
-            value=self.config.basic.name,
+            value=self.config["basic"]["name"],
             inline=False
         )
         embed.add_field(
             name="Description",
-            value=self.config.basic.description,
+            value=self.config["basic"]["description"],
             inline=False
         )
         embed.add_field(
             name="Version",
-            value=self.config.basic.version,
+            value=self.config["basic"]["version"],
             inline=False
         )
 
         embed.add_field(
             name="Activity status",
-            value=self.config.activity.status,
+            value=self.config["activity"]["status"],
             inline=False
         )
         embed.add_field(
             name="Activity text",
-            value=self.config.activity.text,
+            value=self.config["activity"]["text"],
             inline=False
         )
 
         embed.add_field(
             name="Stalking enabled?",
-            value=self.config.log.stalkingEnabled,
+            value=self.config["log"]["stalkingEnabled"],
             inline=False
         )
 
