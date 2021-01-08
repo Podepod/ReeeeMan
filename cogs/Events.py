@@ -22,27 +22,6 @@ class Events(commands.Cog):
     def cog_unload(self):
         self.configLoop.cancel()
 
-    # on bot joins guild
-    @commands.Cog.listener()
-    async def on_guild_join(self, guild):
-        logchannel = self.bot.get_channel(int(self.config["log"]["channelID"]))
-        print(f"{self.config['basic']['name']} joined a new server")
-
-        embed = discord.Embed(
-            title=f"{guild.name}",
-            description=f"Created at: {guild.created_at}\nRegion: {guild.region}\nMember Count: {guild.member_count}\nRole Count: {len(guild.roles)}\nText Channels: {len(guild.text_channels)}\nVoice Channels: {len(guild.voice_channels)}",
-            timestamp=datetime.datetime.utcnow(),
-            color=discord.Color.red()
-        )
-        for channel in guild.text_channels:
-            embed.add_field(
-                name=channel.name,
-                value=f"Channel ID: {channel.id}\nNSFW Channel: {channel.is_nsfw()}\nNews Channel: {channel.is_news()}",
-                inline=False
-            )
-        await logchannel.send(embed=embed)
-
-
     # on ready
     @commands.Cog.listener()
     async def on_ready(self):   
@@ -72,6 +51,7 @@ class Events(commands.Cog):
                 )
             await logchannel.send(embed=embed)
 
+    # MESSAGES
     # on message, log in chat log channel
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -110,7 +90,7 @@ class Events(commands.Cog):
         return
 
 
-    # on message, log in chat log channel
+    # on message delete, log in chat log channel
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         if message.author == self.bot.user:
@@ -147,7 +127,7 @@ class Events(commands.Cog):
 
         return
 
-    # on message, log in chat log channel
+    # on message edit, log in chat log channel
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
         if before.author == self.bot.user:
@@ -188,6 +168,111 @@ class Events(commands.Cog):
             await logchannel.send(embed=embed)
 
         return
+
+    # REACTIONS
+    # on reaction added, log in chat log channel
+    @commands.Cog.listener()
+    async def on_reaction_add(self, reaction, user):
+        pass
+
+    # on reaction removed, log in chat log channel
+    @commands.Cog.listener()
+    async def on_reaction_remove(self, reaction, user):
+        pass
+
+    # on reactions cleared, log in chat log channel
+    @commands.Cog.listener()
+    async def on_reaction_clear(self, message, reactions):
+        pass
+
+    # on reaction emoji cleared, log in chat log channel
+    @commands.Cog.listener()
+    async def on_reaction_clear_emoji(self, reaction):
+        pass
+
+    # PRIVATE CHANNELS
+    # on_private_channel_create(self, channel)
+    # on_private_channel_delete(self, channel)
+    # on_private_channel_update(self, before, after)
+    # on_private_channel_pins_update(self, channel, last_pin)
+
+    # GUILD CHANNELS
+    # on_guild_channel_create(self, channel)
+    # on_guild_channel_delete(self, channel)
+    # on_guild_channel_update(self, before, after)
+    # on_guild_channel_pins_update(self, channel, last_pin)
+    # on_guild_integrations_update(self, guild)
+    # on_webhooks_update(self, channel)
+    # on bot joins guild
+    @commands.Cog.listener()
+    async def on_guild_join(self, guild):
+        logchannel = self.bot.get_channel(int(self.config["log"]["channelID"]))
+        print(f"{self.config['basic']['name']} joined a new server")
+
+        embed = discord.Embed(
+            title=f"{guild.name}",
+            description=f"Created at: {guild.created_at}\nRegion: {guild.region}\nMember Count: {guild.member_count}\nRole Count: {len(guild.roles)}\nText Channels: {len(guild.text_channels)}\nVoice Channels: {len(guild.voice_channels)}",
+            timestamp=datetime.datetime.utcnow(),
+            color=discord.Color.red()
+        )
+        for channel in guild.text_channels:
+            embed.add_field(
+                name=channel.name,
+                value=f"Channel ID: {channel.id}\nNSFW Channel: {channel.is_nsfw()}\nNews Channel: {channel.is_news()}",
+                inline=False
+            )
+        await logchannel.send(embed=embed)
+
+    # on_guild_remove(self, guild)
+    # on_guild_update(self, before, after)
+    # on_guild_role_create(self, role)
+    # on_guild_role_delete(self, role)
+    # on_guild_role_update(self, before, after)
+    # on_guild_emojis_update(self, guild, before, after)
+    # on_guild_available(self, guild)
+    # on_guild_unavailable(sefl, guild)
+
+    # MEMBERS
+    # on_member_join(self, member)
+    # on_member_remove(self, member)
+    # on_member_update(self, before, after)
+    # on_user_update(self, before, after)
+    # on_voice_state_update(self, member, before, after)
+    # on_member_ban(self, guild, user)
+    # on_member_unban(self, guild, user)
+
+    # INVITES
+    # on_invite_create(self, invite)
+    @commands.Cog.listener()
+    async def on_invite_create(self, invite):
+        logchannel = self.bot.get_channel(int(self.config["log"]["channelID"]))
+
+        embed = discord.Embed(
+            title=f"New invite created for {invite.guild.name}",
+            timestamp=datetime.datetime.utcnow(),
+            color=discord.Color.red()
+        )
+
+        embed.add_field(
+            name="Invite Details",
+            value=f"Created at: {invite.created_at}\nCreated By: {invite.inviter.name}\nTemporary: {invite.temporary}\nURL: {invite.url}\nMax Age: {invite.max_age}\nMax Uses: {invite.max_uses}\nID: {invite.id}",
+            inline=False
+        )
+
+        embed.add_field(
+            name="Guild Details",
+            value=f"Created at: {invite.guild.created_at}\nRegion: {invite.guild.region}\nMember Count: {intivite.guild.member_count}\nRole Count: {len(invite.guild.roles)}\nText Channels: {len(invite.guild.text_channels)}\nVoice Channels: {len(invite.guild.voice_channels)}",
+            inline=False
+        )
+
+    # on_invite_delete(self, invite)
+
+    # BOT
+    # on_group_join(self, channel, user)
+    # on_group_remove(self, channel, user)
+    # on_relationship_add(self, relationship)
+    # on_relationship_remove(self, relationship)
+    # on_relationship_update(self, before, after)
 
     @tasks.loop(seconds=5.0)
     async def configLoop(self):
