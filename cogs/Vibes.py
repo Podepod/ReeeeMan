@@ -24,7 +24,7 @@ class Vibes(commands.Cog):
 
     @bot.command(
         name="Vibe",
-        aliases=["vibe", "VibeCheck", "Vibecheck", "vibecheck"],
+        aliases=["vibe", "VibeCheck", "Vibecheck", "vibecheck", "viberoonies"],
         help=f"Vibe - sends a random vibe (aliases: vibe, VibeCheck, Vibecheck, vibecheck)",
         brief="sends the vibe",
     )
