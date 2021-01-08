@@ -30,7 +30,7 @@ class Info(commands.Cog):
         help="Gives you some info about this bot and its settings",
         brief="Gives you some info about this bot",
     )
-    async botInfo(self, ctx):
+    async def botInfo(self, ctx):
         embed = discord.Embed(
             title="Bot info",
             timestamp=datetime.datetime.utcnow(),
