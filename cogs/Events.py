@@ -118,13 +118,13 @@ class Events(commands.Cog):
             logchannel = self.bot.get_channel(int(self.config["log"]["stalkChannelID"]))
 
             embed = discord.Embed(
-                title=f"{message.author.nick} has sent a message in {message.guild.name}", 
+                title=f"{message.author.nick}'s message has been deleted in {message.guild.name}", 
                 timestamp=datetime.datetime.utcnow(), 
                 color=discord.Color.red()
             )
 
             embed.add_field(
-                name="User",
+                name="Author",
                 value=f"Nickname: {message.author.nick}\nUsername: {message.author.name}\nID: {message.author.id}",
                 inline=False
             )
