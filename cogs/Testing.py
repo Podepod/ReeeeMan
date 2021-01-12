@@ -17,7 +17,7 @@ class Testing(commands.Cog):
         self.bot = bot
         self.testLoop.start()
 
-        with open("emojiCodeMap.json", "rb") as file:
+        with open("datafiles/emojiCodeMap.json", "rb") as file:
             self.emojiDict = json.load(file)
             file.close()
 
