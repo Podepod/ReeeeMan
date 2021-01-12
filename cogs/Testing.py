@@ -24,7 +24,7 @@ class Testing(commands.Cog):
     @commands.is_owner()
     async def emoji(self, ctx):
         for emojinaam in em.emojiList:
-            reaction = em.EmojiList[emojinaam]
+            reaction = em.emojiList[emojinaam]
             await ctx.send(reaction)
 
     @bot.command(hidden = True)
