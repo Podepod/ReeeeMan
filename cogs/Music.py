@@ -47,7 +47,7 @@ class Music(commands.Cog):
         await ctx.send(f'Connecting to **`{channel.name}`**')
         await player.connect(channel.id)
 
-    @bot.command(hidden = True, name="connect")
+    @bot.command(hidden = True, name="play")
     async def play(self, ctx, *, query: str):
         tracks = await self.bot.wavelink.get_tracks(f'ytsearch:{query}')
 
