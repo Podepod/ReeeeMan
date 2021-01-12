@@ -79,6 +79,12 @@ class Info(commands.Cog):
 
         return await ctx.channel.send(embed=embed)
 
+    # COGINFO
+    # command
+
+    # Custom help?
+    # command
+
     @tasks.loop(seconds=5.0)
     async def configLoop(self):
         self.config = api.readConfig()

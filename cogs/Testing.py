@@ -5,6 +5,7 @@ import asyncio
 import re
 import random
 import apiRequests as api
+import json
 
 config = api.readConfig()
 
@@ -16,8 +17,19 @@ class Testing(commands.Cog):
         self.bot = bot
         self.testLoop.start()
 
+        with open("emojiCodeMap.json", "rb") as file:
+            self.emojiDict = json.load(file)
+            file.close()
+
     def cog_unload(self):
         self.testLoop.cancel()
+
+    @bot.command(hidden = True)
+    @commands.is_owner()
+    async def emoji(self, ctx):
+        for emojinaam in self.emojiDict:
+            reaction = emojinaam
+            ctx.message.add_reaction(reaction)
 
     @bot.command(hidden = True)
     @commands.is_owner()
