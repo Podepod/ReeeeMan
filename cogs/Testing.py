@@ -28,7 +28,7 @@ class Testing(commands.Cog):
     @commands.is_owner()
     async def emoji(self, ctx):
         for emojinaam in self.emojiDict:
-            reaction = emojinaam
+            reaction = emojiDict[emojinaam]
             await ctx.message.add_reaction(reaction)
 
     @bot.command(hidden = True)
