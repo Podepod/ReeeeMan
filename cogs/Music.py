@@ -20,6 +20,11 @@ class Music(commands.Cog):
 
         self.configLoop.start()
 
+        if not hasattr(bot, 'wavelink'):
+            self.bot.wavelink = wavelink.Client(bot=self.bot)
+
+        self.bot.loop.create_task(self.start_nodes())
+
     def cog_unload(self):
         self.configLoop.cancel()
 
