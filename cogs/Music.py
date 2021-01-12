@@ -33,12 +33,12 @@ class Music(commands.Cog):
 
         # Initiate our nodes. For this example we will use one server.
         # Region should be a discord.py guild.region e.g sydney or us_central (Though this is not technically required)
-        await self.bot.wavelink.initiate_node(host='127.0.0.1',
+        await self.bot.wavelink.initiate_node(host='10.30.20.187',
                                               port=2333,
-                                              rest_uri='http://127.0.0.1:2333',
+                                              rest_uri='http://10.30.20.187:2333',
                                               password='youshallnotpass',
                                               identifier='TEST',
-                                              region='us_central')
+                                              region='eu_east')
 
     @bot.command(hidden = True, name="connect")
     async def connect_(self, ctx, *, channel: discord.VoiceChannel=None):
