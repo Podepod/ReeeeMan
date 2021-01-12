@@ -15,7 +15,7 @@ bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config[
 class Testing(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.testLoop.start()
+        #self.testLoop.start()
 
         with open("datafiles/emojiCodeMap.json", "rb") as file:
             self.emojiDict = json.load(file)
@@ -29,7 +29,7 @@ class Testing(commands.Cog):
     async def emoji(self, ctx):
         for emojinaam in self.emojiDict:
             reaction = self.emojiDict[emojinaam]
-            await ctx.message.add_reaction(reaction)
+            await ctx.send(reaction)
 
     @bot.command(hidden = True)
     @commands.is_owner()
