@@ -16,24 +16,31 @@ class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+        self.config = api.readConfig()
+
+        self.configLoop.start()
+
         if not hasattr(bot, 'wavelink'):
             self.bot.wavelink = wavelink.Client(bot=self.bot)
 
         self.bot.loop.create_task(self.start_nodes())
+
+    def cog_unload(self):
+        self.configLoop.cancel()
 
     async def start_nodes(self):
         await self.bot.wait_until_ready()
 
         # Initiate our nodes. For this example we will use one server.
         # Region should be a discord.py guild.region e.g sydney or us_central (Though this is not technically required)
-        await self.bot.wavelink.initiate_node(host='127.0.0.1',
+        await self.bot.wavelink.initiate_node(host='10.30.20.187',
                                               port=2333,
-                                              rest_uri='http://127.0.0.1:2333',
+                                              rest_uri='http://10.30.20.187:2333',
                                               password='youshallnotpass',
                                               identifier='TEST',
-                                              region='us_central')
+                                              region='eu_east')
 
-    @commands.command(name='connect')
+    @bot.command(hidden = True, name="connect")
     async def connect_(self, ctx, *, channel: discord.VoiceChannel=None):
         if not channel:
             try:
@@ -45,7 +52,7 @@ class Music(commands.Cog):
         await ctx.send(f'Connecting to **`{channel.name}`**')
         await player.connect(channel.id)
 
-    @commands.command()
+    @bot.command(hidden = True, name="play")
     async def play(self, ctx, *, query: str):
         tracks = await self.bot.wavelink.get_tracks(f'ytsearch:{query}')
 
@@ -58,6 +65,14 @@ class Music(commands.Cog):
 
         await ctx.send(f'Added {str(tracks[0])} to the queue.')
         await player.play(tracks[0])
+
+    @tasks.loop(seconds=5.0)
+    async def configLoop(self):
+        self.config = api.readConfig()
+
+    @configLoop.before_loop
+    async def beforeConfigLoop(self):
+        await self.bot.wait_until_ready()
 
 
 def setup(bot):
