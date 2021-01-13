@@ -47,7 +47,7 @@ class RegEx(commands.Cog):
         for regexData in self.regexSearchWords:
             embed.add_field(
                 name=f"{regexData['regex']}",
-                value=f"Regex string: {regexData['regex']}\nAnswer: {regexData['response']}\nTTS enabled: {regexData['tts']}\nEnabled: {regexData["enabled"]}\nRemove message: {regexData["removeMessage"]}",
+                value=f"Regex string: {regexData['regex']}\nAnswer: {regexData['response']}\nTTS enabled: {regexData['tts']}\nEnabled: {regexData['enabled']}\nRemove message: {regexData['removeMessage']}",
                 inline=False
             )
 
