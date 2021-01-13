@@ -62,7 +62,7 @@ class RegEx(commands.Cog):
 
         embed.set_thumbnail(url=self.bot.user.avatar_url)
 
-        for regexData in self.regexSearchWords:
+        for regexData in self.regexReactions:
             embed.add_field(
                 name=f"{regexData['regex']}",
                 value=f"Regex string: {regexData['regex']}\nReaction: {regexData['reaction']}\nEnabled: {regexData['enabled']}",
@@ -80,7 +80,7 @@ class RegEx(commands.Cog):
 
         embed.set_thumbnail(url=self.bot.user.avatar_url)
 
-        for regexData in self.regexSearchWords:
+        for regexData in self.regexBans:
             embed.add_field(
                 name=f"{regexData['regex']}",
                 value=f"Regex string: {regexData['regex']}\nOwner Answer: {regexData['ownerAnswer']}\nNormal Answer: {regexData['answer']}\nEnabled: {regexData['enabled']}",
