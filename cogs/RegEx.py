@@ -28,6 +28,68 @@ class RegEx(commands.Cog):
     def cog_unload(self):
         self.configLoop.cancel()
 
+    @bot.command(
+        name="getRegex",
+        aliases=["getregex", "regexlist", "listregex"],
+        help=f"Gives an embed with all regex searchwords and there reactions",
+        brief="Lists all regex searchwords",
+    )
+    async def getRegex(self, ctx):
+        # SEARCHWORDS
+        embed = discord.Embed(
+            title="Basic answers",
+            timestamp=datetime.datetime.utcnow(),
+            color=discord.Color.red()
+        )
+
+        embed.set_thumbnail(url=self.bot.user.avatar_url)
+
+        for regexData in self.regexSearchWords:
+            embed.add_field(
+                name=f"{regexData['regex']}",
+                value=f"Regex string: {regexData['regex']}\nAnswer: {regexData['response']}\nTTS enabled: {regexData['tts']}\nEnabled: {regexData["enabled"]}\nRemove message: {regexData["removeMessage"]}",
+                inline=False
+            )
+
+        await ctx.send(embed=embed)
+
+        # REACTIONS
+        embed = discord.Embed(
+            title="Reactions",
+            timestamp=datetime.datetime.utcnow(),
+            color=discord.Color.red()
+        )
+
+        embed.set_thumbnail(url=self.bot.user.avatar_url)
+
+        for regexData in self.regexSearchWords:
+            embed.add_field(
+                name=f"{regexData['regex']}",
+                value=f"Regex string: {regexData['regex']}\nReaction: {regexData['reaction']}\nEnabled: {regexData['enabled']}",
+                inline=False
+            )
+
+        await ctx.send(embed=embed)
+
+        #BANS
+        embed = discord.Embed(
+            title="Bans",
+            timestamp=datetime.datetime.utcnow(),
+            color=discord.Color.red()
+        )
+
+        embed.set_thumbnail(url=self.bot.user.avatar_url)
+
+        for regexData in self.regexSearchWords:
+            embed.add_field(
+                name=f"{regexData['regex']}",
+                value=f"Regex string: {regexData['regex']}\nOwner Answer: {regexData['ownerAnswer']}\nNormal Answer: {regexData['answer']}\nEnabled: {regexData['enabled']}",
+                inline=False
+            )
+
+        await ctx.send(embed=embed)
+
+
     @commands.Cog.listener()
     async def on_message(self, message):
         if message.author == self.bot.user:
