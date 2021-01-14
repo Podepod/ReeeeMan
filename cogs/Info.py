@@ -92,7 +92,7 @@ class Info(commands.Cog):
         brief="Gives you some info about this bot",
     )
     async def Ping(self, ctx):
-        await.send(self.bot.latency)
+        await ctx.send(self.bot.latency)
 
     # Custom help?
     # command
