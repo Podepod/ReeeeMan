@@ -82,6 +82,18 @@ class Info(commands.Cog):
     # COGINFO
     # command
 
+
+     # PING
+    # command
+    @bot.command(
+        name="Ping",
+        aliases=["ping"],
+        help="Gives you some info about this bot and its settings",
+        brief="Gives you some info about this bot",
+    )
+    async def Ping(self, ctx):
+        await.send(self.bot.latency)
+
     # Custom help?
     # command
 
