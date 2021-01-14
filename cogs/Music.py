@@ -40,7 +40,12 @@ class Music(commands.Cog):
                                               identifier='TEST',
                                               region='eu_east')
 
-    @bot.command(hidden = True, name="connect")
+    @bot.command(
+        name="Connect",
+        aliases=["con", "connect", "Con"],
+        help=f"Connects the bot to your current voice channel or a chosen voice channel",
+        brief="Connects the bot to a voice channel"
+    )
     async def connect_(self, ctx, *, channel: discord.VoiceChannel=None):
         if not channel:
             try:
@@ -52,7 +57,12 @@ class Music(commands.Cog):
         await ctx.send(f'Connecting to **`{channel.name}`**')
         await player.connect(channel.id)
 
-    @bot.command(hidden = True, name="play")
+    @bot.command(
+        name="Play",
+        aliases=["play", "p", "P"],
+        help=f"Plays a given song from probably youtube",
+        brief="Plays a given song"
+    )
     async def play(self, ctx, *, query: str):
         tracks = await self.bot.wavelink.get_tracks(f'ytsearch:{query}')
 
