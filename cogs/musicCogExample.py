@@ -60,8 +60,8 @@ class Player(wavelink.Player):
         self.stop_votes = set()
 
     async def do_next(self) -> None:
-        if self.is_playing or self.waiting:
-            return
+        #if self.is_playing or self.waiting:
+        #    return
 
         # Clear the votes for a new song...
         self.pause_votes.clear()
