@@ -13,7 +13,7 @@ config = api.readConfig()
 bot = commands.Bot(command_prefix=config["basic"]["prefix"], description=config["basic"]["description"])
 
 # URL matching REGEX...
-URL_REG = re.compile(r'https?://(?:www\.)?.+'
+URL_REG = re.compile(r'https?://(?:www\.)?.+')
 
 class NoChannelProvided(commands.CommandError):
     """Error raised when no suitable voice channel was supplied."""
