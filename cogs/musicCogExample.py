@@ -315,7 +315,7 @@ class musicCogExample(commands.Cog, wavelink.WavelinkMixin):
         nodes = {'MAIN': {'host': '10.30.20.187',
                           'port': 4321,
                           'rest_uri': 'http://10.30.20.187:4321',
-                          'password': 'yournodepassword',
+                          'password': 'youshallnotpass',
                           'identifier': 'MAIN',
                           'region': 'eu_east'
                           }}
