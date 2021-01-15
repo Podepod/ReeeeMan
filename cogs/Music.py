@@ -64,7 +64,7 @@ class Music(commands.Cog):
         brief="Plays a given song"
     )
     async def play(self, ctx, *, query: str):
-        tracks = await self.bot.wavelink.get_tracks(f'ytsearch:{query}')
+        tracks += await self.bot.wavelink.get_tracks(f'ytsearch:{query}')
 
         if not tracks:
             return await ctx.send('Could not find any songs with that query.')

@@ -148,7 +148,6 @@ class musicTest(commands.Cog):
         controller = self.get_controller(ctx)
         await controller.queue.put(track)
         await ctx.send(f'Added {str(track)} to the queue.', delete_after=15)
-        await player.play(tracks[0])
 
     @commands.command()
     async def pause(self, ctx):
