@@ -7,6 +7,7 @@ import re
 import random
 import apiRequests as api
 import wavelink
+import typing
 
 config = api.readConfig()
 
