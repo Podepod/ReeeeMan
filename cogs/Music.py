@@ -74,7 +74,7 @@ class Music(commands.Cog):
         if not player.is_connected:
             await ctx.invoke(self.connect_)
 
-        await ctx.send(f'Added {str(tracks[0])} to the queue.')
+        await ctx.send(f'Added {str(self.tracks[0])} to the queue.')
         await player.play(self.tracks[0])
 
     @tasks.loop(seconds=5.0)
