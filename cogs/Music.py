@@ -17,6 +17,7 @@ class Music(commands.Cog):
         self.bot = bot
 
         self.config = api.readConfig()
+        self.tracks = list()
 
         self.configLoop.start()
 
@@ -64,9 +65,9 @@ class Music(commands.Cog):
         brief="Plays a given song"
     )
     async def play(self, ctx, *, query: str):
-        tracks += await self.bot.wavelink.get_tracks(f'ytsearch:{query}')
+        self.tracks += await self.bot.wavelink.get_tracks(f'ytsearch:{query}')
 
-        if not tracks:
+        if not self.tracks:
             return await ctx.send('Could not find any songs with that query.')
 
         player = self.bot.wavelink.get_player(ctx.guild.id)
@@ -74,7 +75,7 @@ class Music(commands.Cog):
             await ctx.invoke(self.connect_)
 
         await ctx.send(f'Added {str(tracks[0])} to the queue.')
-        await player.play(tracks[0])
+        await player.play(self.tracks[0])
 
     @tasks.loop(seconds=5.0)
     async def configLoop(self):
