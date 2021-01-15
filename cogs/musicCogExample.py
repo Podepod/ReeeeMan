@@ -312,12 +312,12 @@ class musicCogExample(commands.Cog, wavelink.WavelinkMixin):
             for node in previous.values():
                 await node.destroy()
 
-        nodes = {'MAIN': {'host': 'x',
-                          'port': 2333,
-                          'rest_uri': 'http://x:2333',
+        nodes = {'MAIN': {'host': '10.30.20.187',
+                          'port': 4321,
+                          'rest_uri': 'http://10.30.20.187:4321',
                           'password': 'yournodepassword',
                           'identifier': 'MAIN',
-                          'region': 'us_central'
+                          'region': 'eu_east'
                           }}
 
         for n in nodes.values():
