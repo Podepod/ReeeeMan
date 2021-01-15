@@ -236,7 +236,7 @@ class musicTest(commands.Cog):
         await ctx.send('Disconnected player and killed controller.', delete_after=20)
 
     @commands.command()
-    async def info(self, ctx):
+    async def musicCogInfo(self, ctx):
         """Retrieve various Node/Server/Player information."""
         player = self.bot.wavelink.get_player(ctx.guild.id)
         node = player.node
