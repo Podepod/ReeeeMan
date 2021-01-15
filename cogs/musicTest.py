@@ -148,6 +148,7 @@ class musicTest(commands.Cog):
         controller = self.get_controller(ctx)
         await controller.queue.put(track)
         await ctx.send(f'Added {str(track)} to the queue.', delete_after=15)
+        await player.play(tracks[0])
 
     @commands.command()
     async def pause(self, ctx):
@@ -234,28 +235,6 @@ class musicTest(commands.Cog):
 
         await player.disconnect()
         await ctx.send('Disconnected player and killed controller.', delete_after=20)
-
-    @commands.command()
-    async def musicCogInfo(self, ctx):
-        """Retrieve various Node/Server/Player information."""
-        player = self.bot.wavelink.get_player(ctx.guild.id)
-        node = player.node
-
-        used = 0 #humanize.naturalsize(node.stats.memory_used)
-        total = 0 #humanize.naturalsize(node.stats.memory_allocated)
-        free = 0 #humanize.naturalsize(node.stats.memory_free)
-        cpu = node.stats.cpu_cores
-
-        fmt = f'**WaveLink:** `{wavelink.__version__}`\n\n' \
-              f'Connected to `{len(self.bot.wavelink.nodes)}` nodes.\n' \
-              f'Best available Node `{self.bot.wavelink.get_best_node().__repr__()}`\n' \
-              f'`{len(self.bot.wavelink.players)}` players are distributed on nodes.\n' \
-              f'`{node.stats.players}` players are distributed on server.\n' \
-              f'`{node.stats.playing_players}` players are playing on server.\n\n' \
-              f'Server Memory: `{used}/{total}` | `({free} free)`\n' \
-              f'Server CPU: `{cpu}`\n\n' \
-              f'Server Uptime: `{datetime.timedelta(milliseconds=node.stats.uptime)}`'
-        await ctx.send(fmt)
 
 def setup(bot):
     bot.add_cog(musicTest(bot))
