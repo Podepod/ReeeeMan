@@ -91,17 +91,26 @@ class Info(commands.Cog):
     async def ServerInfo(self, ctx):
         embed = discord.Embed(
             title=f"{ctx.guild.name}", 
-            description=f"Created at: {ctx.guild.created_at}\nRegion: {ctx.guild.region}\nMember Count: {ctx.guild.member_count}\nRole Count: {len(ctx.guild.roles)}\nText Channels: {len(ctx.guild.text_channels)}\nVoice Channels: {len(ctx.guild.voice_channels)}", 
+            description=f"Created at: {ctx.guild.created_at}\nCreated by: {ctx.guild.owner.name}\nRegion: {ctx.guild.region}\nMember Count: {ctx.guild.member_count}\nRole Count: {len(ctx.guild.roles)}\nText Channels: {len(ctx.guild.text_channels)}\nVoice Channels: {len(ctx.guild.voice_channels)}", 
             timestamp=datetime.datetime.utcnow(), 
             color=discord.Color.red()
         )
         embed.set_thumbnail(url=ctx.guild.icon_url)
+
         for channel in ctx.guild.text_channels:
             embed.add_field(
                 name=channel.name,
-                value=f"Channel ID: {channel.id}\nNSFW Channel: {channel.is_nsfw()}\nNews Channel: {channel.is_news()}",
+                value=f"Channel ID: {channel.id}\nCategory: {channel.category.name}\nCategory ID: {channel.category_id}\nNSFW Channel: {channel.is_nsfw()}\nNews Channel: {channel.is_news()}\nChannel Type: Text",
                 inline=False
             )
+
+        for channel in ctx.guild.voice_channels:
+            embed.add_field(
+                name=channel.name,
+                value=f"Channel ID: {channel.id}\nCategory: {channel.category.name}\nCategory ID: {channel.category_id}\nChannel bitrate: {channel.bitrate}\nUser limit: {channel.user_limit}\nChannel Type: Voice",
+                inline=False
+            )
+        
         await ctx.send(embed=embed)
 
      # PING
