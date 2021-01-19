@@ -102,7 +102,7 @@ class Info(commands.Cog):
                 value=f"Channel ID: {channel.id}\nNSFW Channel: {channel.is_nsfw()}\nNews Channel: {channel.is_news()}",
                 inline=False
             )
-        await logchannel.send(embed=embed)
+        await ctx.send(embed=embed)
 
      # PING
     # command
