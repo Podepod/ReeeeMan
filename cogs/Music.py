@@ -320,7 +320,7 @@ class PaginatorSource(menus.ListPageSource):
         return True
 
 
-class MusicTester(commands.Cog, wavelink.WavelinkMixin):
+class Music(commands.Cog, wavelink.WavelinkMixin):
     """Music Cog."""
 
     def __init__(self, bot: commands.Bot):
@@ -755,4 +755,4 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
 
 
 def setup(bot: commands.Bot):
-    bot.add_cog(MusicTester(bot))
+    bot.add_cog(Music(bot))
