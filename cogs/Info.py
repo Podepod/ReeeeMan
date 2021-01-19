@@ -120,14 +120,14 @@ class Info(commands.Cog):
     # command
     @bot.command(
         name="MemberInfo",
-        aliases=["serverinfo", "sinfo", "serverInfo", "Sinfo", "sInfo", "guildInfo", "GuildInfo", "guildinfo"],
+        aliases=["memberinfo", "minfo", "memberInfo", "Minfo", "mInfo"],
         help="Gives you some info about a member or all members of the server",
         brief="Gives you some info about a member"
     )
     async def ServerInfo(self, ctx, member : discord.Member = None):
         pass
 
-    
+
     # PING
     # command
     @bot.command(
