@@ -452,7 +452,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
 
         return player.dj == ctx.author or ctx.author.guild_permissions.change_nickname
 
-    @bot.command(
+    @commands.command(
         name="connect",
         help="Connect to a voice channel."
     )
@@ -469,7 +469,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
 
         await player.connect(channel.id)
 
-    @bot.command(
+    @commands.command(
         name="play",
         aliases=["p", "P", "Play"],
         help="Play or queue a song with the given query."
@@ -504,7 +504,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
         if not player.is_playing:
             await player.do_next()
 
-    @bot.command(
+    @commands.command(
         name="pause",
         aliases=["Pause"],
         help="Pause the currently playing song."
@@ -532,7 +532,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
         else:
             await ctx.send(f'{ctx.author.mention} has voted to pause the player.', delete_after=15)
 
-    @bot.command(
+    @commands.command(
         name="resume",
         aliases=["Resume"],
         help="Resume a currently paused player."
@@ -560,7 +560,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
         else:
             await ctx.send(f'{ctx.author.mention} has voted to resume the player.', delete_after=15)
 
-    @bot.command(
+    @commands.command(
         name="skip",
         aliases=["s", "Skip", "s"],
         help="Skip the currently playing song."
@@ -594,7 +594,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
         else:
             await ctx.send(f'{ctx.author.mention} has voted to skip the song.', delete_after=15)
 
-    @bot.command(
+    @commands.command(
         name="stop",
         aliases=["Stop", "leave", "Leave"],
         help="Stop the player and clear all internal states."
@@ -619,7 +619,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
         else:
             await ctx.send(f'{ctx.author.mention} has voted to stop the player.', delete_after=15)
 
-    @bot.command(
+    @commands.command(
         name="volume",
         aliases=["v", "vol"],
         help="Change the players volume, between 1 and 100."
@@ -640,7 +640,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
         await player.set_volume(vol)
         await ctx.send(f'Set the volume to **{vol}**%', delete_after=7)
 
-    @bot.command(
+    @commands.command(
         name="shuffle",
         aliases=["Shuffle", "mix", "Mix"],
         help="Shuffle the players queue."
@@ -670,7 +670,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
         else:
             await ctx.send(f'{ctx.author.mention} has voted to shuffle the playlist.', delete_after=15)
 
-    @bot.command(
+    @commands.command(
         hidden=True,
         name="vol_up",
         help="Command used for volume up button."
@@ -690,7 +690,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
 
         await player.set_volume(vol)
 
-    @bot.command(
+    @commands.command(
         hidden=True,
         name="vol_down",
         help="Command used for volume down button."
@@ -710,7 +710,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
 
         await player.set_volume(vol)
 
-    @bot.command(
+    @commands.command(
         name="equalizer",
         aliases=["eq", "EQ", "Eq"],
         help="Change the players equalizer."
@@ -739,7 +739,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
         await ctx.send(f'Successfully changed equalizer to {equalizer}', delete_after=15)
         await player.set_eq(eq)
 
-    @bot.command(
+    @commands.command(
         name="queue",
         aliases=["q", "que", "Queue", "Q", "Que"],
         help="Display the players queued songs."
@@ -760,7 +760,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
 
         await paginator.start(ctx)
 
-    @bot.command(
+    @commands.command(
         name="nowplaying",
         aliases=["np", "now_playing", "current"],
         help="Update the player controller."
@@ -774,7 +774,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
 
         await player.invoke_controller()
 
-    @bot.command(
+    @commands.command(
         name="swap_dj",
         aliases=["swap", "dj"],
         help="Swap the current DJ to another member in the voice channel."
