@@ -125,7 +125,7 @@ class Info(commands.Cog):
         brief="Gives you some info about a member"
     )
     async def MemberInfo(self, ctx, member : discord.Member = None):
-        if member == None:
+        if member != None:
             ctx.send(member.mention)
         else:
             ctx.send("uhu")
