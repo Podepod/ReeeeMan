@@ -126,9 +126,9 @@ class Info(commands.Cog):
     )
     async def MemberInfo(self, ctx, member : discord.Member = None):
         if member != None:
-            ctx.send(member.mention)
+            await ctx.send(member.mention)
         else:
-            ctx.send("uhu")
+            await ctx.send("uhu")
 
 
     # PING
