@@ -83,6 +83,27 @@ class Info(commands.Cog):
     # command
 
 
+    # GUILDINFO
+    # command
+    @bot.command(
+
+    )
+    async def ServerInfo(self, ctx):
+        embed = discord.Embed(
+            title=f"{ctx.guild.name}", 
+            description=f"Created at: {ctx.guild.created_at}\nRegion: {ctx.guild.region}\nMember Count: {ctx.guild.member_count}\nRole Count: {len(ctx.guild.roles)}\nText Channels: {len(ctx.guild.text_channels)}\nVoice Channels: {len(ctx.guild.voice_channels)}", 
+            timestamp=datetime.datetime.utcnow(), 
+            color=discord.Color.red()
+        )
+        embed.set_thumbnail(url=ctx.guild.icon_url)
+        for channel in ctx.guild.text_channels:
+            embed.add_field(
+                name=channel.name,
+                value=f"Channel ID: {channel.id}\nNSFW Channel: {channel.is_nsfw()}\nNews Channel: {channel.is_news()}",
+                inline=False
+            )
+        await logchannel.send(embed=embed)
+
      # PING
     # command
     @bot.command(
