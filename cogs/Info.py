@@ -128,8 +128,22 @@ class Info(commands.Cog):
         if member != None:
             await ctx.send(member.mention)
         else:
-            await ctx.send("uhu")
+            embed = discord.Embed(
+            title=f"{ctx.guild.name} Users", 
+            description=f"A little info about {ctx.guild.name}'s {ctx.guild.member_count} members",
+            timestamp=datetime.datetime.utcnow(), 
+            color=discord.Color.red()
+        )
+        embed.set_thumbnail(url=ctx.guild.icon_url)
 
+        for gMember in ctx.guild.members:
+            embed.add_field(
+                name=gMember.name,
+                value=f"Nickname: {gMember.nick}\nIs bot? {gMember.bot}\nJoined at: {gMember.joined_at}",
+                inline=False
+            )
+
+        await ctx.send(embed=embed)
 
     # PING
     # command
