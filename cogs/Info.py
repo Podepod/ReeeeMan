@@ -136,7 +136,9 @@ class Info(commands.Cog):
             )
             embed.set_thumbnail(url=ctx.guild.icon_url)
 
+            print(ctx.guild.members)
             for user in ctx.guild.members:
+                print("test")
                 embed.add_field(
                     name=user.name,
                     value=f"Nickname: {user.nick}\nIs bot? {user.bot}\nJoined at: {user.joined_at}",
