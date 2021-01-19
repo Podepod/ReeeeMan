@@ -124,8 +124,11 @@ class Info(commands.Cog):
         help="Gives you some info about a member or all members of the server",
         brief="Gives you some info about a member"
     )
-    async def ServerInfo(self, ctx, member : discord.Member = None):
-        pass
+    async def MemberInfo(self, ctx, member : discord.Member = None):
+        if member == None:
+            ctx.send(member.mention)
+        else:
+            ctx.send("uhu")
 
 
     # PING
