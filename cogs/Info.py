@@ -91,7 +91,7 @@ class Info(commands.Cog):
     async def ServerInfo(self, ctx):
         embed = discord.Embed(
             title=f"{ctx.guild.name}", 
-            description=f"Created at: {ctx.guild.created_at}\nCreated by: {ctx.guild.owner.name}\nRegion: {ctx.guild.region}\nMember Count: {ctx.guild.member_count}\nRole Count: {len(ctx.guild.roles)}\nText Channels: {len(ctx.guild.text_channels)}\nVoice Channels: {len(ctx.guild.voice_channels)}", 
+            description=f"Description: {ctx.guild.description}\nCreated at: {ctx.guild.created_at}\nRegion: {ctx.guild.region}\nMember Count: {ctx.guild.member_count}\nRole Count: {len(ctx.guild.roles)}\nText Channels: {len(ctx.guild.text_channels)}\nVoice Channels: {len(ctx.guild.voice_channels)}\nAFK Channel: {ctx.guild.afk_channel.name}\nAFK Timeout: {ctx.guild.afk_timeout}", 
             timestamp=datetime.datetime.utcnow(), 
             color=discord.Color.red()
         )
