@@ -116,7 +116,19 @@ class Info(commands.Cog):
         
         await ctx.send(embed=embed)
 
-     # PING
+    # MEMBER INFO
+    # command
+    @bot.command(
+        name="MemberInfo",
+        aliases=["serverinfo", "sinfo", "serverInfo", "Sinfo", "sInfo", "guildInfo", "GuildInfo", "guildinfo"],
+        help="Gives you some info about a member or all members of the server",
+        brief="Gives you some info about a member"
+    )
+    async def ServerInfo(self, ctx, member : discord.Member = None):
+        pass
+
+    
+    # PING
     # command
     @bot.command(
         name="Ping",
