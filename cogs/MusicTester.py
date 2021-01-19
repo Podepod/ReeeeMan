@@ -562,7 +562,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
 
     @commands.command(
         name="skip",
-        aliases=["s", "Skip", "s"],
+        aliases=["s", "Skip", "S"],
         help="Skip the currently playing song."
     )
     async def skip(self, ctx: commands.Context):
