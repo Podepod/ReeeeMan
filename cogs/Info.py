@@ -129,17 +129,17 @@ class Info(commands.Cog):
             await ctx.send(member.mention)
         else:
             embed = discord.Embed(
-            title=f"{ctx.guild.name} Users", 
-            description=f"A little info about {ctx.guild.name}'s {ctx.guild.member_count} members",
-            timestamp=datetime.datetime.utcnow(), 
-            color=discord.Color.red()
+                title=f"{ctx.guild.name} Users", 
+                description=f"A little info about {ctx.guild.name}'s {ctx.guild.member_count} members",
+                timestamp=datetime.datetime.utcnow(), 
+                color=discord.Color.red()
             )
             embed.set_thumbnail(url=ctx.guild.icon_url)
 
-            for gMember in ctx.guild.members:
+            for user in ctx.guild.members:
                 embed.add_field(
-                    name=gMember.name,
-                    value=f"Nickname: {gMember.nick}\nIs bot? {gMember.bot}\nJoined at: {gMember.joined_at}",
+                    name=user.name,
+                    value=f"Nickname: {user.nick}\nIs bot? {user.bot}\nJoined at: {user.joined_at}",
                     inline=False
                 )
 
