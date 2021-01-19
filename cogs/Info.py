@@ -86,12 +86,15 @@ class Info(commands.Cog):
     # GUILDINFO
     # command
     @bot.command(
-
+        name="ServerInfo",
+        aliases=["serverinfo", "sinfo", "serverInfo", "Sinfo", "sInfo", "guildInfo", "GuildInfo", "guildinfo"],
+        help="Gives you some info about the server you're in",
+        brief="Gives you some info about the server"
     )
     async def ServerInfo(self, ctx):
         embed = discord.Embed(
             title=f"{ctx.guild.name}", 
-            description=f"Description: {ctx.guild.description}\nCreated at: {ctx.guild.created_at}\nRegion: {ctx.guild.region}\nMember Count: {ctx.guild.member_count}\nRole Count: {len(ctx.guild.roles)}\nText Channels: {len(ctx.guild.text_channels)}\nVoice Channels: {len(ctx.guild.voice_channels)}\nAFK Channel: {ctx.guild.afk_channel.name}\nAFK Timeout: {ctx.guild.afk_timeout}", 
+            description=f"Description: {ctx.guild.description}\nCreated at: {ctx.guild.created_at}\nRegion: {ctx.guild.region}\nMember Count: {ctx.guild.member_count}\nRole Count: {len(ctx.guild.roles)}\nText Channels: {len(ctx.guild.text_channels)}\nVoice Channels: {len(ctx.guild.voice_channels)}\nAFK Channel: {ctx.guild.afk_channel.name  if (ctx.guild.afk_channel != None) else 'None'}\nAFK Timeout: {ctx.guild.afk_timeout  if (ctx.guild.afk_channel != None) else 'None'}", 
             timestamp=datetime.datetime.utcnow(), 
             color=discord.Color.red()
         )
