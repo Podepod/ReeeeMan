@@ -252,6 +252,8 @@ checkFilesLoop.start()
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         return await ctx.send("No such command found")
+    if isinstance(error, commands.NotOwner):
+        return await ctx.send("This command is only usable by the bot owner.")
     return print(error)
 
 bot.run(config["basic"]["token"], bot=True, reconnect=True)

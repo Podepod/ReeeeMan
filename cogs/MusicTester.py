@@ -56,6 +56,11 @@ class IncorrectChannelError(commands.CommandError):
     """Error raised when commands are issued outside of the players session channel."""
     pass
 
+#Zelf toegevoegd
+class UserNotConnected(commands.CommandError):
+    """Error raised when a user tries to add a song but isn't connected to a voice channel"""
+    pass
+
 
 class Track(wavelink.Track):
     """Wavelink Track object with a requester attribute."""
@@ -397,6 +402,9 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
         if isinstance(error, NoChannelProvided):
             return await ctx.send('You must be in a voice channel or provide one to connect to.')
 
+        if isinstance(error, UserNotConnected):
+            return await ctx.send('You must be connected to the voice channel to add songs to the queue.')
+
     async def cog_check(self, ctx: commands.Context):
         """Cog wide check, which disallows commands in DMs."""
         if not ctx.guild:
@@ -476,6 +484,11 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
     )
     async def play(self, ctx: commands.Context, *, query: str):
         """Play or queue a song with the given query."""
+        #check of de gebruiker in een voicechannel zit
+        channel = getattr(ctx.author.voice, 'channel', channel)
+        if channel is None:
+            raise UserNotConnected
+
         player: Player = self.bot.wavelink.get_player(guild_id=ctx.guild.id, cls=Player, context=ctx)
 
         if not player.is_connected:
