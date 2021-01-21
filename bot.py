@@ -251,7 +251,7 @@ checkFilesLoop.start()
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        await ctx.send("No such command found")
-    print(error)
+        return await ctx.send("No such command found")
+    return print(error)
 
 bot.run(config["basic"]["token"], bot=True, reconnect=True)
