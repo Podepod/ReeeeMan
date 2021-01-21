@@ -485,8 +485,7 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
     async def play(self, ctx: commands.Context, *, query: str):
         """Play or queue a song with the given query."""
         #check of de gebruiker in een voicechannel zit
-        channel = getattr(ctx.author.voice, 'channel')
-        if channel is None:
+        if ctx.author.voice is None:
             raise UserNotConnected
 
         player: Player = self.bot.wavelink.get_player(guild_id=ctx.guild.id, cls=Player, context=ctx)
