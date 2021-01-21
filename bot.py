@@ -248,4 +248,10 @@ async def die(ctx):
 
 checkFilesLoop.start()
 
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send("No such command found")
+    print(error)
+
 bot.run(config["basic"]["token"], bot=True, reconnect=True)
