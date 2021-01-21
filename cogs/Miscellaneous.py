@@ -24,6 +24,14 @@ class Miscellaneous(commands.Cog):
     def cog_unload(self):
         self.configLoop.cancel()
 
+    async def cog_check(self, ctx: commands.Context):
+        """Cog wide check, which disallows commands in DMs."""
+        if not ctx.guild:
+            await ctx.send('Music commands are not available in Private Messages.')
+            return False
+
+        return True
+
     # CLEANUP
     # command
     @bot.command(

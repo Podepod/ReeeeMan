@@ -400,10 +400,10 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
             return
 
         if isinstance(error, NoChannelProvided):
-            return await ctx.send('You must be in a voice channel or provide one to connect to.')
+            return await ctx.send('You must be in a voice channel or provide one to connect to.', delete_after=15)
 
         if isinstance(error, UserNotConnected):
-            return await ctx.send('You must be connected to the voice channel to add songs to the queue.')
+            return await ctx.send('You must be connected to the voice channel for this command.', delete_after=15)
 
     async def cog_check(self, ctx: commands.Context):
         """Cog wide check, which disallows commands in DMs."""
@@ -523,6 +523,10 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
     )
     async def pause(self, ctx: commands.Context):
         """Pause the currently playing song."""
+        #check of de gebruiker in een voicechannel zit
+        if ctx.author.voice is None:
+            raise UserNotConnected
+
         player: Player = self.bot.wavelink.get_player(guild_id=ctx.guild.id, cls=Player, context=ctx)
 
         if player.is_paused or not player.is_connected:
@@ -551,6 +555,10 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
     )
     async def resume(self, ctx: commands.Context):
         """Resume a currently paused player."""
+        #check of de gebruiker in een voicechannel zit
+        if ctx.author.voice is None:
+            raise UserNotConnected
+
         player: Player = self.bot.wavelink.get_player(guild_id=ctx.guild.id, cls=Player, context=ctx)
 
         if not player.is_paused or not player.is_connected:
@@ -579,6 +587,10 @@ class MusicTester(commands.Cog, wavelink.WavelinkMixin):
     )
     async def skip(self, ctx: commands.Context):
         """Skip the currently playing song."""
+        #check of de gebruiker in een voicechannel zit
+        if ctx.author.voice is None:
+            raise UserNotConnected
+
         player: Player = self.bot.wavelink.get_player(guild_id=ctx.guild.id, cls=Player, context=ctx)
 
         if not player.is_connected:
