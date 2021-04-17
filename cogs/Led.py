@@ -34,7 +34,7 @@ class Led(commands.Cog):
     )
     @commands.is_owner()
     async def Led(self, ctx):
-        self.activated = !self.activated
+        self.activated = not self.activated
 
         await ctx.send(f"Led commands activation is now set to {self.activated}")
 
