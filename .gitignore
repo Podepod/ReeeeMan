@@ -1,6 +1,4 @@
 /logs
 *.log
 datafiles/botSettings.json
-datafiles/customText.json
-datafiles/permissionClimbing.json
-datafiles/regexSearchWords.json
+datafiles/LEDconfig.json

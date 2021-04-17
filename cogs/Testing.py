@@ -22,13 +22,6 @@ class Testing(commands.Cog):
 
     @bot.command(hidden = True)
     @commands.is_owner()
-    async def emoji(self, ctx):
-        for emojinaam in em.emojiList:
-            reaction = em.emojiList[emojinaam]
-            await ctx.send(reaction)
-
-    @bot.command(hidden = True)
-    @commands.is_owner()
     async def checkLoop(self, ctx):
         await ctx.send(f"Failed? {testLoop.failed()}")
 
