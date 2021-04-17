@@ -18,6 +18,7 @@ class Led(commands.Cog):
 
         self.config = api.readConfig()
         self.room = LEDs.LEDverlichting()
+        self.activated = False
 
         self.configLoop.start()
 
@@ -25,14 +26,29 @@ class Led(commands.Cog):
         self.configLoop.cancel()
 
     @bot.command(
+        hidden=True,
+        name="LedToggle",
+        aliases=["ledToggle", "ledtoggle", "Ledtoggle", "Ltoggle", "lToggle", "ltoggle", "LToggle", "lt", "LT", "ledT", "ledt"],
+        help="Toggles Led commands",
+        brief="Toggles Led commands",
+    )
+    @commands.is_owner()
+    async def Led(self, ctx):
+        self.activated = !self.activated
+
+        await ctx.send(f"Led commands activation is now set to {self.activated}")
+
+    @bot.command(
         name="Led",
         aliases=["led"],
         help="Send commands to Podepod's LEDs",
         brief="Send commands to Podepod's LEDs",
     )
-    @commands.is_owner()
     async def Led(self, ctx, *, text):
-        output = self.room.commandScene(text)
+        if self.activated:
+            output = self.room.commandScene(text)
+        else:
+            output = "Led commands are disabled at this point"
 
         await ctx.send(output)
 
