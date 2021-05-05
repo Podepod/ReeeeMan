@@ -21,8 +21,15 @@ class Miscellaneous(commands.Cog):
 
         self.configLoop.start()
 
+        self.wednesday = False
+        self.thursday = False
+        self.wednesdayMessage.start()
+        self.thursdayMessage.start()
+
     def cog_unload(self):
         self.configLoop.cancel()
+        self.wednesdayMessage.cancel()
+        self.thursdayMessage.cancel()
 
     async def cog_check(self, ctx: commands.Context):
         """Cog wide check, which disallows commands in DMs."""
@@ -172,6 +179,40 @@ class Miscellaneous(commands.Cog):
         log_channel = self.bot.get_channel(int(self.config["log"]["channelID"]))
         print(log_channel)
         await log_channel.send(f"Decoratie toegevoegd in '{server.name}', de rol 'Decoratie'")
+
+    @tasks.loop(minute=10.0)
+    async def wednesdayMessage(self):
+        now = datetime.datetime.now()
+
+        if now.isoweekday == 3 and not self.wednesday:
+            self.wednesday = True
+
+            wednesdayChannel = self.bot.get_channel(718222496045727844)
+            await wednesdayChannel.send("https://tenor.com/view/ahhhh-its-wednesday-my-dudes-mirror-selfie-gif-5446149")
+
+        if now.isoweekday == 4 and self.wednesday:
+            self.wednesday = False
+
+    @wednesdayMessage.before_loop
+    async def beforeConfigLoop(self):
+        await self.bot.wait_until_ready()
+
+    @tasks.loop(minute=10.0)
+    async def thursdayMessage(self):
+        now = datetime.datetime.now()
+
+        if now.isoweekday == 4 and not self.thursday:
+            self.thursday = True
+            
+            thursdayChannel = self.bot.get_channel(718222496045727844)
+            await thursdayChannel.send("Het is donderdag mijn jongens!")
+
+        if now.isoweekday == 5 and self.thursday:
+            self.thursday = False
+
+    @thursdayMessage.before_loop
+    async def beforeConfigLoop(self):
+        await self.bot.wait_until_ready()
 
 
     @tasks.loop(seconds=5.0)
