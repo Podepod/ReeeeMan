@@ -180,7 +180,7 @@ class Miscellaneous(commands.Cog):
         print(log_channel)
         await log_channel.send(f"Decoratie toegevoegd in '{server.name}', de rol 'Decoratie'")
 
-    @tasks.loop(minute=10.0)
+    @tasks.loop(minutes=10.0)
     async def wednesdayMessage(self):
         now = datetime.datetime.now()
 
@@ -197,7 +197,7 @@ class Miscellaneous(commands.Cog):
     async def beforeConfigLoop(self):
         await self.bot.wait_until_ready()
 
-    @tasks.loop(minute=10.0)
+    @tasks.loop(minutes=10.0)
     async def thursdayMessage(self):
         now = datetime.datetime.now()
 
